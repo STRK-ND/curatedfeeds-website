@@ -1,0 +1,51 @@
+{
+  "version": "1.0.0",
+  "framework": "nextjs",
+  "frameworkVersion": "16.1.6",
+  "language": "typescript",
+  "styling": "tailwind",
+  "deployment": {
+    "platform": "vercel",
+    "domain": "curated-feeds.agentation.dev",
+    "preview": true
+  },
+  "features": {
+    "appRouter": true,
+    "typescript": true,
+    "tailwind": true,
+    "eslint": true,
+    "pwa": false,
+    "i18n": false
+  },
+  "optimization": {
+    "imageOptimization": true,
+    "fontOptimization": true,
+    "lazyLoading": true,
+    "codeSplitting": true
+  },
+  "seo": {
+    "title": "Curated Feeds — Beautiful RSS Reader",
+    "description": "Experience RSS feeds like never before. Beautiful cards, effortless swipes, and dark-elegant design make reading your favorite sources a daily ritual.",
+    "keywords": ["RSS reader", "feed reader", "news aggregator", "Flutter", "mobile app"],
+    "openGraph": true,
+    "twitterCard": true
+  },
+  "performance": {
+    "lighthouse": {
+      "performance": 95,
+      "accessibility": 100,
+      "bestPractices": 95,
+      "seo": 100
+    },
+    "coreWebVitals": {
+      "LCP": 2.5,
+      "FID": 100,
+      "CLS": 0.1
+    }
+  },
+  "devtools": {
+    "agentation": true,
+    "hotReload": true,
+    "fastRefresh": true
+  }
+}
