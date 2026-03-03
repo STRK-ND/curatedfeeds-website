@@ -424,36 +424,38 @@ export default function Home() {
             reading.
           </p>
           <div className="download-actions">
-            <a href="https://play.google.com/store/apps/details?id=com.curatedfeeds.app" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-android" onMouseDown={(e) => { handleRipple(e); trackAppDownload('google-play'); }}>
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path d="M7.5 3.7c-.5.5-.7 1.2-.7 2.1v27.4c0 .9.2 1.6.7 2.1l.1.1 15.4-15.4v-.3L7.6 3.6l-.1.1zm22.3 11.6l-5.1-2.9-.1.1 5.1 2.9.1-.1z" />
-                <path d="M32 18.8l-5.2 3 .1.1 5.1-2.9-.1-.2z" />
-              </svg>
-              <span>
-                Get it on<br />
-                <strong>Google Play</strong>
-              </span>
-            </a>
-            <a href="https://www.apkmirror.com/apk/curated-feeds" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-apk" onMouseDown={(e) => { handleRipple(e); trackAppDownload('apkmirror'); }}>
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <rect x="6" y="6" width="28" height="28" rx="4" fill="currentColor" />
-                <path d="M20 12v16M12 20h16" stroke="white" strokeWidth="2" />
-              </svg>
-              <span>
-                Download on<br />
-                <strong>APKMirror</strong>
-              </span>
-            </a>
-            <a href="https://apkpure.com/curated-feeds/com.curatedfeeds.app" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-apkpure" onMouseDown={(e) => { handleRipple(e); trackAppDownload('apkpure'); }}>
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <circle cx="20" cy="20" r="16" fill="currentColor" />
-                <path d="M20 12v16M12 20h16" stroke="white" strokeWidth="2" />
-              </svg>
-              <span>
-                Download on<br />
-                <strong>APKPure</strong>
-              </span>
-            </a>
+            <div style={{ display: 'none' }}>
+              <a href="https://play.google.com/store/apps/details?id=com.curatedfeeds.app" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-android" onMouseDown={(e) => { handleRipple(e); trackAppDownload('google-play'); }}>
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <path d="M7.5 3.7c-.5.5-.7 1.2-.7 2.1v27.4c0 .9.2 1.6.7 2.1l.1.1 15.4-15.4v-.3L7.6 3.6l-.1.1zm22.3 11.6l-5.1-2.9-.1.1 5.1 2.9.1-.1z" />
+                  <path d="M32 18.8l-5.2 3 .1.1 5.1-2.9-.1-.2z" />
+                </svg>
+                <span>
+                  Get it on<br />
+                  <strong>Google Play</strong>
+                </span>
+              </a>
+              <a href="https://www.apkmirror.com/apk/curated-feeds" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-apk" onMouseDown={(e) => { handleRipple(e); trackAppDownload('apkmirror'); }}>
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <rect x="6" y="6" width="28" height="28" rx="4" fill="currentColor" />
+                  <path d="M20 12v16M12 20h16" stroke="white" strokeWidth="2" />
+                </svg>
+                <span>
+                  Download on<br />
+                  <strong>APKMirror</strong>
+                </span>
+              </a>
+              <a href="https://apkpure.com/curated-feeds/com.curatedfeeds.app" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-apkpure" onMouseDown={(e) => { handleRipple(e); trackAppDownload('apkpure'); }}>
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="20" r="16" fill="currentColor" />
+                  <path d="M20 12v16M12 20h16" stroke="white" strokeWidth="2" />
+                </svg>
+                <span>
+                  Download on<br />
+                  <strong>APKPure</strong>
+                </span>
+              </a>
+            </div>
             <a href="https://devuploads.com/xpkhvldbbw84" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-uptodown" onMouseDown={(e) => { handleRipple(e); trackAppDownload('direct'); }}>
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <path d="M20 8v20M10 18l10 10 10-10" stroke="white" strokeWidth="2" fill="none" />
@@ -465,7 +467,6 @@ export default function Home() {
               </span>
             </a>
           </div>
-          <p className="download-footer">Direct downloads available from multiple sources</p>
         </div>
       </section>
 
