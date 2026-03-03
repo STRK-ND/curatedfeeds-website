@@ -454,14 +454,14 @@ export default function Home() {
                 <strong>APKPure</strong>
               </span>
             </a>
-            <a href="https://curated-feeds.en.uptodown.com/android" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-uptodown" onMouseDown={(e) => { handleRipple(e); trackAppDownload('uptodown'); }}>
+            <a href="https://devuploads.com/xpkhvldbbw84" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-uptodown" onMouseDown={(e) => { handleRipple(e); trackAppDownload('direct'); }}>
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <path d="M20 8v20M10 18l10 10 10-10" stroke="white" strokeWidth="2" fill="none" />
                 <path d="M10 26v6h20v-6" stroke="white" strokeWidth="2" fill="none" />
               </svg>
               <span>
-                Download on<br />
-                <strong>Uptodown</strong>
+                Direct<br />
+                <strong>Download</strong>
               </span>
             </a>
           </div>
