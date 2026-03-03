@@ -456,7 +456,7 @@ export default function Home() {
                 </span>
               </a>
             </div>
-            <a href="https://devuploads.com/xpkhvldbbw84" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-uptodown" onMouseDown={(e) => { handleRipple(e); trackAppDownload('direct'); }}>
+            <a href="https://apk-download.raj15400881.workers.dev/v1.0.0" className="download-btn download-btn-uptodown" onMouseDown={(e) => { handleRipple(e); trackAppDownload('direct'); }}>
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <path d="M20 8v20M10 18l10 10 10-10" stroke="white" strokeWidth="2" fill="none" />
                 <path d="M10 26v6h20v-6" stroke="white" strokeWidth="2" fill="none" />
