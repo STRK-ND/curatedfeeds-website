@@ -13,6 +13,14 @@
 # testing
 /coverage
 
+# Firebase
+.firebase/
+.firebase.hosting.cache
+.firebase.*.cache
+
+# Windows junk
+nul
+
 # next.js
 /.next/
 /out/

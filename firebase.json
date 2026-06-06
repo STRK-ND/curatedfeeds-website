@@ -6,7 +6,7 @@
       "**/.*",
       "**/node_modules/**",
       "**/next-env.d.ts",
-      "**/.next/**"
+      "**/tsconfig.tsbuildinfo"
     ],
     "frameworksBackend": {
       "region": "us-central1"
