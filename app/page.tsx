@@ -1,488 +1,368 @@
-'use client';
-
-import { useEffect, useState, useRef } from 'react';
-import { useAnalytics } from './hooks/useAnalytics';
+import Link from 'next/link';
 import FevIcon from './components/FevIcon';
+import MobileMenu from './components/MobileMenu';
+import VisitorStats from './components/VisitorStats';
+import { TrackedLink, TrackedDownloadLink } from './components/TrackedLink';
+import {
+  SITE,
+  softwareApplicationLd,
+  mobileApplicationLd,
+  faqLd,
+  breadcrumbLd,
+  howToLd,
+  siteNavigationLd,
+  speakableLd,
+} from './lib/seo';
+import { StructuredData } from './components/StructuredData';
 
-declare global {
-  interface Window {
-    Agentation?: any;
-  }
-}
+const features = [
+  { title: 'Swipe & Save', description: 'Swipe right to save, left to done. Intuitive gestures make managing your reading list effortless.' },
+  { title: 'Beautiful Cards', description: 'Elegant card-based interface with smooth animations and carefully crafted typography.' },
+  { title: 'Multiple Sources', description: 'Add unlimited RSS feeds from tech, design, news, science, finance, and any topic you care about.' },
+  { title: 'Offline Ready', description: 'Articles cache locally so you can read on the train, on a plane, or anywhere without signal.' },
+  { title: 'Dark Theme', description: 'Indigo-purple gradient theme tuned for night reading. Easy on your eyes during long sessions.' },
+  { title: 'Categories', description: 'Organize feeds by topic, Tech, Design, News, AI, for focused browsing.' },
+];
+
+/** Three onboarding steps, published as HowTo rich results. */
+const howToSteps = [
+  {
+    name: 'Download the free APK',
+    text: `Tap Download APK on this page and open the file (version ${SITE.app.version}, about ${Math.round(SITE.app.apkBytes / 1048576)} MB). Curated Feeds installs on Android 8.0 and up, needs no account, and asks for no permissions beyond storage for offline caching.`,
+  },
+  {
+    name: 'Add your first RSS feeds',
+    text: 'Paste any RSS 2.0, Atom, or RDF feed URL, usually ending in /feed or /rss, into the add-source field. Start with a few favourites such as Hacker News, TechCrunch, or The Verge.',
+  },
+  {
+    name: 'Swipe to read and organise',
+    text: 'Swipe a card right to save an article for later and left to mark it done. Group sources into categories like Tech, Design, or AI to keep your feed focused.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What is Curated Feeds?',
+    a: 'Curated Feeds is a free, privacy-first RSS reader for Android. It lets you follow unlimited RSS feeds from tech blogs, news sites, and podcasts in one distraction-free app with swipe-to-save cards. There are no ads, no tracking, and no server-stored reading history.',
+  },
+  {
+    q: 'Is Curated Feeds really free?',
+    a: 'Yes. Curated Feeds is 100% free with no ads, no in-app purchases, and no premium tier. We believe reading should not be monetized through attention, your reading time belongs to you.',
+  },
+  {
+    q: 'How does Curated Feeds protect my privacy?',
+    a: 'Your feed list, saved articles, and reading history stay on your device. We do not run our own feed-parsing server, do not require an account, do not store IP logs, and do not sell any data. Only anonymous Firebase Analytics counters are recorded; you can disable analytics by turning off network access for the app.',
+  },
+  {
+    q: 'How does Curated Feeds compare to Feedly, Inoreader, or NetNewsWire?',
+    a: 'Curated Feeds is offline-first and account-free, unlike Feedly and Inoreader which require accounts and use server-side sync. Unlike NetNewsWire (iOS/Mac only), Curated Feeds targets Android with a swipe-first mobile UX, dark-elegant design, and one-tap categorization. It is built for people who want the simplicity of RSS without the overhead of an account.',
+  },
+  {
+    q: 'Which feeds can I subscribe to?',
+    a: 'Any standard RSS 2.0, Atom, or RDF feed URL works. This includes TechCrunch, Hacker News, The Verge, Ars Technica, Stratechery, MIT Technology Review, Wired, TechRadar, Hacker Noon, and hundreds of thousands of others. Paste the feed URL, usually ending in /feed or /rss, into the app.',
+  },
+  {
+    q: 'Does Curated Feeds work without internet?',
+    a: 'Yes. Articles cache on first read so you can revisit them in airplane mode, on the subway, or in low-signal areas. The home feed is also available offline once cached.',
+  },
+  {
+    q: 'Where can I download Curated Feeds?',
+    a: `Direct APK download is available on this page, version ${SITE.app.version}, about ${Math.round(SITE.app.apkBytes / 1048576)} MB. The app works on Android 8.0 and up, needs no account, and asks for no permissions beyond storage for offline caching.`,
+  },
+  {
+    q: 'Will there be an iOS version?',
+    a: 'Not at launch. The app is Android-first, built in Flutter, focused on the Android swipe-gesture experience.',
+  },
+];
 
 export default function Home() {
-  const { trackCTAClick, trackAppDownload } = useAnalytics();
-  const [navBg, setNavBg] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const heroContentRef = useRef<HTMLDivElement>(null);
-  const phoneRef = useRef<HTMLDivElement>(null);
-  const featureCardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  // Navigation scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setNavBg(window.pageYOffset > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close mobile menu on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [mobileMenuOpen]);
-
-  // Hero animation on load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (heroContentRef.current) {
-        heroContentRef.current.style.opacity = '1';
-        heroContentRef.current.style.transform = 'translateY(0)';
-      }
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Phone parallax effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!phoneRef.current) return;
-
-      const hero = document.querySelector('.hero');
-      if (!hero) return;
-
-      const heroRect = hero.getBoundingClientRect();
-      const heroProgress = Math.min(1, Math.max(0, -heroRect.top / heroRect.height));
-
-      if (heroProgress > 0 && heroProgress < 1) {
-        const rotateY = -8 + heroProgress * 4;
-        const rotateX = 4 - heroProgress * 2;
-        phoneRef.current.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Button ripple effect handler
-  const handleRipple = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const ripple = document.createElement('span');
-    ripple.style.cssText = `
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translate(-50%, -50%) scale(0);
-      animation: ripple 0.6s ease-out;
-      pointer-events: none;
-      left: ${x}px;
-      top: ${y}px;
-    `;
-
-    e.currentTarget.style.position = 'relative';
-    e.currentTarget.style.overflow = 'hidden';
-    e.currentTarget.appendChild(ripple);
-
-    setTimeout(() => ripple.remove(), 600);
-  };
-
-  // Smooth scroll handler
-  const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
-    const target = document.querySelector(targetId);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const features = [
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="8" y="8" width="32" height="32" rx="8" />
-          <path d="M20 24l6 6 10-10" />
-        </svg>
-      ),
-      title: 'Swipe & Save',
-      description: 'Swipe right to save, left to done. Intuitive gestures make managing your reading list effortless.',
-    },
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="6" y="6" width="36" height="36" rx="4" />
-          <path d="M18 18h12M18 24h12M24 30h6" />
-        </svg>
-      ),
-      title: 'Beautiful Cards',
-      description: 'Elegant card-based interface with smooth animations and carefully crafted typography.',
-    },
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="24" cy="24" r="16" />
-          <path d="M28 20l-6 2 6 2-2 6-2-6-6-2 6-2 2-6z" />
-        </svg>
-      ),
-      title: 'Multiple Sources',
-      description: 'Add your favorite RSS feeds from tech, design, news, and any topic you care about.',
-    },
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M24 6v12l-8 6" />
-          <circle cx="24" cy="24" r="16" />
-        </svg>
-      ),
-      title: 'Offline Ready',
-      description: 'Your articles are cached for offline reading. Never disconnected from good content.',
-    },
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="24" cy="24" r="4" />
-          <path d="M24 10v4M24 30v4M10 24h4M30 24h4" />
-        </svg>
-      ),
-      title: 'Dark Theme',
-      description: 'A stunning indigo-purple gradient theme that\'s easy on the eyes during night reading sessions.',
-    },
-    {
-      icon: (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M8 16l8 8 24-24" />
-          <path d="M8 28l8 8 12-12" />
-        </svg>
-      ),
-      title: 'Categories',
-      description: 'Organize your feeds by categories for focused browsing when you\'re in the mood for specific content.',
-    },
-  ];
-
   return (
     <>
+      <StructuredData
+        data={[
+          softwareApplicationLd(),
+          mobileApplicationLd(),
+          breadcrumbLd([{ name: 'Home', url: '/' }]),
+          faqLd(faqs),
+          howToLd(howToSteps),
+          siteNavigationLd([
+            { name: 'Home', url: '/' },
+            { name: 'Features', url: '/#features' },
+            { name: 'Preview', url: '/#preview' },
+            { name: 'FAQ', url: '/#faq' },
+            { name: 'Blog', url: '/blog/' },
+            { name: 'About', url: '/about/' },
+            { name: 'Screenshots', url: '/screenshots/' },
+            { name: 'Download', url: '/#download' },
+          ]),
+          // Passages that read cleanly aloud, for voice and AI-assistant answers.
+          speakableLd(['h1', '.hero-description', '.faq-item summary'], `${SITE.url}/`),
+        ]}
+      />
+
       <div className="noise-overlay" />
 
-      {/* Navigation */}
-      <nav className={`nav ${navBg ? 'nav-scrolled' : ''}`}>
+      <nav className="nav" aria-label="Primary">
         <div className="nav-content">
-          <div className="logo">
+          <Link href="/" className="logo" aria-label="Curated Feeds home">
             <FevIcon />
             <span>Curated</span>
-          </div>
+          </Link>
           <div className="nav-links">
-            <a href="#features" onClick={(e) => smoothScroll(e, '#features')} className="nav-link">
-              Features
-            </a>
-            <a href="#preview" onClick={(e) => smoothScroll(e, '#preview')} className="nav-link">
-              Preview
-            </a>
-            <a href="#download" onClick={(e) => { smoothScroll(e, '#download'); trackCTAClick('Download', 'nav'); }} className="nav-link nav-cta">
-              Download
-            </a>
+            <Link href="/#features" className="nav-link">Features</Link>
+            <Link href="/#preview" className="nav-link">Preview</Link>
+            <Link href="/blog/" className="nav-link">Blog</Link>
+            <Link href="/screenshots/" className="nav-link">Screenshots</Link>
+            <Link href="/about/" className="nav-link">About</Link>
+            <Link href="/#faq" className="nav-link">FAQ</Link>
+            <Link href="/#download" className="nav-link nav-cta">Download</Link>
           </div>
-          <button
-            className="mobile-menu-btn"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              {mobileMenuOpen ? (
-                <>
-                  <path d="M18 6L6 18" />
-                  <path d="M6 6l12 12" />
-                </>
-              ) : (
-                <>
-                  <path d="M4 6h16" />
-                  <path d="M4 12h16" />
-                  <path d="M4 18h16" />
-                </>
-              )}
-            </svg>
-          </button>
-        </div>
-        <div className={`mobile-menu ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
-          <a href="#features" onClick={(e) => { smoothScroll(e, '#features'); setMobileMenuOpen(false); }} className="mobile-link">
-            Features
-          </a>
-          <a href="#preview" onClick={(e) => { smoothScroll(e, '#preview'); setMobileMenuOpen(false); }} className="mobile-link">
-            Preview
-          </a>
-          <a href="#download" onClick={(e) => { smoothScroll(e, '#download'); setMobileMenuOpen(false); }} className="mobile-link mobile-link-cta">
-            Download
-          </a>
+          <MobileMenu />
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content" ref={heroContentRef}>
+      <main id="main">
+      <header className="hero">
+        <div className="hero-content">
+          {/* One small element only (Rule 4.7 stack discipline). v1.0.0 was a
+              version-label Tell; platform + privacy carry the real signal. */}
           <div className="hero-badges">
-            <span className="badge version">v1.0.0</span>
+            <span className="badge badge-platform" aria-label="Android">Android</span>
+            <span className="badge badge-version" aria-label={`Version ${SITE.app.version}`}>v{SITE.app.version}</span>
+            <span className="badge badge-privacy" aria-label="Privacy first">Privacy-First</span>
           </div>
           <h1 className="hero-title">
             <span className="title-line">Your feeds,</span>
             <span className="title-line title-gradient">curated.</span>
           </h1>
           <p className="hero-description">
-            Experience RSS feeds like never before. Beautiful cards, effortless swipes, and dark-elegant design make reading
-            your favorite sources a daily ritual.
+            A free, distraction-free RSS reader for Android. Swipe through your sources, save for later,
+            and read offline. No ads, no tracking.
           </p>
           <div className="hero-actions">
-            <a href="#download" onClick={(e) => { smoothScroll(e, '#download'); trackCTAClick('Download Free', 'hero'); }} className="btn btn-primary" onMouseDown={handleRipple}>
+            <TrackedDownloadLink
+              href={SITE.app.apk}
+              platform="direct"
+              className="btn btn-primary"
+              ariaLabel={`Download Curated Feeds v${SITE.app.version} for Android (APK, ${(SITE.app.apkBytes / 1048576).toFixed(0)} MB)`}
+            >
               <span>Download Free</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M8 3v10M3 8l5 5 5-5" />
-              </svg>
-            </a>
-            <a href="#preview" onClick={(e) => { smoothScroll(e, '#preview'); trackCTAClick('See Preview', 'hero'); }} className="btn btn-secondary" onMouseDown={handleRipple}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M8 3v10M3 8l5 5 5-5" /></svg>
+            </TrackedDownloadLink>
+            <TrackedLink href="#preview" event="See Preview" location="hero" className="btn btn-secondary">
               <span>See Preview</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="8" cy="8" r="6" />
-                <path d="M8 5v6M5 8h6" />
-              </svg>
-            </a>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><circle cx="8" cy="8" r="6" /><path d="M8 5v6M5 8h6" /></svg>
+            </TrackedLink>
           </div>
         </div>
-        <div className="hero-visual">
-          <div className="phone-mockup" ref={phoneRef}>
-            <div className="phone-screen">
-              <div className="screen-header">
-                <div className="screen-time">9:41</div>
-                <div className="screen-icons">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M2 10h2v4H2v-4zm4-4h2v8H6V6zm4 2h2v6h-2V8zm4-6h2v12h-2V2z" />
-                  </svg>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <circle cx="4" cy="8" r="2" />
-                    <path d="M6 6l6-4M12 2v8" />
-                  </svg>
-                </div>
-              </div>
-              <div className="screen-app">
-                <div className="app-title">Curated Feeds</div>
-                <div className="app-stats">
-                  <span className="unread-count">24</span>
-                  <span className="unread-label">unread</span>
-                </div>
-                <div className="app-categories">
-                  <span className="category active">All</span>
-                  <span className="category">Tech</span>
-                  <span className="category">Design</span>
-                </div>
-                <div className="app-card">
-                  <div className="card-source">TechCrunch</div>
-                  <div className="card-title">The Future of AI Is Here</div>
-                  <div className="card-meta">2h ago</div>
-                </div>
-                <div className="app-card app-card-secondary">
-                  <div className="card-source">HackerNews</div>
-                  <div className="card-title">Open Source Takes Over</div>
-                  <div className="card-meta">4h ago</div>
-                </div>
-              </div>
-            </div>
+        {/* Rule 9.F bans div-based fake product UI. The real product shot
+            already exists in public/screenshots/, so use it: real asset,
+            correct intrinsic dimensions, and it is the LCP element. */}
+        <aside className="hero-visual">
+          <div className="hero-visual-frame">
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export has no image optimizer; asset is pre-optimised WebP */}
+            <img
+              src="/screenshots/home-feed.webp"
+              width={1080}
+              height={1920}
+              alt="Curated Feeds home feed showing article cards from TechCrunch, Hacker News, MIT Technology Review, and The Verge, with unread count and category filters"
+              className="hero-shot"
+              fetchPriority="high"
+              decoding="sync"
+            />
           </div>
-        </div>
-      </section>
+        </aside>
+      </header>
 
-      {/* Features Section */}
-      <section id="features" className="features">
+      <section id="features" className="features" aria-labelledby="features-title">
         <div className="section-header">
           <span className="section-label">Features</span>
-          <h2 className="section-title">Crafted for focus</h2>
+          <h2 id="features-title" className="section-title">Crafted for focused reading</h2>
         </div>
+        {/* Cell-count rule (Section 4.7): 6 items in a 2-column grid with a
+            full-width lead would strand the 6th in a half-empty row. So the lead
+            spans both columns, four sit 2x2, and the last closes the grid at full
+            width. Every cell is filled; the composition has rhythm. */}
         <div className="features-grid">
-          {features.map((feature, index) => (
-            <div key={index} className="feature-card">
-              <div className="feature-icon">{feature.icon}</div>
+          {features.map((feature, i) => (
+            <article
+              key={feature.title}
+              className={
+                i === 0 || i === features.length - 1 ? 'feature-card feature-card-lead' : 'feature-card'
+              }
+            >
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
-            </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* Preview Section */}
-      <section id="preview" className="preview">
+      <section id="howitworks" className="howitworks" aria-labelledby="howitworks-title">
+        <div className="section-header">
+          <span className="section-label">How it works</span>
+          <h2 id="howitworks-title" className="section-title">Get started in three steps</h2>
+        </div>
+        <ol className="howitworks-steps" aria-label="Steps to start reading with Curated Feeds">
+          {howToSteps.map((step, i) => (
+            <li key={step.name} className="howitworks-step">
+              <span className="howitworks-number" aria-hidden="true">{i + 1}</span>
+              <div>
+                <h3>{step.name}</h3>
+                <p>{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="preview" className="preview" aria-labelledby="preview-title">
         <div className="preview-container">
           <div className="preview-left">
-            <span className="section-label">Preview</span>
-            <h2 className="section-title">Elegant by design</h2>
+            <h2 id="preview-title" className="section-title">Elegant by design</h2>
             <p className="preview-description">
-              Every interaction is crafted with intention. From the gentle card animations to the perfectly tuned
-              typography, Curated Feeds turns content consumption into a delightful experience.
+              Every interaction is crafted with intention. From the gentle card animations to the
+              perfectly tuned typography, Curated Feeds turns reading into a deliberate daily
+              ritual rather than an infinite feed battle.
             </p>
-            <div className="preview-stats">
-              <div className="stat">
-                <div className="stat-value">100%</div>
-                <div className="stat-label">Free</div>
-              </div>
-              <div className="stat">
-                <div className="stat-value">∞</div>
-                <div className="stat-label">Sources</div>
-              </div>
-              <div className="stat">
-                <div className="stat-value">0</div>
-                <div className="stat-label">Ads</div>
-              </div>
-            </div>
+            <dl className="preview-stats" aria-label="Key product statistics">
+              <div className="stat"><dt className="sr-only">Cost</dt><dd className="stat-value">100%</dd><dd className="stat-label">Free</dd></div>
+              <div className="stat"><dt className="sr-only">Sources</dt><dd className="stat-value">Unlimited</dd><dd className="stat-label">Sources</dd></div>
+              <div className="stat"><dt className="sr-only">Ads</dt><dd className="stat-value">0</dd><dd className="stat-label">Ads</dd></div>
+            </dl>
           </div>
+          {/* Rule 9.F bans div-based fake product UI. Real WebP shots instead:
+              the hero shows the feed, so these two cover the variants it does not. */}
           <div className="preview-right">
-            <div className="preview-cards">
-              <div
-                className="preview-card preview-card-1"
-                onMouseEnter={() => setHoveredCard(0)}
-                onMouseLeave={() => setHoveredCard(null)}
-                style={{
-                  zIndex: hoveredCard === null ? 3 : hoveredCard === 0 ? 10 : 1,
-                  opacity: hoveredCard === null ? 1 : hoveredCard === 0 ? 1 : 0.3,
-                  transform: hoveredCard === null
-                    ? 'translateY(0)'
-                    : hoveredCard === 0
-                    ? 'translateX(-20px) translateY(-10px) scale(1.05)'
-                    : 'scale(0.9)'
-                }}
-              >
-                <div className="pc-source">TechCrunch</div>
-                <div className="pc-title">AI Revolution Changes Everything We Know</div>
-                <div className="pc-excerpt">The landscape of artificial intelligence is evolving at unprecedented speeds...</div>
-                <div className="pc-meta">Today · 8 min read</div>
-              </div>
-              <div
-                className="preview-card preview-card-2"
-                onMouseEnter={() => setHoveredCard(1)}
-                onMouseLeave={() => setHoveredCard(null)}
-                style={{
-                  zIndex: hoveredCard === null ? 2 : hoveredCard === 1 ? 10 : 1,
-                  opacity: hoveredCard === null ? 0.7 : hoveredCard === 1 ? 1 : 0.3,
-                  transform: hoveredCard === null
-                    ? 'translateY(60px) translateX(40px) scale(0.95)'
-                    : hoveredCard === 1
-                    ? 'translateX(-20px) translateY(-10px) scale(1.05)'
-                    : 'scale(0.9)'
-                }}
-              >
-                <div className="pc-source">Design Digest</div>
-                <div className="pc-title">Minimalism Isn&apos;t Dead, It Just Evolved</div>
-                <div className="pc-excerpt">New design trends are emerging that blend minimalism with bold expression...</div>
-                <div className="pc-meta">Yesterday · 5 min read</div>
-              </div>
-              <div
-                className="preview-card preview-card-3"
-                onMouseEnter={() => setHoveredCard(2)}
-                onMouseLeave={() => setHoveredCard(null)}
-                style={{
-                  zIndex: hoveredCard === null ? 1 : hoveredCard === 2 ? 10 : 1,
-                  opacity: hoveredCard === null ? 0.4 : hoveredCard === 2 ? 1 : 0.3,
-                  transform: hoveredCard === null
-                    ? 'translateY(120px) translateX(80px) scale(0.9)'
-                    : hoveredCard === 2
-                    ? 'translateX(-20px) translateY(-10px) scale(1.05)'
-                    : 'scale(0.9)'
-                }}
-              >
-                <div className="pc-source">HackerNews</div>
-                <div className="pc-title">Open Source Software Takes Over Enterprise</div>
-                <div className="pc-excerpt">Companies are increasingly turning to open source solutions for reliability...</div>
-                <div className="pc-meta">2 days ago · 12 min read</div>
-              </div>
-            </div>
+            <figure className="preview-figure">
+              {/* eslint-disable-next-line @next/next/no-img-element -- static export; pre-optimised WebP asset */}
+              <img
+                src="/screenshots/swipe-gestures.webp"
+                width={1080}
+                height={1920}
+                alt="Swipe an article card right to save it, with a second card queued underneath"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Swipe right to save, left to mark done</figcaption>
+            </figure>
+            <figure className="preview-figure">
+              {/* eslint-disable-next-line @next/next/no-img-element -- static export; pre-optimised WebP asset */}
+              <img
+                src="/screenshots/dark-theme.webp"
+                width={1080}
+                height={1920}
+                alt="Dark indigo-purple reading theme with article rows tuned for night reading"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Dark indigo-purple theme for night reading</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      {/* Download Section */}
-      <section id="download" className="download">
+      <section id="faq" className="faq" aria-labelledby="faq-title">
+        <div className="section-header">
+          <h2 id="faq-title" className="section-title">Frequently asked questions</h2>
+        </div>
+        <div className="faq-list">
+          {faqs.map((item) => (
+            <details key={item.q} className="faq-item">
+              <summary>{item.q}</summary>
+              <div>
+                <p>{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section id="download" className="download" aria-labelledby="download-title">
         <div className="download-content">
-          <div className="download-icon">
+          <div className="download-icon" aria-hidden="true">
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M24 28l8 8 8-8" />
               <path d="M32 12v24" />
               <path d="M12 36v8a8 8 0 008 8h24a8 8 0 008-8v-8" />
             </svg>
           </div>
-          <h2 className="download-title">Ready to dive in?</h2>
+          <h2 id="download-title" className="download-title">Ready to take back your attention?</h2>
           <p className="download-description">
-            Download Curated Feeds now and transform how you consume content. Free forever, no ads, just beautiful
-            reading.
+            Download Curated Feeds for Android, free forever, no ads, no account required. Available worldwide.
           </p>
           <div className="download-actions">
-            <div style={{ display: 'none' }}>
-              <a href="https://play.google.com/store/apps/details?id=com.curatedfeeds.app" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-android" onMouseDown={(e) => { handleRipple(e); trackAppDownload('google-play'); }}>
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path d="M7.5 3.7c-.5.5-.7 1.2-.7 2.1v27.4c0 .9.2 1.6.7 2.1l.1.1 15.4-15.4v-.3L7.6 3.6l-.1.1zm22.3 11.6l-5.1-2.9-.1.1 5.1 2.9.1-.1z" />
-                  <path d="M32 18.8l-5.2 3 .1.1 5.1-2.9-.1-.2z" />
-                </svg>
-                <span>
-                  Get it on<br />
-                  <strong>Google Play</strong>
-                </span>
-              </a>
-              <a href="https://www.apkmirror.com/apk/curated-feeds" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-apk" onMouseDown={(e) => { handleRipple(e); trackAppDownload('apkmirror'); }}>
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <rect x="6" y="6" width="28" height="28" rx="4" fill="currentColor" />
-                  <path d="M20 12v16M12 20h16" stroke="white" strokeWidth="2" />
-                </svg>
-                <span>
-                  Download on<br />
-                  <strong>APKMirror</strong>
-                </span>
-              </a>
-              <a href="https://apkpure.com/curated-feeds/com.curatedfeeds.app" target="_blank" rel="noopener noreferrer" className="download-btn download-btn-apkpure" onMouseDown={(e) => { handleRipple(e); trackAppDownload('apkpure'); }}>
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="20" r="16" fill="currentColor" />
-                  <path d="M20 12v16M12 20h16" stroke="white" strokeWidth="2" />
-                </svg>
-                <span>
-                  Download on<br />
-                  <strong>APKPure</strong>
-                </span>
-              </a>
-            </div>
-            <a href="https://apk-download.raj15400881.workers.dev/v1.0.0" className="download-btn download-btn-uptodown" onMouseDown={(e) => { handleRipple(e); trackAppDownload('direct'); }}>
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <TrackedDownloadLink
+              href={SITE.app.apk}
+              platform="direct"
+              className="download-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              ariaLabel="Download Curated Feeds APK (Android, free)"
+            >
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
                 <path d="M20 8v20M10 18l10 10 10-10" stroke="white" strokeWidth="2" fill="none" />
                 <path d="M10 26v6h20v-6" stroke="white" strokeWidth="2" fill="none" />
               </svg>
-              <span>
-                Direct<br />
-                <strong>Download</strong>
-              </span>
-            </a>
+              <span>Direct<br /><strong>Download APK</strong></span>
+            </TrackedDownloadLink>
           </div>
+          <p className="download-meta">
+            Version <strong>{SITE.app.version}</strong> · {Math.round(SITE.app.apkBytes / 1048576)} MB · Android{' '}
+            {SITE.app.operatingSystem === 'ANDROID' ? '8.0+' : SITE.app.operatingSystem} · SHA-256 verified signed build
+          </p>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer">
+      <section className="learn" aria-labelledby="learn-title">
+        <div className="section-header">
+          <h2 id="learn-title" className="section-title">Get more out of your feeds</h2>
+        </div>
+        <ul className="learn-list">
+          <li>
+            <Link href="/blog/10-best-tech-blogs-rss/">
+              10 Best Tech Blogs to Follow in Your RSS Reader
+            </Link>
+            <span>The highest-signal tech sources, with feed URLs and update cadence.</span>
+          </li>
+          <li>
+            <Link href="/blog/rss-vs-social-media/">
+              RSS vs Social Media: Why RSS Still Wins for Focus
+            </Link>
+            <span>Attention economics, with measured numbers from three years of RSS-first reading.</span>
+          </li>
+          <li>
+            <Link href="/blog/productivity-tips-rss-readers/">
+              10 Productivity Tips for RSS Power Users
+            </Link>
+            <span>Habits that compound: daily limits, pruning rituals, and archive reviews.</span>
+          </li>
+          <li>
+            <Link href="/screenshots/">See Curated Feeds in action</Link>
+            <span>App screenshots of the home feed, swipe gestures, and dark theme.</span>
+          </li>
+        </ul>
+      </section>
+
+      </main>
+
+      <footer className="footer" role="contentinfo">
         <div className="footer-content">
           <div className="footer-logo">
             <FevIcon width={24} height={24} />
-            Curated Feeds
+            <span>Curated Feeds</span>
           </div>
-          <div className="footer-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-          </div>
+          <nav className="footer-links" aria-label="Footer">
+            <Link href="/blog/">Blog</Link>
+            <Link href="/screenshots/">Screenshots</Link>
+            <Link href="/about/">About</Link>
+            <Link href="/privacy/">Privacy</Link>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="/feed.xml" rel="alternate" type="application/rss+xml">RSS</a>
+          </nav>
         </div>
-        <div className="footer-copy">Made By Rajat Kashyap - 2026</div>
+        <VisitorStats />
+        <div className="footer-copy">© 2024-{new Date().getFullYear()} {SITE.name}. Made by Rajat Kashyap.</div>
       </footer>
     </>
   );

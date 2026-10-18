@@ -1,67 +1,149 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { SITE, breadcrumbLd, faqPageLd } from '../lib/seo';
+import { StructuredData } from '../components/StructuredData';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import Breadcrumbs from '../components/Breadcrumbs';
+import FevIcon from '../components/FevIcon';
 
 export const metadata: Metadata = {
-  title: 'Screenshots | Curated Feeds',
-  description: 'See Curated Feeds in action. Beautiful card-based RSS reader with swipe gestures and dark-elegant design.',
+  title: 'Screenshots, See the App in Action',
+  description:
+    'Real screenshots of Curated Feeds: the swipe-to-save article feed, category browsing, offline reading, and the dark indigo-purple theme on Android.',
+  alternates: { canonical: `${SITE.url}/screenshots/` },
   openGraph: {
-    title: 'Screenshots | Curated Feeds',
-    description: 'See Curated Feeds in action.',
     type: 'website',
+    locale: SITE.locale,
+    url: `${SITE.url}/screenshots/`,
+    siteName: SITE.name,
+    title: 'Curated Feeds Screenshots, RSS Reader for Android',
+    description:
+      'See the card-based feed, swipe gestures, and dark theme of the privacy-first RSS reader for Android.',
+    images: [`${SITE.url}/og-image.png`],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Curated Feeds Screenshots',
+    description: 'Card-based feed, swipe gestures, and dark theme, see the app.',
+    images: [`${SITE.url}/og-image.png`],
   },
 };
+
+/** Each shot pairs a real WebP asset with descriptive alt text (no keyword stuffing). */
+const shots = [
+  {
+    src: '/screenshots/home-feed.webp',
+    width: 1080,
+    height: 1920,
+    alt: 'Curated Feeds home feed showing unread count, source categories, and article cards from TechCrunch, Hacker News, MIT Technology Review, and The Verge',
+    caption: 'Home feed, all your sources, one card at a time',
+  },
+  {
+    src: '/screenshots/swipe-gestures.webp',
+    width: 1080,
+    height: 1920,
+    alt: 'Curated Feeds swipe gestures: an article card saved with a green confirmation and a second card queued underneath',
+    caption: 'Swipe right to save, left to mark done',
+  },
+  {
+    src: '/screenshots/dark-theme.webp',
+    width: 1080,
+    height: 1920,
+    alt: 'Curated Feeds dark indigo-purple reading theme with article list rows tuned for night reading',
+    caption: 'Dark indigo-purple theme for night reading',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Is Curated Feeds free?',
+    a: 'Yes. Curated Feeds is completely free with no ads, no in-app purchases, and no premium tier. Direct APK download is available on this site.',
+  },
+  {
+    q: 'Does it work offline?',
+    a: 'Yes. Articles cache on first read so they stay available in airplane mode, on the subway, or in low-signal areas.',
+  },
+  {
+    q: 'Which Android versions are supported?',
+    a: 'Curated Feeds runs on Android 8.0 (Oreo) and later. It requires roughly 25 MB of storage for the app and cached articles.',
+  },
+];
 
 export default function ScreenshotsPage() {
   return (
     <>
+      <StructuredData
+        data={[
+          breadcrumbLd([
+            { name: 'Home', url: '/' },
+            { name: 'Screenshots', url: '/screenshots/' },
+          ]),
+          faqPageLd(faqs, `${SITE.url}/screenshots/`),
+        ]}
+      />
       <Nav />
-      <main className="screenshots-page">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Screenshots', url: '/screenshots/' },
+        ]}
+      />
+      <main id="main" className="screenshots-page">
         <section className="screenshots-hero">
-          <h1>Screenshots</h1>
-          <p>Curated Feeds in action — beautiful cards, effortless swipes, dark-elegant design.</p>
+          <h1>Curated Feeds in Action</h1>
+          <p>
+            Real screenshots of the privacy-first RSS reader for Android: the swipe-to-save feed,
+            category browsing, offline reading, and the dark indigo-purple theme.
+          </p>
         </section>
 
-        <section className="screenshots-grid">
-          <div className="screenshot-card">
-            <div className="screenshot-placeholder">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-              <p>Preview 1</p>
-            </div>
-            <p className="screenshot-caption">Home feed with article cards</p>
-          </div>
-          <div className="screenshot-card">
-            <div className="screenshot-placeholder">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-              <p>Preview 2</p>
-            </div>
-            <p className="screenshot-caption">Swipe gestures for save and done</p>
-          </div>
-          <div className="screenshot-card">
-            <div className="screenshot-placeholder">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-              <p>Preview 3</p>
-            </div>
-            <p className="screenshot-caption">Dark theme with indigo-purple gradient</p>
+        {/* Explicit width/height on every image reserves layout space to keep
+            cumulative layout shift at zero while the WebP files decode. */}
+        <section className="screenshots-grid" aria-label="Curated Feeds screenshots">
+          {shots.map((shot) => (
+            <figure key={shot.src} className="screenshot-card">
+              <div className="screenshot-frame">
+                {/* `output: 'export'` disables the Next.js image optimizer
+                    (it needs a running server), and these files are already
+                    WebP-optimised by scripts/build-assets.mjs. Intrinsic
+                    width/height are what protect the LCP/CLS scores. */}
+                {/* eslint-disable-next-line @next/next/no-img-element -- static export has no image optimizer; see comment above */}
+                <img
+                  src={shot.src}
+                  width={shot.width}
+                  height={shot.height}
+                  alt={shot.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption className="screenshot-caption">{shot.caption}</figcaption>
+            </figure>
+          ))}
+        </section>
+
+        <section className="screenshots-faq" aria-labelledby="screenshots-faq-title">
+          <h2 id="screenshots-faq-title">Quick questions</h2>
+          <div className="faq-list">
+            {faqs.map((item) => (
+              <details key={item.q} className="faq-item">
+                <summary>{item.q}</summary>
+                <div>
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))}
           </div>
         </section>
 
         <section className="screenshots-cta">
-          <h2>Ready to try it?</h2>
-          <p>Download Curated Feeds and experience it yourself.</p>
-          <a href="/#download" className="cta-button primary">Download Now</a>
+          <FevIcon width={40} height={40} />
+          <h2>Ready to read on your own terms?</h2>
+          <p>Download Curated Feeds for Android, free forever, no ads, no account required.</p>
+          <Link href="/#download" className="cta-button primary">
+            Download Curated Feeds
+          </Link>
         </section>
       </main>
       <Footer />

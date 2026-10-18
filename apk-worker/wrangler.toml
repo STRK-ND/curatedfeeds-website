@@ -1,0 +1,12 @@
+name = "apk-download"
+main = "src/index.js"
+compatibility_date = "2025-03-01"
+
+# Serves the Curated Feeds APKs from the R2 bucket `curated-feeds-apk`.
+# Public read-only file delivery; no bindings beyond the bucket.
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "curated-feeds-apk"
+
+[observability]
+enabled = false

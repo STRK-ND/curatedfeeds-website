@@ -18,6 +18,15 @@
 .firebase.hosting.cache
 .firebase.*.cache
 
+# MCP servers / tooling
+.mcp-gsc/
+
+# Cloudflare Wrangler local emulator state (machine-local)
+.wrangler/
+
+# APK release artifacts (hosted on Cloudflare R2, not in the repo)
+*.apk
+
 # Windows junk
 nul
 
@@ -43,6 +52,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# backlink bot browser profile (machine-local session cookies)
+/scripts/profile/
 
 # typescript
 *.tsbuildinfo
