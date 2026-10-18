@@ -57,6 +57,7 @@ A: Direct APK at curatedfeeds.web.app. Version 1.2.0, about 67 MB. Works on Andr
 A: Not at launch. Android-first, built in Flutter.
 
 **Download:** https://apk-download.raj15400881.workers.dev/curated-feeds-v1.2.0.apk
+**Uptodown:** https://curated-feeds.en.uptodown.com/android
 **Version:** 1.2.0
 **Package:** com.curatedfeeds.app
 **Operating system:** Android 8.0 or later

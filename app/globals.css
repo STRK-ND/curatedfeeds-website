@@ -1740,6 +1740,30 @@ a {
   opacity: 0.9;
 }
 
+.cta-button.secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-text-primary);
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--color-surface-border);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.cta-button.secondary:hover {
+  border-color: var(--color-text-tertiary);
+  background: var(--color-surface-hover);
+}
+
+.blog-cta-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */

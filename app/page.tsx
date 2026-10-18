@@ -67,7 +67,7 @@ const faqs = [
   },
   {
     q: 'Where can I download Curated Feeds?',
-    a: `Direct APK download is available on this page, version ${SITE.app.version}, about ${Math.round(SITE.app.apkBytes / 1048576)} MB. The app works on Android 8.0 and up, needs no account, and asks for no permissions beyond storage for offline caching.`,
+    a: `Direct APK download is available on this page, version ${SITE.app.version}, about ${Math.round(SITE.app.apkBytes / 1048576)} MB, or from Uptodown. The app works on Android 8.0 and up, needs no account, and asks for no permissions beyond storage for offline caching.`,
   },
   {
     q: 'Will there be an iOS version?',
@@ -305,6 +305,20 @@ export default function Home() {
                 <path d="M10 26v6h20v-6" stroke="white" strokeWidth="2" fill="none" />
               </svg>
               <span>Direct<br /><strong>Download APK</strong></span>
+            </TrackedDownloadLink>
+            <TrackedDownloadLink
+              href={SITE.app.uptodown}
+              platform="uptodown"
+              className="download-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              ariaLabel="Get Curated Feeds on Uptodown"
+            >
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <path d="M20 10v14M13 17l7 7 7-7" stroke="white" strokeWidth="2" fill="none" />
+                <rect x="8" y="30" width="24" height="3" rx="1.5" stroke="white" strokeWidth="2" fill="none" />
+              </svg>
+              <span>Uptodown<br /><strong>Get the App</strong></span>
             </TrackedDownloadLink>
           </div>
           <p className="download-meta">

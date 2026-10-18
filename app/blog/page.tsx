@@ -99,7 +99,17 @@ export default function BlogPage() {
         <section className="blog-cta">
           <h2>Ready to take back your attention?</h2>
           <p>Download Curated Feeds and start reading on your terms.</p>
-          <Link href={SITE.app.apk} className="cta-button primary">Get the App</Link>
+          <div className="blog-cta-actions">
+            <Link href={SITE.app.apk} className="cta-button primary">Get the App</Link>
+            <Link
+              href={SITE.app.uptodown}
+              className="cta-button secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get it on Uptodown
+            </Link>
+          </div>
         </section>
       </main>
       <Footer />

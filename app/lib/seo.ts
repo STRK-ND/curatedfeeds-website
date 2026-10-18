@@ -19,6 +19,7 @@ export const SITE = {
     version: '1.2.0',
     apk: 'https://apk-download.raj15400881.workers.dev/curated-feeds-v1.2.0.apk',
     apkBytes: 70089941,
+    uptodown: 'https://curated-feeds.en.uptodown.com/android',
     operatingSystem: 'ANDROID',
   },
   github: 'https://github.com/rajatks',
