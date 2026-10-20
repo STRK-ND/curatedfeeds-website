@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Anton } from 'next/font/google';
 import { SITE, organizationLd, websiteLd } from './lib/seo';
 import { StructuredData } from './components/StructuredData';
 import './globals.css';
@@ -8,6 +8,7 @@ import FirebaseAnalytics from './components/FirebaseAnalytics';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
+const anton = Anton({ variable: '--font-anton', weight: '400', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -157,7 +158,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang={SITE.lang}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} antialiased`}>
         {/* Keyboard/screen-reader landmark skip link, an accessibility
             signal Google folds into its page-experience evaluation. */}
         <a href="#main" className="skip-to-content">

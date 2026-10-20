@@ -2,41 +2,51 @@
 
 /* ============================================
    CURATED FEEDS LANDING PAGE
-   Dark, elegant, indigo-purple gradient theme
+   "Nightstand" — violet-ink field, one lamp,
+   condensed display type. No gradients, no glow.
    ============================================ */
 
 /* CSS Variables - The Design System */
 :root {
-  /* Colors inspired by the app's gradient */
-  --color-bg: #0d0e1a;
-  --color-bg-secondary: #14162b;
-  --color-primary: #1a1b4d;
-  --color-primary-light: #2d2f73;
-  --color-primary-dark: #4a3b5c;
-  --color-accent: #ff6b9d;
-  --color-accent-light: #ffa0b8;
-  --color-success: #4ade80;
-  --color-warning: #fbbf24;
+  /* Field: deep violet-black, like a room with the lights off */
+  --color-bg: #0e0a1a;
+  --color-bg-secondary: #151026;
+  --color-surface: rgba(246, 241, 231, 0.04);
+  --color-surface-hover: rgba(246, 241, 231, 0.07);
+  --color-surface-border: rgba(246, 241, 231, 0.12);
 
-  /* Text colors */
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #94a3b8;
-  --color-text-tertiary: #64748b;
+  /* Text: warm paper, never pure white */
+  --color-text-primary: #f6f1e7;
+  --color-text-secondary: #b3ada1;
+  --color-text-tertiary: #8a847a;
 
-  /* Surface colors */
-  --color-surface: rgba(255, 255, 255, 0.03);
-  --color-surface-hover: rgba(255, 255, 255, 0.06);
-  --color-surface-border: rgba(255, 255, 255, 0.08);
+  /* One accent: violet. Links, chips, headline line, focus-free emphasis. */
+  --color-accent: #8b5cf6;
+  --color-accent-strong: #a78bfa;
+  --color-accent-soft: rgba(139, 92, 246, 0.18);
+  --color-accent-line: rgba(139, 92, 246, 0.4);
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #1a1b4d 0%, #2d2f73 50%, #4a3b5c 100%);
-  --gradient-accent: linear-gradient(135deg, #ff6b9d 0%, #c9b6df 100%);
-  --gradient-glow: linear-gradient(135deg, rgba(26, 27, 77, 0.8) 0%, rgba(74, 59, 92, 0.3) 100%);
+  /* Category coding (harvested from the slide system) */
+  --color-world: #6ba8ff;
+  --color-sports: #ff5a5a;
+  --color-lamp: #f5a623;
+  --color-lamp-strong: #ffb84d;
+  --color-leaf: #4ade80;
+
+  /* The one warm light source: used ONLY for the download moment
+     and focus rings. Everywhere else stays violet or paper. */
+  --color-cta: var(--color-lamp);
+  --color-cta-hover: var(--color-lamp-strong);
 
   /* Typography */
-  --font-display: var(--font-geist-sans);
+  --font-display: var(--font-anton), 'Arial Narrow', sans-serif;
   --font-body: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Type scale (display is condensed and uppercase; body stays sentence case) */
+  --display-hero: clamp(2.75rem, 7vw, 5.25rem);
+  --display-section: clamp(1.75rem, 3.5vw, 2.5rem);
+  --display-cta: clamp(2rem, 4.5vw, 3.5rem);
 
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -48,20 +58,19 @@
   --spacing-3xl: 4rem;
   --spacing-4xl: 6rem;
 
-  /* Border radius */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-2xl: 2rem;
+  /* One radius family. Squircle tiles 22px, panels 20px, chips full. */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+  --radius-tile: 1.375rem;
+  --radius-panel: 1.25rem;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 0 40px rgba(255, 107, 157, 0.15);
+  /* Shadows: only depth for the real product shot. No glow, ever. */
+  --shadow-shot: 0 32px 80px rgba(0, 0, 0, 0.55);
+
+  /* Single atmospheric light: a lamp glow behind the hero. Nowhere else. */
+  --lamp-field: radial-gradient(60% 50% at 72% 18%, rgba(139, 92, 246, 0.22), transparent 70%);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -99,18 +108,6 @@ body {
   position: relative;
 }
 
-/* Noise overlay for texture */
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1000;
-}
-
 img, svg {
   display: block;
 }
@@ -137,7 +134,7 @@ a {
   transition: var(--transition-base);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 107, 157, 0.05);
+    0 0 0 1px rgba(139, 92, 246, 0.05);
 }
 
 .nav::before {
@@ -159,7 +156,7 @@ a {
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   opacity: 0;
   transform: scaleX(0);
   transition: opacity var(--transition-base), transform var(--transition-base);
@@ -170,8 +167,8 @@ a {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
     0 12px 40px rgba(0, 0, 0, 0.5),
-    0 0 60px rgba(255, 107, 157, 0.1),
-    0 0 0 1px rgba(255, 107, 157, 0.1);
+    0 0 60px rgba(139, 92, 246, 0.1),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
   padding-top: var(--spacing-md);
   padding-bottom: var(--spacing-md);
 }
@@ -219,7 +216,7 @@ a {
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   border-radius: var(--radius-full);
   transform: translateX(-50%);
   transition: width var(--transition-base);
@@ -238,14 +235,14 @@ a {
   content: '';
   position: absolute;
   inset: -4px;
-  background: radial-gradient(circle, rgba(255, 107, 157, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
   opacity: 0;
   border-radius: 50%;
   transition: opacity var(--transition-base);
 }
 
 .logo:hover svg {
-  filter: drop-shadow(0 0 8px rgba(255, 107, 157, 0.5));
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
   animation: logo-pulse 2s ease-in-out infinite;
 }
 
@@ -275,7 +272,7 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(201, 182, 223, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(201, 182, 223, 0.1) 100%);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
@@ -287,7 +284,7 @@ a {
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   border-radius: var(--radius-full);
   transform: translateX(-50%);
   transition: width var(--transition-base);
@@ -311,11 +308,11 @@ a {
 }
 
 .nav-link.nav-cta {
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   color: var(--color-bg);
   padding: var(--spacing-sm) var(--spacing-lg);
   font-weight: 600;
-  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
 .nav-link.nav-cta::after {
@@ -324,7 +321,7 @@ a {
 
 .nav-link.nav-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
   color: var(--color-bg);
 }
 
@@ -395,7 +392,7 @@ a {
 }
 
 .mobile-link-cta {
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   color: var(--color-bg);
   text-align: center;
 }
@@ -433,7 +430,7 @@ a {
   right: -20%;
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(255, 107, 157, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -499,7 +496,7 @@ a {
 }
 
 .title-gradient {
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -531,15 +528,15 @@ a {
 }
 
 .btn-primary {
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   color: var(--color-bg);
   border: none;
-  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
 }
 
 .btn-secondary {
@@ -562,8 +559,8 @@ a {
 }
 
 .category.active {
-  background: rgba(255, 107, 157, 0.3);
-  border-color: rgba(255, 107, 157, 0.5);
+  background: rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.5);
 }
 
 /* ============================================
@@ -584,8 +581,8 @@ a {
 .section-label {
   display: inline-block;
   padding: var(--spacing-sm) var(--spacing-md);
-  background: rgba(255, 107, 157, 0.1);
-  border: 1px solid rgba(255, 107, 157, 0.2);
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 600;
@@ -620,7 +617,7 @@ a {
 .feature-card-lead {
   grid-column: 1 / -1;
   padding: var(--spacing-2xl);
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.06), rgba(201, 182, 223, 0.02));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(201, 182, 223, 0.02));
 }
 
 /* The closing cell reads as a summary beat, so its type scales up slightly. */
@@ -656,7 +653,7 @@ a {
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-base);
@@ -678,7 +675,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 107, 157, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   border-radius: var(--radius-lg);
   margin-bottom: var(--spacing-lg);
   color: var(--color-accent);
@@ -746,7 +743,7 @@ a {
   font-size: clamp(1.5rem, 3.2vw, 2.5rem);
   line-height: 1.15;
   font-weight: 600;
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -874,7 +871,7 @@ a {
   transform: translate(-50%, -50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -889,7 +886,7 @@ a {
   width: 80px;
   height: 80px;
   margin: 0 auto var(--spacing-xl);
-  background: rgba(255, 107, 157, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
@@ -1186,9 +1183,9 @@ a {
 }
 
 .blog-tag {
-  background: rgba(255, 107, 157, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   color: var(--color-accent);
-  border: 1px solid rgba(255, 107, 157, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -1215,7 +1212,7 @@ a {
   margin: 0 auto;
   padding: 4rem 2rem;
   text-align: center;
-  background: var(--gradient-primary);
+  background: var(--color-accent-soft);
   border-radius: 20px;
   margin-bottom: 4rem;
 }
@@ -1705,7 +1702,7 @@ a {
   margin: 0 auto;
   padding: 4rem 2rem;
   text-align: center;
-  background: var(--gradient-primary);
+  background: var(--color-accent-soft);
   border-radius: 20px;
   margin-bottom: 4rem;
 }
@@ -1725,7 +1722,7 @@ a {
    ============================================ */
 .cta-button.primary {
   display: inline-block;
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   color: white;
   padding: 0.875rem 2rem;
   border-radius: 9999px;
@@ -1920,7 +1917,7 @@ a {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius-full);
-  background: var(--gradient-accent);
+  background: var(--color-accent);
   color: #0d0e1a;
   font-weight: 700;
   font-size: 1.1rem;
@@ -1970,7 +1967,7 @@ a {
 
 .learn-list li:hover {
   background: var(--color-surface-hover);
-  border-color: rgba(255, 107, 157, 0.3);
+  border-color: rgba(139, 92, 246, 0.3);
 }
 
 .learn-list a {
@@ -2150,7 +2147,7 @@ a {
   border-radius: var(--radius-2xl);
   border: 1px solid var(--color-surface-border);
   background: var(--color-bg-secondary);
-  box-shadow: var(--shadow-xl), 0 0 0 1px rgba(255, 107, 157, 0.12);
+  box-shadow: var(--shadow-xl), 0 0 0 1px rgba(139, 92, 246, 0.12);
 }
 
 .hero-shot {
@@ -2216,3 +2213,207 @@ a {
     margin: 0 auto;
   }
 }
+
+/* ============================================
+   NIGHTSTAND COMPONENT LAYER
+   Overrides the old indigo-gradient system. Flat violet-ink surfaces,
+   one lamp accent, condensed uppercase display, hairline structure.
+   ============================================ */
+
+/* --- Display typography --------------------------------------------- */
+.hero-title,
+.section-title,
+.download-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: 0.004em;
+}
+.hero-title { font-size: var(--display-hero); }
+.section-title { font-size: var(--display-section); }
+.download-title { font-size: var(--display-cta); }
+.title-line { display: block; }
+.title-violet { color: var(--color-accent-strong); }
+
+/* Small-caps eyebrows, the slide-set idiom: violet, quiet, tracked. */
+.section-label,
+.download-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+.download-eyebrow { color: var(--color-lamp); margin-bottom: var(--spacing-md); }
+
+/* --- Flat navigation ------------------------------------------------- */
+.nav { background: rgba(14, 10, 26, 0.82); }
+.nav::before { display: none; }
+.nav-link::before,
+.nav-link::after { display: none; }
+.nav-link:hover { transform: none; color: var(--color-text-primary); }
+.nav-link.nav-cta:hover { transform: none; box-shadow: none; }
+.nav-link.nav-cta { background: var(--color-accent); color: #fff; }
+.nav-link.nav-cta:hover { background: var(--color-accent-strong); color: #fff; }
+.mobile-link-cta { background: var(--color-accent); }
+.mobile-link-cta:hover { background: var(--color-accent-strong); }
+
+/* --- Hero ------------------------------------------------------------ */
+.hero::before { background: var(--lamp-field); top: -20%; right: -10%; }
+.hero-title { margin: var(--spacing-md) 0; }
+.hero-description { color: var(--color-text-secondary); max-width: 34rem; font-size: 1.125rem; }
+.hero-visual-frame {
+  border-radius: var(--radius-panel);
+  border: 1px solid var(--color-surface-border);
+  box-shadow: var(--shadow-shot);
+}
+.hero-shot { border-radius: calc(var(--radius-panel) - 1px); }
+
+/* Chips, category-coded like the slide system */
+.badge {
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-surface-border);
+  background: transparent;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+}
+.badge-version { color: var(--color-accent-strong); border-color: var(--color-accent-line); }
+.badge-privacy { color: var(--color-leaf); border-color: rgba(74, 222, 128, 0.35); }
+
+/* --- Buttons: one violet, one ghost, one lamp ------------------------ */
+.btn-primary,
+.btn-secondary {
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.btn-primary { background: var(--color-accent); color: #fff; box-shadow: none; }
+.btn-primary:hover { background: var(--color-accent-strong); transform: none; box-shadow: none; }
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--color-surface-border);
+  color: var(--color-text-primary);
+}
+.btn-secondary:hover { border-color: var(--color-accent-line); color: var(--color-accent-strong); transform: none; box-shadow: none; }
+
+/* --- Feature rows with squircle tiles -------------------------------- */
+.feature-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.25rem;
+  row-gap: 0.25rem;
+  align-items: start;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-surface-border);
+  border-radius: 0;
+  padding: 1.5rem 0;
+  box-shadow: none;
+  transition: border-color var(--transition-base);
+}
+.feature-card:hover { transform: none; box-shadow: none; border-bottom-color: var(--color-accent-line); }
+.feature-card .icon-tile { margin-top: 0.125rem; }
+.feature-card h3 { font-size: 1.0625rem; font-weight: 600; color: var(--color-text-primary); }
+.feature-card p { color: var(--color-text-secondary); }
+.feature-card-lead { grid-column: 1 / -1; }
+.features-grid { row-gap: 0; }
+
+.icon-tile {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-tile);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.icon-tile svg { width: 1.5rem; height: 1.5rem; }
+.icon-violet { background: var(--color-accent-soft); color: var(--color-accent-strong); }
+.icon-lamp { background: rgba(245, 166, 35, 0.15); color: var(--color-lamp); }
+.icon-world { background: rgba(107, 168, 255, 0.15); color: var(--color-world); }
+.icon-leaf { background: rgba(74, 222, 128, 0.15); color: var(--color-leaf); }
+
+/* --- How it works: a real sequence, numbered in display type --------- */
+.howitworks-number {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--color-accent);
+  line-height: 1;
+}
+.howitworks-step { border: none; background: transparent; box-shadow: none; }
+.howitworks-step h3 { font-size: 1.0625rem; }
+.howitworks-step p { color: var(--color-text-secondary); }
+
+/* --- Preview: real shots, hairline captions -------------------------- */
+.preview-figure figcaption,
+.screenshot-caption { color: var(--color-text-tertiary); font-size: 0.85rem; }
+.preview-right figure,
+.preview-figure { border: none; background: transparent; box-shadow: none; }
+.preview-container img { box-shadow: var(--shadow-shot); border-radius: var(--radius-panel); }
+.preview-stats { display: none; } /* templated stat triplet, cut */
+
+/* --- FAQ: hairline rows ---------------------------------------------- */
+.faq-item {
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--color-surface-border);
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--spacing-md) 0;
+}
+.faq-item:last-of-type { border-bottom: 1px solid var(--color-surface-border); }
+.faq-item summary { font-weight: 600; color: var(--color-text-primary); }
+.faq-item summary:hover { color: var(--color-accent-strong); }
+.faq-item[open] summary { color: var(--color-accent-strong); }
+.faq-item p { color: var(--color-text-secondary); }
+
+/* --- Download: the one lamp-lit moment ------------------------------- */
+.download { position: relative; }
+.download-content {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-panel);
+  box-shadow: none;
+  padding: clamp(2.5rem, 7vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+  text-align: center;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+.download-description { color: var(--color-text-secondary); max-width: 34rem; margin: 0 auto var(--spacing-lg); }
+.download-actions { display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; }
+.download-btn {
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+}
+.download-btn:hover { transform: none; box-shadow: none; }
+.download-btn:first-child { background: var(--color-cta); color: #1c1204; }
+.download-btn:first-child:hover { background: var(--color-cta-hover); }
+.download-btn:first-child svg [stroke='white'] { stroke: #1c1204; }
+.download-btn + .download-btn { background: transparent; border-color: var(--color-surface-border); color: var(--color-text-primary); }
+.download-btn + .download-btn:hover { border-color: var(--color-accent-line); color: var(--color-accent-strong); }
+.download-meta { color: var(--color-text-tertiary); font-size: 0.85rem; margin-top: var(--spacing-lg); }
+
+/* --- Learn list ------------------------------------------------------ */
+.learn-list { list-style: none; }
+.learn-list li { border-bottom: 1px solid var(--color-surface-border); padding: var(--spacing-md) 0; }
+.learn-list a { color: var(--color-text-primary); font-weight: 600; }
+.learn-list a:hover { color: var(--color-accent-strong); }
+.learn-list span { display: block; color: var(--color-text-secondary); font-size: 0.9rem; }
+
+/* --- Global focus: lamp ring, always visible ------------------------- */
+:focus-visible { outline: 2px solid var(--color-lamp); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+/* --- Section rhythm -------------------------------------------------- */
+.section-header { margin-bottom: var(--spacing-xl); }
+.section-label { display: block; margin-bottom: var(--spacing-sm); }
+
+/* Contain the decorative glow blobs so they cannot leak horizontal
+   scroll width on narrow viewports (body overflow-x alone still reports it). */
+.hero,
+.download { overflow: clip; }
