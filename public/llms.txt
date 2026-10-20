@@ -1,0 +1,22 @@
+# Curated Feeds
+> Privacy-first RSS reader for Android. Beautiful cards, swipe-to-save, offline-ready, zero ads, zero tracking. Built by Rajat Kashyap in Flutter. Free worldwide.
+
+## Pages
+
+- [Home](https://curatedfeeds.web.app/): product overview, features, FAQ, direct download
+- [Blog](https://curatedfeeds.web.app/blog/): RSS tips, productivity, content curation
+- [About](https://curatedfeeds.web.app/about/): founder story, mission, technical stack, timeline
+- [Screenshots](https://curatedfeeds.web.app/screenshots/): UI previews (home feed, swipe gestures, dark theme)
+- [Privacy Policy](https://curatedfeeds.web.app/privacy/): zero-data-collection policy
+
+## Blog Posts
+
+- [10 Best Tech Blogs to Follow in Your RSS Reader (2026)](https://curatedfeeds.web.app/blog/10-best-tech-blogs-rss/)
+- [RSS vs Social Media: Why RSS Still Wins for Focus](https://curatedfeeds.web.app/blog/rss-vs-social-media/)
+- [10 Productivity Tips for RSS Power Users](https://curatedfeeds.web.app/blog/productivity-tips-rss-readers/)
+
+## Optional
+
+- [RSS Feed (blog)](https://curatedfeeds.web.app/feed.xml)
+- [Founder site](https://rajatkashyap.com)
+- [Full markdown export](https://curatedfeeds.web.app/llms-full.txt)

@@ -69,6 +69,22 @@ export const logAppDownload = (platform: string): void => {
   void countDownload();
 };
 
+export const setUserType = (isReturning: boolean): void => {
+  logAnalyticsEvent('set_user_type', { user_type: isReturning ? 'returning' : 'new' });
+};
+
+export const setPlatform = (): void => {
+  logAnalyticsEvent('set_platform', { platform: 'web' });
+};
+
+export const logScrollDepth = (percent: number): void => {
+  logAnalyticsEvent('scroll_depth', { percent });
+};
+
+export const logTimeOnPage = (seconds: number): void => {
+  logAnalyticsEvent('time_on_page', { seconds });
+};
+
 /* ------------------------------------------------------------------ *
  * Live visitor counter (Realtime Database)
  *
