@@ -407,8 +407,6 @@ export default function Home() {
             <Link href="/screenshots/">Screenshots</Link>
             <Link href="/about/">About</Link>
             <Link href="/privacy/">Privacy</Link>
-            <a href="/sitemap.xml">Sitemap</a>
-            <a href="/feed.xml" rel="alternate" type="application/rss+xml">RSS</a>
           </nav>
         </div>
         <VisitorStats />

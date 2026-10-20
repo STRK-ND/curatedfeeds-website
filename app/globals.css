@@ -2417,3 +2417,74 @@ a {
    scroll width on narrow viewports (body overflow-x alone still reports it). */
 .hero,
 .download { overflow: clip; }
+
+/* ============================================
+   CORRECTIONS PASS
+   Left the mixed systems (centered vs left sections, pill eyebrows,
+   card-vs-hairline learn rows, letterboxed shots) inconsistent.
+   ============================================ */
+
+/* Sections align with the hero: left, editorial. The download panel
+   stays the single deliberate centered moment. */
+.section-header { text-align: left; margin-bottom: var(--spacing-xl); }
+
+/* Eyebrow is plain small caps, not a pill. */
+.section-label {
+  display: block;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--color-accent-strong);
+}
+
+/* Flat preview section: the old vertical gradient wash is gone. */
+.preview { background: var(--color-bg); }
+
+/* Feature rows: explicit grid areas so the description can never fall
+   under the tile again. Lead rows are full width and flat. */
+.feature-card {
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    'tile title'
+    'tile desc';
+  align-content: start;
+}
+.feature-card .icon-tile { grid-area: tile; }
+.feature-card h3 { grid-area: title; font-size: 1.0625rem; margin: 0; white-space: nowrap; }
+.feature-card p { grid-area: desc; margin: 0; }
+.feature-card-lead {
+  background: none;
+  padding: 1.5rem 0;
+  grid-column: 1 / -1;
+}
+.feature-card-lead h3 { font-size: 1.125rem; white-space: normal; }
+.feature-card-lead:last-child h3 { font-size: 1.125rem; }
+
+/* Hero and preview shots fill their frames: no letterbox, no empty band. */
+.hero-visual-frame .hero-shot,
+.preview-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.hero-visual-frame { aspect-ratio: 9 / 16; }
+.preview-figure img { aspect-ratio: 0.72; object-position: top center; }
+
+/* Learn rows match the FAQ's hairline system. */
+.learn-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: var(--spacing-md) 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-surface-border);
+  border-radius: 0;
+}
+.learn-list li:last-child { border-bottom: 1px solid var(--color-surface-border); }
+.learn-list li:hover { background: transparent; }

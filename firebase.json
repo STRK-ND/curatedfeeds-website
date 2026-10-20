@@ -31,6 +31,24 @@
         ]
       },
       {
+        "source": "/404",
+        "headers": [
+          {
+            "key": "X-Robots-Tag",
+            "value": "noindex, follow, max-image-preview:large, max-snippet:-1"
+          }
+        ]
+      },
+      {
+        "source": "/404.html",
+        "headers": [
+          {
+            "key": "X-Robots-Tag",
+            "value": "noindex, follow, max-image-preview:large, max-snippet:-1"
+          }
+        ]
+      },
+      {
         "source": "**/*.@(html|xml|txt|webmanifest)",
         "headers": [
           {

@@ -11,18 +11,20 @@ const blogPosts = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  // Truthful content-change dates, never the build date: a lastModified that
+  // always equals "now" makes every recrawl a no-op. changefreq and priority
+  // are omitted - Google disregards both and they add noise.
+  const PAGES_LAST_REVIEW = new Date('2026-03-22');
+  const HOME_LAST_MODIFIED = new Date('2026-10-21');
   return [
-    { url: `${BASE_URL}/`, lastModified: now, changeFrequency: 'weekly', priority: 1 },
-    { url: `${BASE_URL}/blog/`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/about/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/privacy/`, lastModified: now, changeFrequency: 'yearly', priority: 0.5 },
-    { url: `${BASE_URL}/screenshots/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/`, lastModified: HOME_LAST_MODIFIED },
+    { url: `${BASE_URL}/blog/`, lastModified: PAGES_LAST_REVIEW },
+    { url: `${BASE_URL}/about/`, lastModified: PAGES_LAST_REVIEW },
+    { url: `${BASE_URL}/privacy/`, lastModified: PAGES_LAST_REVIEW },
+    { url: `${BASE_URL}/screenshots/`, lastModified: PAGES_LAST_REVIEW },
     ...blogPosts.map((p) => ({
       url: `${BASE_URL}/blog/${p.slug}/`,
       lastModified: new Date(p.lastmod),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
     })),
   ];
 }
