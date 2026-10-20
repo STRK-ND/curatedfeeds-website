@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { ReactElement } from 'react';
 import FevIcon from './components/FevIcon';
 import MobileMenu from './components/MobileMenu';
 import VisitorStats from './components/VisitorStats';
@@ -15,13 +16,57 @@ import {
 } from './lib/seo';
 import { StructuredData } from './components/StructuredData';
 
-const features = [
-  { title: 'Swipe & Save', description: 'Swipe right to save, left to done. Intuitive gestures make managing your reading list effortless.' },
-  { title: 'Beautiful Cards', description: 'Elegant card-based interface with smooth animations and carefully crafted typography.' },
-  { title: 'Multiple Sources', description: 'Add unlimited RSS feeds from tech, design, news, science, finance, and any topic you care about.' },
-  { title: 'Offline Ready', description: 'Articles cache locally so you can read on the train, on a plane, or anywhere without signal.' },
-  { title: 'Dark Theme', description: 'Indigo-purple gradient theme tuned for night reading. Easy on your eyes during long sessions.' },
-  { title: 'Categories', description: 'Organize feeds by topic, Tech, Design, News, AI, for focused browsing.' },
+type FeatureIcon = 'save' | 'cards' | 'sources' | 'offline' | 'theme' | 'categories';
+
+const featureIcons: Record<FeatureIcon, ReactElement> = {
+  save: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+    </svg>
+  ),
+  cards: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="7" y="7" width="12" height="14" rx="2" />
+      <path d="M5 15V5a2 2 0 012-2h8" />
+    </svg>
+  ),
+  sources: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4 11a9 9 0 019 9" />
+      <path d="M4 4a16 16 0 0116 16" />
+      <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  offline: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3a9 9 0 019 9" />
+      <path d="M12 7a5 5 0 015 5" />
+      <path d="M4 4l16 16" transform="rotate(45 12 12)" />
+      <circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  theme: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" />
+    </svg>
+  ),
+  categories: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+      <rect x="14" y="14" width="7" height="7" rx="1.5" />
+    </svg>
+  ),
+};
+
+const features: { title: string; description: string; icon: FeatureIcon; tone: 'violet' | 'lamp' | 'world' | 'leaf' }[] = [
+  { title: 'Swipe & Save', description: 'Swipe right to save, left to done. Intuitive gestures make managing your reading list effortless.', icon: 'save', tone: 'violet' },
+  { title: 'Beautiful Cards', description: 'Elegant card-based interface with smooth animations and carefully crafted typography.', icon: 'cards', tone: 'world' },
+  { title: 'Multiple Sources', description: 'Add unlimited RSS feeds from tech, design, news, science, finance, and any topic you care about.', icon: 'sources', tone: 'violet' },
+  { title: 'Offline Ready', description: 'Articles cache locally so you can read on the train, on a plane, or anywhere without signal.', icon: 'offline', tone: 'leaf' },
+  { title: 'Dark Theme', description: 'Indigo-purple theme tuned for night reading. Easy on your eyes during long sessions.', icon: 'theme', tone: 'lamp' },
+  { title: 'Categories', description: 'Organize feeds by topic, Tech, Design, News, AI, for focused browsing.', icon: 'categories', tone: 'world' },
 ];
 
 /** Three onboarding steps, published as HowTo rich results. */
@@ -100,8 +145,6 @@ export default function Home() {
         ]}
       />
 
-      <div className="noise-overlay" />
-
       <nav className="nav" aria-label="Primary">
         <div className="nav-content">
           <Link href="/" className="logo" aria-label="Curated Feeds home">
@@ -133,7 +176,7 @@ export default function Home() {
           </div>
           <h1 className="hero-title">
             <span className="title-line">Your feeds,</span>
-            <span className="title-line title-gradient">curated.</span>
+            <span className="title-line title-violet">curated.</span>
           </h1>
           <p className="hero-description">
             A free, distraction-free RSS reader for Android. Swipe through your sources, save for later,
@@ -146,12 +189,11 @@ export default function Home() {
               className="btn btn-primary"
               ariaLabel={`Download Curated Feeds v${SITE.app.version} for Android (APK, ${(SITE.app.apkBytes / 1048576).toFixed(0)} MB)`}
             >
-              <span>Download Free</span>
+              <span>Download APK</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M8 3v10M3 8l5 5 5-5" /></svg>
             </TrackedDownloadLink>
             <TrackedLink href="#preview" event="See Preview" location="hero" className="btn btn-secondary">
               <span>See Preview</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><circle cx="8" cy="8" r="6" /><path d="M8 5v6M5 8h6" /></svg>
             </TrackedLink>
           </div>
         </div>
@@ -191,6 +233,9 @@ export default function Home() {
                 i === 0 || i === features.length - 1 ? 'feature-card feature-card-lead' : 'feature-card'
               }
             >
+              <span className={`icon-tile icon-${feature.tone}`} aria-hidden="true">
+                {featureIcons[feature.icon]}
+              </span>
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
             </article>
@@ -221,15 +266,10 @@ export default function Home() {
           <div className="preview-left">
             <h2 id="preview-title" className="section-title">Elegant by design</h2>
             <p className="preview-description">
-              Every interaction is crafted with intention. From the gentle card animations to the
-              perfectly tuned typography, Curated Feeds turns reading into a deliberate daily
-              ritual rather than an infinite feed battle.
+              Every interaction is crafted with intention. From the card animations to the tuned
+              typography, reading becomes a deliberate daily ritual rather than an infinite feed
+              battle. Unlimited sources, no ads, no account, and it costs nothing.
             </p>
-            <dl className="preview-stats" aria-label="Key product statistics">
-              <div className="stat"><dt className="sr-only">Cost</dt><dd className="stat-value">100%</dd><dd className="stat-label">Free</dd></div>
-              <div className="stat"><dt className="sr-only">Sources</dt><dd className="stat-value">Unlimited</dd><dd className="stat-label">Sources</dd></div>
-              <div className="stat"><dt className="sr-only">Ads</dt><dd className="stat-value">0</dd><dd className="stat-label">Ads</dd></div>
-            </dl>
           </div>
           {/* Rule 9.F bans div-based fake product UI. Real WebP shots instead:
               the hero shows the feed, so these two cover the variants it does not. */}
@@ -280,16 +320,11 @@ export default function Home() {
 
       <section id="download" className="download" aria-labelledby="download-title">
         <div className="download-content">
-          <div className="download-icon" aria-hidden="true">
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M24 28l8 8 8-8" />
-              <path d="M32 12v24" />
-              <path d="M12 36v8a8 8 0 008 8h24a8 8 0 008-8v-8" />
-            </svg>
-          </div>
-          <h2 id="download-title" className="download-title">Ready to take back your attention?</h2>
+          <p className="download-eyebrow">Queue cleared</p>
+          <h2 id="download-title" className="download-title">That&rsquo;s the whole point.</h2>
           <p className="download-description">
-            Download Curated Feeds for Android, free forever, no ads, no account required. Available worldwide.
+            You read what mattered, closed the rest, and the app got out of the way. Download Curated
+            Feeds for Android. Free forever, no ads, no account required.
           </p>
           <div className="download-actions">
             <TrackedDownloadLink
@@ -322,8 +357,9 @@ export default function Home() {
             </TrackedDownloadLink>
           </div>
           <p className="download-meta">
-            Version <strong>{SITE.app.version}</strong> · {Math.round(SITE.app.apkBytes / 1048576)} MB · Android{' '}
-            {SITE.app.operatingSystem === 'ANDROID' ? '8.0+' : SITE.app.operatingSystem} · SHA-256 verified signed build
+            Version <strong>{SITE.app.version}</strong>, {Math.round(SITE.app.apkBytes / 1048576)} MB,
+            Android {SITE.app.operatingSystem === 'ANDROID' ? '8.0+' : SITE.app.operatingSystem},
+            SHA-256 verified signed build
           </p>
         </div>
       </section>
