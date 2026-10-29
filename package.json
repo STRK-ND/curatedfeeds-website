@@ -16,7 +16,7 @@
     "@firebase/performance": "^0.7.10",
     "@jridgewell/sourcemap-codec": "^1.5.5",
     "firebase": "^12.10.0",
-    "next": "16.1.6",
+    "next": "16.4.3",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
