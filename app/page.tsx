@@ -1,122 +1,113 @@
+// Curated Feeds landing — one motif: the card stack. The live queue is the thing.
+
 import Link from 'next/link';
-import type { ReactElement } from 'react';
-import FevIcon from './components/FevIcon';
-import MobileMenu from './components/MobileMenu';
-import VisitorStats from './components/VisitorStats';
-import { TrackedLink, TrackedDownloadLink } from './components/TrackedLink';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import ScrollMotion from './components/ScrollMotion';
+import QueueStage, { type DeckCard } from './components/QueueStage';
+import { TrackedDownloadLink } from './components/TrackedLink';
 import {
   SITE,
   softwareApplicationLd,
   mobileApplicationLd,
   faqLd,
-  breadcrumbLd,
   howToLd,
-  siteNavigationLd,
+  breadcrumbLd,
   speakableLd,
+  siteNavigationLd,
 } from './lib/seo';
 import { StructuredData } from './components/StructuredData';
 
-type FeatureIcon = 'save' | 'cards' | 'sources' | 'offline' | 'theme' | 'categories';
-
-const featureIcons: Record<FeatureIcon, ReactElement> = {
-  save: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
-    </svg>
-  ),
-  cards: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="7" y="7" width="12" height="14" rx="2" />
-      <path d="M5 15V5a2 2 0 012-2h8" />
-    </svg>
-  ),
-  sources: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M4 11a9 9 0 019 9" />
-      <path d="M4 4a16 16 0 0116 16" />
-      <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none" />
-    </svg>
-  ),
-  offline: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 3a9 9 0 019 9" />
-      <path d="M12 7a5 5 0 015 5" />
-      <path d="M4 4l16 16" transform="rotate(45 12 12)" />
-      <circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none" />
-    </svg>
-  ),
-  theme: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" />
-    </svg>
-  ),
-  categories: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="3" y="3" width="7" height="7" rx="1.5" />
-      <rect x="14" y="3" width="7" height="7" rx="1.5" />
-      <rect x="3" y="14" width="7" height="7" rx="1.5" />
-      <rect x="14" y="14" width="7" height="7" rx="1.5" />
-    </svg>
-  ),
-};
-
-const features: { title: string; description: string; icon: FeatureIcon; tone: 'violet' | 'lamp' | 'world' | 'leaf' }[] = [
-  { title: 'Swipe & Save', description: 'Swipe right to save, left to done. Intuitive gestures make managing your reading list effortless.', icon: 'save', tone: 'violet' },
-  { title: 'Beautiful Cards', description: 'Elegant card-based interface with smooth animations and carefully crafted typography.', icon: 'cards', tone: 'world' },
-  { title: 'Multiple Sources', description: 'Add unlimited RSS feeds from tech, design, news, science, finance, and any topic you care about.', icon: 'sources', tone: 'violet' },
-  { title: 'Offline Ready', description: 'Articles cache locally so you can read on the train, on a plane, or anywhere without signal.', icon: 'offline', tone: 'leaf' },
-  { title: 'Dark Theme', description: 'Indigo-purple theme tuned for night reading. Easy on your eyes during long sessions.', icon: 'theme', tone: 'lamp' },
-  { title: 'Categories', description: 'Organize feeds by topic, Tech, Design, News, AI, for focused browsing.', icon: 'categories', tone: 'world' },
-];
-
-/** Three onboarding steps, published as HowTo rich results. */
-const howToSteps = [
-  {
-    name: 'Download the free APK',
-    text: `Tap Download APK on this page and open the file (version ${SITE.app.version}, about ${Math.round(SITE.app.apkBytes / 1048576)} MB). Curated Feeds installs on Android 8.0 and up, needs no account, and asks for no permissions beyond storage for offline caching.`,
-  },
-  {
-    name: 'Add your first RSS feeds',
-    text: 'Paste any RSS 2.0, Atom, or RDF feed URL, usually ending in /feed or /rss, into the add-source field. Start with a few favourites such as Hacker News, TechCrunch, or The Verge.',
-  },
-  {
-    name: 'Swipe to read and organise',
-    text: 'Swipe a card right to save an article for later and left to mark it done. Group sources into categories like Tech, Design, or AI to keep your feed focused.',
-  },
-];
+const mb = Math.round(SITE.app.apkBytes / 1048576);
 
 const faqs = [
   {
     q: 'What is Curated Feeds?',
-    a: 'Curated Feeds is a free, privacy-first RSS reader for Android. It lets you follow unlimited RSS feeds from tech blogs, news sites, and podcasts in one distraction-free app with swipe-to-save cards. There are no ads, no tracking, and no server-stored reading history.',
+    a: 'A free, privacy-first RSS reader for Android. Swipe right to save an article, left to mark it done. Reads offline, no account, no ads, no tracking.',
   },
   {
-    q: 'Is Curated Feeds really free?',
-    a: 'Yes. Curated Feeds is 100% free with no ads, no in-app purchases, and no premium tier. We believe reading should not be monetized through attention, your reading time belongs to you.',
+    q: 'Is it really free?',
+    a: 'Yes. 100% free, no ads, no in-app purchases, no premium tier. Reading time is yours, not monetized.',
   },
   {
-    q: 'How does Curated Feeds protect my privacy?',
-    a: 'Your feed list, saved articles, and reading history stay on your device. We do not run our own feed-parsing server, do not require an account, do not store IP logs, and do not sell any data. Only anonymous Firebase Analytics counters are recorded; you can disable analytics by turning off network access for the app.',
-  },
-  {
-    q: 'How does Curated Feeds compare to Feedly, Inoreader, or NetNewsWire?',
-    a: 'Curated Feeds is offline-first and account-free, unlike Feedly and Inoreader which require accounts and use server-side sync. Unlike NetNewsWire (iOS/Mac only), Curated Feeds targets Android with a swipe-first mobile UX, dark-elegant design, and one-tap categorization. It is built for people who want the simplicity of RSS without the overhead of an account.',
-  },
-  {
-    q: 'Which feeds can I subscribe to?',
-    a: 'Any standard RSS 2.0, Atom, or RDF feed URL works. This includes TechCrunch, Hacker News, The Verge, Ars Technica, Stratechery, MIT Technology Review, Wired, TechRadar, Hacker Noon, and hundreds of thousands of others. Paste the feed URL, usually ending in /feed or /rss, into the app.',
-  },
-  {
-    q: 'Does Curated Feeds work without internet?',
-    a: 'Yes. Articles cache on first read so you can revisit them in airplane mode, on the subway, or in low-signal areas. The home feed is also available offline once cached.',
-  },
-  {
-    q: 'Where can I download Curated Feeds?',
-    a: `Direct APK download is available on this page, version ${SITE.app.version}, about ${Math.round(SITE.app.apkBytes / 1048576)} MB, or from Uptodown. The app works on Android 8.0 and up, needs no account, and asks for no permissions beyond storage for offline caching.`,
+    q: 'How is my privacy protected?',
+    a: 'Your feeds, saved articles and reading history stay on your device. No account, no server sync, no IP logs. Only anonymous Firebase counters; revoke network access to disable.',
   },
   {
     q: 'Will there be an iOS version?',
-    a: 'Not at launch. The app is Android-first, built in Flutter, focused on the Android swipe-gesture experience.',
+    a: 'Not at launch. Curated Feeds is Android-first, built in Flutter, tuned for the Android swipe-gesture experience.',
+  },
+  {
+    q: 'Which feeds can I subscribe to?',
+    a: 'Any RSS 2.0, Atom or RDF feed. TechCrunch, Hacker News, The Verge, Ars Technica, Stratechery, MIT Technology Review, paste the URL ending in /feed or /rss.',
+  },
+  {
+    q: 'Does it work offline?',
+    a: 'Yes. Articles cache on first read so you can revisit them on the train, the plane, or anywhere with no signal.',
+  },
+  {
+    q: 'Where can I download it?',
+    a: `Direct APK on this page (v${SITE.app.version}, ${mb} MB) or from Uptodown, Android 8.0 or later, no permissions beyond storage.`,
+  },
+];
+
+const steps = [
+  {
+    name: 'Install the APK',
+    text: `Download the file (${mb} MB) and open it on Android 8.0 or later. No store account, no permissions beyond storage for the offline cache.`,
+  },
+  {
+    name: 'Add a feed',
+    text: 'Paste any RSS, Atom or RDF URL, or keep one of the eight starter feeds. Group sources into categories like Tech, Design or AI.',
+  },
+  {
+    name: 'Swipe the queue',
+    text: 'Right keeps a story, left clears it. The next card is already under your thumb, so the decision takes a second and never comes back.',
+  },
+];
+
+const features = [
+  {
+    title: 'Swipe right to keep a story.',
+    body: 'The card leaves the queue and lands in Saved, still unread and still yours. No star, no tag, no second filing.',
+  },
+  {
+    title: 'Swipe left and it is gone.',
+    body: 'Done means done. The card leaves the stack without a confirmation dialog, and the unread count drops by one.',
+  },
+  {
+    title: 'It reads without a signal.',
+    body: 'Every article you open is cached on the phone. The tunnel, the flight, the platform between trains: the story is still there.',
+  },
+  {
+    title: 'No account. No ads. No tracking.',
+    body: 'Feeds and history live on your device, not on a server. The only call out is an anonymous counter you can switch off by revoking network access.',
+  },
+  {
+    title: 'Dark, because reading at night is reading.',
+    body: 'Indigo ground, paper text, rose for the single active state. The screen steps back so the words can do the work.',
+  },
+];
+
+const starterFeeds = [
+  { name: 'Hacker News', kind: 'Technology' },
+  { name: 'TechCrunch', kind: 'Startups' },
+  { name: 'The Verge', kind: 'Technology' },
+  { name: 'Ars Technica', kind: 'Science' },
+  { name: 'MIT Technology Review', kind: 'Research' },
+  { name: 'Wired', kind: 'Culture' },
+  { name: 'Stratechery', kind: 'Strategy' },
+  { name: 'Stripe Increment', kind: 'Engineering' },
+];
+
+const deckCards: DeckCard[] = [
+  {
+    src: '/screenshots/home-feed.webp',
+    alt: 'The Curated Feeds queue: cards from TechCrunch, Hacker News, MIT Technology Review and The Verge, 24 unread from 8 sources',
+  },
+  {
+    src: '/screenshots/swipe-gestures.webp',
+    alt: 'A Stratechery card marked Saved, tilted over the next card from Ars Technica',
   },
 ];
 
@@ -129,289 +120,349 @@ export default function Home() {
           mobileApplicationLd(),
           breadcrumbLd([{ name: 'Home', url: '/' }]),
           faqLd(faqs),
-          howToLd(howToSteps),
+          howToLd(steps),
           siteNavigationLd([
             { name: 'Home', url: '/' },
+            { name: 'Screens', url: '/#preview' },
             { name: 'Features', url: '/#features' },
-            { name: 'Preview', url: '/#preview' },
+            { name: 'How it works', url: '/#how-it-works' },
+            { name: 'Sources', url: '/sources/' },
             { name: 'FAQ', url: '/#faq' },
-            { name: 'Blog', url: '/blog/' },
-            { name: 'About', url: '/about/' },
-            { name: 'Screenshots', url: '/screenshots/' },
             { name: 'Download', url: '/#download' },
           ]),
-          // Passages that read cleanly aloud, for voice and AI-assistant answers.
-          speakableLd(['h1', '.hero-description', '.faq-item summary'], `${SITE.url}/`),
+          speakableLd(['h1', '.hero h1'], `${SITE.url}/`),
         ]}
       />
 
-      <nav className="nav" aria-label="Primary">
-        <div className="nav-content">
-          <Link href="/" className="logo" aria-label="Curated Feeds home">
-            <FevIcon />
-            <span>Curated</span>
-          </Link>
-          <div className="nav-links">
-            <Link href="/#features" className="nav-link">Features</Link>
-            <Link href="/#preview" className="nav-link">Preview</Link>
-            <Link href="/blog/" className="nav-link">Blog</Link>
-            <Link href="/screenshots/" className="nav-link">Screenshots</Link>
-            <Link href="/about/" className="nav-link">About</Link>
-            <Link href="/#faq" className="nav-link">FAQ</Link>
-            <Link href="/#download" className="nav-link nav-cta">Download</Link>
-          </div>
-          <MobileMenu />
-        </div>
-      </nav>
+      <Nav overlay />
 
       <main id="main">
-      <header className="hero">
-        <div className="hero-content">
-          {/* One small element only (Rule 4.7 stack discipline). v1.0.0 was a
-              version-label Tell; platform + privacy carry the real signal. */}
-          <div className="hero-badges">
-            <span className="badge badge-platform" aria-label="Android">Android</span>
-            <span className="badge badge-version" aria-label={`Version ${SITE.app.version}`}>v{SITE.app.version}</span>
-            <span className="badge badge-privacy" aria-label="Privacy first">Privacy-First</span>
-          </div>
-          <h1 className="hero-title">
-            <span className="title-line">Your feeds,</span>
-            <span className="title-line title-violet">curated.</span>
-          </h1>
-          <p className="hero-description">
-            A free, distraction-free RSS reader for Android. Swipe through your sources, save for later,
-            and read offline. No ads, no tracking.
-          </p>
-          <div className="hero-actions">
-            <TrackedDownloadLink
-              href={SITE.app.apk}
-              platform="direct"
-              className="btn btn-primary"
-              ariaLabel={`Download Curated Feeds v${SITE.app.version} for Android (APK, ${(SITE.app.apkBytes / 1048576).toFixed(0)} MB)`}
-            >
-              <span>Download APK</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M8 3v10M3 8l5 5 5-5" /></svg>
-            </TrackedDownloadLink>
-            <TrackedLink href="#preview" event="See Preview" location="hero" className="btn btn-secondary">
-              <span>See Preview</span>
-            </TrackedLink>
-          </div>
-        </div>
-        {/* Rule 9.F bans div-based fake product UI. The real product shot
-            already exists in public/screenshots/, so use it: real asset,
-            correct intrinsic dimensions, and it is the LCP element. */}
-        <aside className="hero-visual">
-          <div className="hero-visual-frame">
-            {/* eslint-disable-next-line @next/next/no-img-element -- static export has no image optimizer; asset is pre-optimised WebP */}
+        <ScrollMotion />
+
+        {/* 1. Hero: reading in public, the app named once */}
+        <section className="hero" id="top" aria-labelledby="hero-title">
+          <div className="hero__bg">
             <img
-              src="/screenshots/home-feed.webp"
-              width={1080}
-              height={1920}
-              alt="Curated Feeds home feed showing article cards from TechCrunch, Hacker News, MIT Technology Review, and The Verge, with unread count and category filters"
-              className="hero-shot"
+              src="/assets/train-window.jpg"
+              alt="A newspaper cart and readers at Mathura railway station, with a man reading a Hindi daily in the foreground."
+              width={1920}
+              height={1440}
               fetchPriority="high"
-              decoding="sync"
+              decoding="async"
             />
           </div>
-        </aside>
-      </header>
 
-      <section id="features" className="features" aria-labelledby="features-title">
-        <div className="section-header">
-          <span className="section-label">Features</span>
-          <h2 id="features-title" className="section-title">Crafted for focused reading</h2>
-        </div>
-        {/* Cell-count rule (Section 4.7): 6 items in a 2-column grid with a
-            full-width lead would strand the 6th in a half-empty row. So the lead
-            spans both columns, four sit 2x2, and the last closes the grid at full
-            width. Every cell is filled; the composition has rhythm. */}
-        <div className="features-grid">
-          {features.map((feature, i) => (
-            <article
-              key={feature.title}
-              className={
-                i === 0 || i === features.length - 1 ? 'feature-card feature-card-lead' : 'feature-card'
-              }
-            >
-              <span className={`icon-tile icon-${feature.tone}`} aria-hidden="true">
-                {featureIcons[feature.icon]}
-              </span>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="howitworks" className="howitworks" aria-labelledby="howitworks-title">
-        <div className="section-header">
-          <span className="section-label">How it works</span>
-          <h2 id="howitworks-title" className="section-title">Get started in three steps</h2>
-        </div>
-        <ol className="howitworks-steps" aria-label="Steps to start reading with Curated Feeds">
-          {howToSteps.map((step, i) => (
-            <li key={step.name} className="howitworks-step">
-              <span className="howitworks-number" aria-hidden="true">{i + 1}</span>
-              <div>
-                <h3>{step.name}</h3>
-                <p>{step.text}</p>
+          <div className="container hero__inner" data-anim>
+            <p className="eyebrow" data-anim-child>
+              A free RSS reader for Android
+            </p>
+            <h1 id="hero-title" data-anim-child>
+              Put your <em>reading</em> away.
+            </h1>
+            <div className="hero__row" data-anim-child>
+              <p className="hero__sub">
+                Swipe right to keep a story, left to let it go. One card at a time, so the queue
+                never becomes a chore.
+              </p>
+              <div className="hero__actions">
+                <TrackedDownloadLink
+                  href={SITE.app.apk}
+                  platform="direct"
+                  className="btn"
+                  ariaLabel={`Download Curated Feeds APK, ${mb} megabytes`}
+                >
+                  Download the APK
+                </TrackedDownloadLink>
+                <Link href="/#preview" className="text-link">
+                  See the two screens
+                </Link>
               </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section id="preview" className="preview" aria-labelledby="preview-title">
-        <div className="preview-container">
-          <div className="preview-left">
-            <h2 id="preview-title" className="section-title">Elegant by design</h2>
-            <p className="preview-description">
-              Every interaction is crafted with intention. From the card animations to the tuned
-              typography, reading becomes a deliberate daily ritual rather than an infinite feed
-              battle. Unlimited sources, no ads, no account, and it costs nothing.
+            </div>
+            <p className="hero__meta" data-anim-child>
+              <span>
+                <b>Free</b> forever
+              </span>
+              <span>
+                <b>{mb} MB</b> direct APK
+              </span>
+              <span>
+                <b>Android 8.0</b> or later
+              </span>
+              <span>
+                <b>No account</b>
+              </span>
             </p>
           </div>
-          {/* Rule 9.F bans div-based fake product UI. Real WebP shots instead:
-              the hero shows the feed, so these two cover the variants it does not. */}
-          <div className="preview-right">
-            <figure className="preview-figure">
-              {/* eslint-disable-next-line @next/next/no-img-element -- static export; pre-optimised WebP asset */}
-              <img
-                src="/screenshots/swipe-gestures.webp"
-                width={1080}
-                height={1920}
-                alt="Swipe an article card right to save it, with a second card queued underneath"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Swipe right to save, left to mark done</figcaption>
-            </figure>
-            <figure className="preview-figure">
-              {/* eslint-disable-next-line @next/next/no-img-element -- static export; pre-optimised WebP asset */}
-              <img
-                src="/screenshots/dark-theme.webp"
-                width={1080}
-                height={1920}
-                alt="Dark indigo-purple reading theme with article rows tuned for night reading"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Dark indigo-purple theme for night reading</figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
 
-      <section id="faq" className="faq" aria-labelledby="faq-title">
-        <div className="section-header">
-          <h2 id="faq-title" className="section-title">Frequently asked questions</h2>
-        </div>
-        <div className="faq-list">
-          {faqs.map((item) => (
-            <details key={item.q} className="faq-item">
-              <summary>{item.q}</summary>
-              <div>
-                <p>{item.a}</p>
+          <p className="hero__credit">
+            Newspapers at Mathura Junction, between trains. Photo:{' '}
+            <a
+              href="https://commons.wikimedia.org/wiki/File:Mathura_railway_station_(42593488361).jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              juggadery, CC BY-SA 2.0
+            </a>
+          </p>
+        </section>
+
+        {/* 2. Statement: why the queue is one card deep */}
+        <section className="statement" aria-label="Why one card">
+          <div className="container statement__inner" data-anim>
+            <p className="eyebrow" data-anim-child>
+              Why one card
+            </p>
+            <p className="statement__lead" data-anim-child>
+              The queue is <em>one card deep</em>.
+            </p>
+            <p className="statement__text" data-anim-child>
+              Feeds arrive from everywhere, and the queue gives them one place to land and one
+              gesture to clear: right saves a story for later, left marks it done. No stars to find,
+              no folders to file, no unread number ticking behind your back.
+            </p>
+          </div>
+        </section>
+
+        {/* 3. Screens: the live queue, and the swipe it produces */}
+        <section className="section" id="preview" aria-labelledby="preview-title">
+          <div className="container">
+            <div className="head" data-anim>
+              <div data-anim-child>
+                <p className="eyebrow">The two screens</p>
+                <h2 id="preview-title">A card, a swipe, and nothing else.</h2>
               </div>
-            </details>
-          ))}
-        </div>
-      </section>
+              <p data-anim-child>
+                Swipe right to keep a story; swipe left to clear it. The queue stays one card deep,
+                so there is never a backlog to manage.
+              </p>
+            </div>
 
-      <section id="download" className="download" aria-labelledby="download-title">
-        <div className="download-content">
-          <p className="download-eyebrow">Queue cleared</p>
-          <h2 id="download-title" className="download-title">That&rsquo;s the whole point.</h2>
-          <p className="download-description">
-            You read what mattered, closed the rest, and the app got out of the way. Download Curated
-            Feeds for Android. Free forever, no ads, no account required.
-          </p>
-          <div className="download-actions">
-            <TrackedDownloadLink
-              href={SITE.app.apk}
-              platform="direct"
-              className="download-btn"
-              target="_blank"
-              rel="noopener noreferrer"
-              ariaLabel="Download Curated Feeds APK (Android, free)"
-            >
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                <path d="M20 8v20M10 18l10 10 10-10" stroke="white" strokeWidth="2" fill="none" />
-                <path d="M10 26v6h20v-6" stroke="white" strokeWidth="2" fill="none" />
-              </svg>
-              <span>Direct<br /><strong>Download APK</strong></span>
-            </TrackedDownloadLink>
-            <TrackedDownloadLink
-              href={SITE.app.uptodown}
-              platform="uptodown"
-              className="download-btn"
-              target="_blank"
-              rel="noopener noreferrer"
-              ariaLabel="Get Curated Feeds on Uptodown"
-            >
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                <path d="M20 10v14M13 17l7 7 7-7" stroke="white" strokeWidth="2" fill="none" />
-                <rect x="8" y="30" width="24" height="3" rx="1.5" stroke="white" strokeWidth="2" fill="none" />
-              </svg>
-              <span>Uptodown<br /><strong>Get the App</strong></span>
-            </TrackedDownloadLink>
+            <div className="screens">
+              <figure className="screens__live" data-anim data-anim-child>
+                <QueueStage cards={deckCards} />
+                <figcaption className="shot__caption">
+                  <b>Fig. 01</b>
+                  <span>
+                    The live queue. Swipe right to keep a story, left to let it go, and the next
+                    card deals up under your thumb.
+                  </span>
+                </figcaption>
+              </figure>
+
+              <figure className="shot" data-anim data-anim-child>
+                <img
+                  src="/screenshots/swipe-gestures.webp"
+                  alt="A Stratechery article card swiped right and marked Saved, with the next Ars Technica card underneath."
+                  width={1080}
+                  height={1920}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <b>Fig. 02</b>
+                  <span>A right swipe files the story as Saved and deals the next card.</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div className="section__foot" data-anim>
+              <p data-anim-child>Built for one thumb. Nothing else competes with the story.</p>
+              <Link href="/screenshots/" className="text-link" data-anim-child>
+                All screenshots
+              </Link>
+            </div>
           </div>
-          <p className="download-meta">
-            Version <strong>{SITE.app.version}</strong>, {Math.round(SITE.app.apkBytes / 1048576)} MB,
-            Android {SITE.app.operatingSystem === 'ANDROID' ? '8.0+' : SITE.app.operatingSystem},
-            SHA-256 verified signed build
-          </p>
-        </div>
-      </section>
+        </section>
 
-      <section className="learn" aria-labelledby="learn-title">
-        <div className="section-header">
-          <h2 id="learn-title" className="section-title">Get more out of your feeds</h2>
-        </div>
-        <ul className="learn-list">
-          <li>
-            <Link href="/blog/10-best-tech-blogs-rss/">
-              10 Best Tech Blogs to Follow in Your RSS Reader
-            </Link>
-            <span>The highest-signal tech sources, with feed URLs and update cadence.</span>
-          </li>
-          <li>
-            <Link href="/blog/rss-vs-social-media/">
-              RSS vs Social Media: Why RSS Still Wins for Focus
-            </Link>
-            <span>Attention economics, with measured numbers from three years of RSS-first reading.</span>
-          </li>
-          <li>
-            <Link href="/blog/productivity-tips-rss-readers/">
-              10 Productivity Tips for RSS Power Users
-            </Link>
-            <span>Habits that compound: daily limits, pruning rituals, and archive reviews.</span>
-          </li>
-          <li>
-            <Link href="/screenshots/">See Curated Feeds in action</Link>
-            <span>App screenshots of the home feed, swipe gestures, and dark theme.</span>
-          </li>
-        </ul>
-      </section>
+        {/* 4. Features: five behaviours, numbered */}
+        <section className="section" id="features" aria-labelledby="features-title">
+          <div className="container">
+            <div className="head" data-anim>
+              <div data-anim-child>
+                <p className="eyebrow">What the swipe takes care of</p>
+                <h2 id="features-title">Five behaviours, first morning.</h2>
+              </div>
+              <p data-anim-child>No settings to study, no onboarding carousel.</p>
+            </div>
 
+            <div className="features">
+              {features.map((f, i) => (
+                <article className="feature" key={f.title} data-anim data-anim-child>
+                  <span className="features__n" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3>{f.title}</h3>
+                    <p>{f.body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Offline: a real platform, a cached story */}
+        <section className="offline" id="offline" aria-labelledby="offline-title">
+          <div className="container offline__inner" data-anim>
+            <div className="offline__copy" data-anim-child>
+              <p className="eyebrow">Offline, by design</p>
+              <h2 id="offline-title">No signal. The story is still there.</h2>
+              <p className="offline__lead">
+                Paper does not need a bar of reception. Neither should the article you saved for the
+                journey.
+              </p>
+              <p>
+                Open a story once and it is cached on the phone. The underground, the flight, the
+                four minutes on a platform with no bars: the article is there exactly where you
+                left it.
+              </p>
+              <Link href="/why/" className="text-link">
+                Why offline first
+              </Link>
+            </div>
+
+            <div className="offline__phone" data-anim-child>
+              <div className="offline__note">
+                <b>24 unread</b>
+                <span>8 sources</span>
+              </div>
+              <img
+                src="/screenshots/home-feed.webp"
+                alt="The Curated Feeds queue showing 24 unread articles across 8 sources."
+                width={1080}
+                height={1920}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Sources: the eight feeds that are already listed */}
+        <section className="section" id="sources" aria-labelledby="sources-title">
+          <div className="container">
+            <div className="head" data-anim>
+              <div data-anim-child>
+                <p className="eyebrow">Starter feeds</p>
+                <h2 id="sources-title">Eight feeds are already waiting.</h2>
+              </div>
+              <p data-anim-child>
+                The app opens with a starter list covering technology, science, design and
+                engineering. Keep all eight, or paste any RSS 2.0, Atom or RDF URL.
+              </p>
+            </div>
+
+            <ul className="sources__list" data-anim>
+              {starterFeeds.map((feed) => (
+                <li key={feed.name} data-anim-child>
+                  <b>{feed.name}</b>
+                  <span>{feed.kind}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="sources__foot" data-anim>
+              <span data-anim-child>Any RSS 2.0, Atom or RDF feed works.</span>
+              <Link href="/sources/" className="text-link" data-anim-child>
+                See the full source list
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. How it works */}
+        <section className="section" id="how-it-works" aria-labelledby="steps-title">
+          <div className="container">
+            <div className="head" data-anim>
+              <div data-anim-child>
+                <p className="eyebrow">How it works</p>
+                <h2 id="steps-title">Three minutes from APK to first swipe.</h2>
+              </div>
+              <p data-anim-child>
+                No account, no email, no onboarding carousel. Install, add one feed, and the queue
+                is yours.
+              </p>
+            </div>
+
+            <ol className="steps__list" data-anim>
+              {steps.map((step) => (
+                <li key={step.name} data-anim-child>
+                  <h3>{step.name}</h3>
+                  <p>{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* 8. FAQ: native details */}
+        <section className="section faq" id="faq" aria-labelledby="faq-title">
+          <div className="container faq__grid" data-anim>
+            <div className="faq__head" data-anim-child>
+              <p className="eyebrow">FAQ</p>
+              <h2 id="faq-title">Straight answers.</h2>
+              <p>Privacy, price, iOS, and which feeds work. The why page goes deeper on the rest.</p>
+            </div>
+            <div className="faq__list" data-anim-child>
+              {faqs.map((f, i) => (
+                <details key={f.q} open={i === 0}>
+                  <summary>
+                    <span className="q">{f.q}</span>
+                    <span className="sign" aria-hidden="true">
+                      +
+                    </span>
+                  </summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 9. Download: the cream field */}
+        <section className="download" id="download" aria-labelledby="download-title">
+          <div className="container download__inner" data-anim>
+            <div data-anim-child>
+              <p className="eyebrow">
+                Version {SITE.app.version} · {mb} MB
+              </p>
+              <h2 id="download-title">
+                The first step is <em>already open.</em>
+              </h2>
+              <p className="download__meta">
+                No store in between. A direct APK for Android 8.0 or later, free and without an
+                account.
+              </p>
+            </div>
+            <div className="download__panel" data-anim-child>
+              <p className="download__version">Curated Feeds v{SITE.app.version}</p>
+              <p className="download__note">
+                No account, no ads, no tracking. Permissions beyond storage: none.
+              </p>
+              <TrackedDownloadLink
+                href={SITE.app.apk}
+                platform="direct"
+                className="btn"
+                ariaLabel={`Download Curated Feeds APK, ${mb} megabytes`}
+              >
+                Download the APK
+              </TrackedDownloadLink>
+              <TrackedDownloadLink
+                href={SITE.app.uptodown}
+                platform="uptodown"
+                className="download__alt"
+                target="_blank"
+                rel="noopener noreferrer"
+                ariaLabel="Get Curated Feeds on Uptodown (opens in a new tab)"
+              >
+                Or get it on Uptodown
+              </TrackedDownloadLink>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer className="footer" role="contentinfo">
-        <div className="footer-content">
-          <div className="footer-logo">
-            <FevIcon width={24} height={24} />
-            <span>Curated Feeds</span>
-          </div>
-          <nav className="footer-links" aria-label="Footer">
-            <Link href="/blog/">Blog</Link>
-            <Link href="/screenshots/">Screenshots</Link>
-            <Link href="/about/">About</Link>
-            <Link href="/privacy/">Privacy</Link>
-          </nav>
-        </div>
-        <VisitorStats />
-        <div className="footer-copy">© 2024-{new Date().getFullYear()} {SITE.name}. Made by Rajat Kashyap.</div>
-      </footer>
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,25 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Curated Feeds",
+    "documentationUrl": "https://curatedfeeds.web.app/"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:curatedfeeds.web.app:site:curated-feeds-skill",
+      "displayName": "Curated Feeds agent skill",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://curatedfeeds.web.app/.well-known/agent-skill.md",
+      "description": "How to install and use the Curated Feeds Android RSS reader, and where its published feeds and pages live.",
+      "tags": ["rss", "android", "privacy", "feed-reader"],
+      "capabilities": ["CuratedFeeds"],
+      "representativeQueries": [
+        "How do I install Curated Feeds on Android?",
+        "Where is the Curated Feeds blog RSS feed?",
+        "Does Curated Feeds require an account or track readers?"
+      ],
+      "version": "1.2.0",
+      "updatedAt": "2026-10-24T00:00:00Z"
+    }
+  ]
+}

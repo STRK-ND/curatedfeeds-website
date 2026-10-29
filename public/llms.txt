@@ -6,11 +6,18 @@
 - [Home](https://curatedfeeds.web.app/): product overview, features, FAQ, direct download
 - [Blog](https://curatedfeeds.web.app/blog/): RSS tips, productivity, content curation
 - [About](https://curatedfeeds.web.app/about/): founder story, mission, technical stack, timeline
-- [Screenshots](https://curatedfeeds.web.app/screenshots/): UI previews (home feed, swipe gestures, dark theme)
+- [Screenshots](https://curatedfeeds.web.app/screenshots/): UI previews (home feed, swipe gestures)
+- [Starter Feeds](https://curatedfeeds.web.app/sources/): curated high-signal feed directory with copy-paste URLs
+- [Why Curated Feeds](https://curatedfeeds.web.app/why/): honest comparison with Feedly, Inoreader, NetNewsWire
+- [Use Cases](https://curatedfeeds.web.app/use-cases/): six reading profiles mapped to real features
+- [Changelog](https://curatedfeeds.web.app/changelog/): every public build, newest first
+- [Press Kit](https://curatedfeeds.web.app/press/): boilerplate, product facts, brand assets
 - [Privacy Policy](https://curatedfeeds.web.app/privacy/): zero-data-collection policy
 
 ## Blog Posts
 
+- [How to Find the RSS Feed URL for Any Website](https://curatedfeeds.web.app/blog/find-rss-feed-url-any-website/)
+- [The Distraction-Free Morning Reading Routine](https://curatedfeeds.web.app/blog/distraction-free-morning-reading-routine/)
 - [10 Best Tech Blogs to Follow in Your RSS Reader (2026)](https://curatedfeeds.web.app/blog/10-best-tech-blogs-rss/)
 - [RSS vs Social Media: Why RSS Still Wins for Focus](https://curatedfeeds.web.app/blog/rss-vs-social-media/)
 - [10 Productivity Tips for RSS Power Users](https://curatedfeeds.web.app/blog/productivity-tips-rss-readers/)
@@ -19,4 +26,13 @@
 
 - [RSS Feed (blog)](https://curatedfeeds.web.app/feed.xml)
 - [Founder site](https://rajatkashyap.com)
+- [Instagram](https://www.instagram.com/curated_feeds)
 - [Full markdown export](https://curatedfeeds.web.app/llms-full.txt)
+- [Agent skill (markdown)](https://curatedfeeds.web.app/.well-known/agent-skill.md)
+
+## Machine-readable
+
+Every page has a Markdown twin at the same URL with `.md` appended, for example
+[about.md](https://curatedfeeds.web.app/about.md).
+
+- [Resource catalog (ai-catalog.json)](https://curatedfeeds.web.app/.well-known/ai-catalog.json)

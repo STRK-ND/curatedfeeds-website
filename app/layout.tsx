@@ -1,14 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono, Anton } from 'next/font/google';
 import { SITE, organizationLd, websiteLd } from './lib/seo';
 import { StructuredData } from './components/StructuredData';
 import './globals.css';
 import { AgentationWrapper } from './components/AgentationWrapper';
 import FirebaseAnalytics from './components/FirebaseAnalytics';
-
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
-const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
-const anton = Anton({ variable: '--font-anton', weight: '400', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -56,12 +51,11 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    // Self-canonical for the homepage only. Every other page sets its own
-    // alternates.canonical, no hardcoded <link rel="canonical"> in <head>.
     canonical: SITE.url,
     types: {
       'application/rss+xml': `${SITE.url}/feed.xml`,
       'application/atom+xml': `${SITE.url}/feed.xml`,
+      'text/markdown': `${SITE.url}/index.md`,
     },
   },
   openGraph: {
@@ -86,8 +80,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: SITE.twitter,
-    creator: SITE.twitter,
     title: `${SITE.name}, Beautiful, Privacy-First RSS Reader`,
     description: SITE.description,
     images: [`${SITE.url}/og-image.png`],
@@ -107,7 +99,6 @@ export const metadata: Metadata = {
   other: {
     'google-play-app': `app-id=${SITE.app.package}`,
     'mobile-web-app-capable': 'yes',
-    // AI crawler directives, each tag is its own name=key for crawl-tier parsing
     'ai-train': SITE.aiDirectives['ai-train'],
     'ai-search': SITE.aiDirectives['ai-search'],
     'ai-quote': SITE.aiDirectives['ai-quote'],
@@ -120,14 +111,11 @@ export const metadata: Metadata = {
     'ai-content-declaration': `${SITE.aiDirectives['ai-content-rights']} · audience=${SITE.aiDirectives.audience} · review=${SITE.aiDirectives['factual-accuracy-audit']}`,
     'content-signal-preference': `ai-train=${SITE.aiDirectives['ai-train']}, ai-search=${SITE.aiDirectives['ai-search']}, ai-quote=${SITE.aiDirectives['ai-quote']}, ai-assistant-context=${SITE.aiDirectives['ai-assistant-context']}`,
     'preference-rank': SITE.aiDirectives['preference-rank'],
-    // Search Console verification token (docs/search-console.md).
     'google-site-verification': 'CikowM8TK0sklZUlYWe2jZVcJrbNtr5l4oF-v0c4HMU',
-    // Steward of the content, per Google's E-E-A-T guidance.
     'article:author': SITE.author,
     'article:publisher': SITE.url,
   },
   icons: {
-    // PNG first: some crawlers and legacy launchers do not resolve SVG icons.
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
       { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
@@ -146,11 +134,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0d0e1a' },
-  ],
-  colorScheme: 'dark light',
+  themeColor: '#0b0a09',
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({
@@ -158,12 +143,25 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang={SITE.lang}>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} antialiased`}>
-        {/* Keyboard/screen-reader landmark skip link, an accessibility
-            signal Google folds into its page-experience evaluation. */}
-        <a href="#main" className="skip-to-content">
-          Skip to content
-        </a>
+      <head>
+        {/* Instrument Serif carries the display; Inter Tight carries the text. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        />
+        <noscript>
+          <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        </noscript>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js');",
+          }}
+        />
+      </head>
+      <body className="antialiased">
+        <a href="#main" className="skip-link">Skip to content</a>
         <StructuredData data={[organizationLd(), websiteLd()]} />
         <FirebaseAnalytics />
         {children}

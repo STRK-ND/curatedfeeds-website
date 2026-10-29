@@ -1,0 +1,69 @@
+# Curated Feeds — https://curatedfeeds.web.app
+#
+# Access policy is declared per group below with the Content-Signal directive.
+# Content-Signal states a preference; it is not an access-control mechanism.
+# Private paths are protected with authentication, never with robots.txt.
+#
+# Purpose of each named group:
+#   training  - crawlers that fetch content for model training
+#   search    - crawlers that index content for search and AI answers
+#   user      - user-triggered agents acting on a person's request
+#
+# Content-Signal is a draft (IETF) / CC0 policy document; Google states it does
+# not act on it for Google Search. It affects no Google Search ranking.
+
+User-Agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+Disallow: /api/
+
+# Training crawlers
+User-Agent: GPTBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-Agent: anthropic-ai
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-Agent: ClaudeBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+# Search and AI-answer crawlers
+User-Agent: OAI-SearchBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-Agent: Claude-SearchBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-Agent: PerplexityBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-Agent: Google-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+# User-triggered agents
+User-Agent: ChatGPT-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-Agent: Claude-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-Agent: Perplexity-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+Host: https://curatedfeeds.web.app
+Sitemap: https://curatedfeeds.web.app/sitemap.xml
+
+# Agentic Resource Discovery (ARD draft): the catalog of agent-readable
+# resources this site publishes. The path is relative, so it resolves against
+# whichever host serves this file.
+Agentmap: /.well-known/ai-catalog.json

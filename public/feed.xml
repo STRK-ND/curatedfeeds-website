@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Curated Feeds Blog</title>
+    <link>https://curatedfeeds.web.app/blog/</link>
+    <atom:link href="https://curatedfeeds.web.app/feed.xml" rel="self" type="application/rss+xml" />
+    <description>RSS tips, productivity techniques, and content curation strategies from the Curated Feeds team.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 24 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <generator>Next.js static export</generator>
+    <copyright>Copyright 2026 Curated Feeds</copyright>
+    <managingEditor>raj15400881@gmail.com (Rajat Kashyap)</managingEditor>
+    <webMaster>raj15400881@gmail.com (Rajat Kashyap)</webMaster>
+    <ttl>60</ttl>
+    <image>
+      <url>https://curatedfeeds.web.app/icon-192.svg</url>
+      <title>Curated Feeds</title>
+      <link>https://curatedfeeds.web.app/blog/</link>
+      <width>192</width>
+      <height>192</height>
+    </image>
+    <item>
+      <title>10 Best Tech Blogs to Follow in Your RSS Reader</title>
+      <link>https://curatedfeeds.web.app/blog/10-best-tech-blogs-rss/</link>
+      <guid isPermaLink="true">https://curatedfeeds.web.app/blog/10-best-tech-blogs-rss/</guid>
+      <description><![CDATA[A comprehensive guide to the most valuable technology sources for developers, entrepreneurs, and tech enthusiasts worldwide.]]></description>
+      <category>Tech</category>
+      <author>raj15400881@gmail.com (Rajat Kashyap)</author>
+      <pubDate>Fri, 13 Mar 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>RSS vs Social Media: Why RSS Still Wins for Focus</title>
+      <link>https://curatedfeeds.web.app/blog/rss-vs-social-media/</link>
+      <guid isPermaLink="true">https://curatedfeeds.web.app/blog/rss-vs-social-media/</guid>
+      <description><![CDATA[A data-driven analysis of attention economics and personal experience from three years of RSS-first content consumption.]]></description>
+      <category>Focus</category>
+      <author>raj15400881@gmail.com (Rajat Kashyap)</author>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>10 Productivity Tips for RSS Power Users</title>
+      <link>https://curatedfeeds.web.app/blog/productivity-tips-rss-readers/</link>
+      <guid isPermaLink="true">https://curatedfeeds.web.app/blog/productivity-tips-rss-readers/</guid>
+      <description><![CDATA[Transform your information diet with actionable techniques and real metrics from 3+ years of RSS mastery.]]></description>
+      <category>Productivity</category>
+      <author>raj15400881@gmail.com (Rajat Kashyap)</author>
+      <pubDate>Sun, 22 Mar 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>How to Find the RSS Feed URL for Any Website</title>
+      <link>https://curatedfeeds.web.app/blog/find-rss-feed-url-any-website/</link>
+      <guid isPermaLink="true">https://curatedfeeds.web.app/blog/find-rss-feed-url-any-website/</guid>
+      <description><![CDATA[Conventions, autodiscovery tags, and source-checking tricks that locate almost any feed in under a minute.]]></description>
+      <category>How-to</category>
+      <author>raj15400881@gmail.com (Rajat Kashyap)</author>
+      <pubDate>Fri, 24 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>The Distraction-Free Morning Reading Routine</title>
+      <link>https://curatedfeeds.web.app/blog/distraction-free-morning-reading-routine/</link>
+      <guid isPermaLink="true">https://curatedfeeds.web.app/blog/distraction-free-morning-reading-routine/</guid>
+      <description><![CDATA[Twenty minutes, two phases: triage fast, read slow, close the app when the block ends.]]></description>
+      <category>Focus</category>
+      <author>raj15400881@gmail.com (Rajat Kashyap)</author>
+      <pubDate>Fri, 24 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

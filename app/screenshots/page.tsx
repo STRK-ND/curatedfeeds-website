@@ -1,17 +1,16 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE, breadcrumbLd, faqPageLd } from '../lib/seo';
+import { SITE, breadcrumbLd, faqPageLd, pageAlternates } from '../lib/seo';
 import { StructuredData } from '../components/StructuredData';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Breadcrumbs from '../components/Breadcrumbs';
-import FevIcon from '../components/FevIcon';
 
 export const metadata: Metadata = {
   title: 'Screenshots, See the App in Action',
   description:
-    'Real screenshots of Curated Feeds: the swipe-to-save article feed, category browsing, offline reading, and the dark indigo-purple theme on Android.',
-  alternates: { canonical: `${SITE.url}/screenshots/` },
+    'Two real screenshots of Curated Feeds: the card queue with 24 unread across 8 sources, and a right swipe filing a story as saved.',
+  alternates: pageAlternates('/screenshots/'),
   openGraph: {
     type: 'website',
     locale: SITE.locale,
@@ -19,13 +18,13 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: 'Curated Feeds Screenshots, RSS Reader for Android',
     description:
-      'See the card-based feed, swipe gestures, and dark theme of the privacy-first RSS reader for Android.',
+      'The card-based feed and swipe gestures of the privacy-first RSS reader for Android.',
     images: [`${SITE.url}/og-image.png`],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Curated Feeds Screenshots',
-    description: 'Card-based feed, swipe gestures, and dark theme, see the app.',
+    description: 'The card-based feed and swipe gestures, see the app.',
     images: [`${SITE.url}/og-image.png`],
   },
 };
@@ -45,13 +44,6 @@ const shots = [
     height: 1920,
     alt: 'Curated Feeds swipe gestures: an article card saved with a green confirmation and a second card queued underneath',
     caption: 'Swipe right to save, left to mark done',
-  },
-  {
-    src: '/screenshots/dark-theme.webp',
-    width: 1080,
-    height: 1920,
-    alt: 'Curated Feeds dark indigo-purple reading theme with article list rows tuned for night reading',
-    caption: 'Dark indigo-purple theme for night reading',
   },
 ];
 
@@ -93,8 +85,8 @@ export default function ScreenshotsPage() {
         <section className="screenshots-hero">
           <h1>Curated Feeds in Action</h1>
           <p>
-            Real screenshots of the privacy-first RSS reader for Android: the swipe-to-save feed,
-            category browsing, offline reading, and the dark indigo-purple theme.
+            Two screens, captured on a phone: the queue with 24 unread across 8 sources, and a
+            story being filed as saved.
           </p>
         </section>
 
@@ -138,7 +130,6 @@ export default function ScreenshotsPage() {
         </section>
 
         <section className="screenshots-cta">
-          <FevIcon width={40} height={40} />
           <h2>Ready to read on your own terms?</h2>
           <p>Download Curated Feeds for Android, free forever, no ads, no account required.</p>
           <Link href="/#download" className="cta-button primary">

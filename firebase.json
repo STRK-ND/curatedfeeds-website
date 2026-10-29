@@ -11,6 +11,16 @@
     "cleanUrls": true,
     "trailingSlash": true,
     "appAssociation": "NONE",
+    "rewrites": [
+      {
+        "source": "/.well-known/ai-catalog.json",
+        "destination": "/ai-catalog.json"
+      },
+      {
+        "source": "/.well-known/agent-skill.md",
+        "destination": "/agent-skill.md"
+      }
+    ],
     "headers": [
       {
         "source": "**/*.@(js|css)",
@@ -82,6 +92,10 @@
       {
         "source": "**",
         "headers": [
+          {
+            "key": "Content-Signal",
+            "value": "search=yes, ai-input=yes, ai-train=yes"
+          },
           {
             "key": "X-Content-Type-Options",
             "value": "nosniff"

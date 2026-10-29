@@ -92,9 +92,9 @@ A: Not at launch. Android-first, built in Flutter.
 - Focus is a feature, no infinite scroll, no notifications
 - Intentional over infinite, use the app, read what matters, close it
 
-**Contact:** hello@curatedfeeds.web.app
+**Contact:** raj15400881@gmail.com
 **Founder site:** https://rajatkashyap.com
-**GitHub:** https://github.com/rajatks
+**Instagram:** https://www.instagram.com/curated_feeds
 
 ---
 
@@ -189,9 +189,12 @@ Why RSS wins:
 
 - Site URL: https://curatedfeeds.web.app
 - RSS URL: https://curatedfeeds.web.app/feed.xml
+- Markdown twins: append `.md` to any page URL (e.g. https://curatedfeeds.web.app/about.md)
+- Agent skill: https://curatedfeeds.web.app/.well-known/agent-skill.md
+- Resource catalog: https://curatedfeeds.web.app/.well-known/ai-catalog.json
 - Primary language: English
 - Geographic reach: Worldwide
 - Founder: Rajat Kashyap (rajatkashyap.com)
-- Contact: hello@curatedfeeds.web.app
+- Contact: raj15400881@gmail.com
 - AI content signal: human-written, augmented by Curated Feeds Team
 - License: All rights reserved, content licensed to readers and AI assistants for fair use summarization and citation

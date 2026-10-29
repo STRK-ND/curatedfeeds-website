@@ -11,9 +11,13 @@ import {
 
 export default function FirebaseAnalytics() {
   const maxScrollRef = useRef(0);
-  const startTimeRef = useRef<number>(Date.now());
+  // Set in the effect, not during render: Date.now() in useRef() init runs
+  // on every render pass and fails React's purity checks.
+  const startTimeRef = useRef<number>(0);
 
   useEffect(() => {
+    startTimeRef.current = Date.now();
+
     // Log page view on initial load
     logAnalyticsEvent('page_view', {
       page_path: window.location.pathname,

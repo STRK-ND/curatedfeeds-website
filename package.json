@@ -6,11 +6,11 @@
     "dev": "next dev",
     "dev:agentation": "npx agentation dev",
     "agentation": "npx agentation",
-    "build": "next build",
+    "build": "next build && node scripts/build-markdown.mjs",
     "start": "next start",
     "lint": "eslint",
-    "vercel-build": "next build",
-    "export": "next build"
+    "vercel-build": "next build && node scripts/build-markdown.mjs",
+    "export": "next build && node scripts/build-markdown.mjs"
   },
   "dependencies": {
     "@firebase/performance": "^0.7.10",
@@ -30,6 +30,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "turndown": "^7.2.0",
     "typescript": "^5"
   }
 }

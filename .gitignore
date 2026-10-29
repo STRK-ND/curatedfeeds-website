@@ -56,6 +56,24 @@ yarn-error.log*
 # backlink bot browser profile (machine-local session cookies)
 /scripts/profile/
 
+# backlink tooling (holds third-party account credentials and tokens)
+/scripts/backlinks/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# stale static exports and design-inspector working files
+/out-old*/
+/out_*/
+/.taste-skill/
+/.playwright-mcp/
+/.hallmark/
+/.perch/
+
+# design exploration working files
+/samples/
+
+# backlink tooling caches
+__pycache__/
+**/venv/

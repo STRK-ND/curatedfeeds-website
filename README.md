@@ -1,10 +1,10 @@
 # Curated Feeds Landing Page
 
-A stunning Next.js 16+ landing page for the Curated Feeds RSS Reader app, featuring a dark elegant design with indigo-purple gradient theme, smooth animations, and full responsiveness.
+Marketing site and blog for the Curated Feeds RSS Reader app. Static-exported Next.js in a warm-paper editorial design: Instrument Serif display, Geist body, Geist Mono meta, rose accents, hairline rules. The app's dark navy screenshots are the only dark elements on the page.
 
 ## 🚀 Tech Stack
 
-- **Next.js 16.1.6** - React framework with App Router
+- **Next.js 16.1.6** - React framework with App Router, `output: 'export'`
 - **React 19.2.3** - UI library
 - **TypeScript** - Type safety
 - **Tailwind CSS 4** - Utility-first CSS framework
@@ -12,7 +12,7 @@ A stunning Next.js 16+ landing page for the Curated Feeds RSS Reader app, featur
 
 ## ✨ Features
 
-- 🎨 Dark elegant design with indigo-purple gradient theme
+- 🎨 Warm-paper editorial design system, one coherent token set (no dark/light flip)
 - 📱 Fully responsive across all devices
 - 🎯 Smooth animations and transitions
 - ⚡ Optimized performance with Core Web Vitals in mind
@@ -86,34 +86,50 @@ vercel
 ```
 curated-feeds-landing/
 ├── app/
-│   ├── layout.tsx          # Root layout with metadata
-│   ├── page.tsx            # Main landing page
-│   └── globals.css         # Global styles
-├── public/                 # Static assets
-├── .agentation/           # Agentation configuration
-├── .mcp.json             # MCP server configuration
-├── .mcpignore            # MCP ignore patterns
-├── .gitignore            # Git ignore patterns
-├── next.config.mjs       # Next.js configuration
-├── package.json          # Dependencies
-├── tsconfig.json         # TypeScript configuration
-└── vercel.json           # Vercel deployment config
+│   ├── layout.tsx          # Root layout, metadata, fonts (Geist + Instrument Serif)
+│   ├── page.tsx            # Landing page (hero, features, how-it-works, preview, FAQ, download)
+│   ├── globals.css         # The whole design system: tokens, components, pages, responsive
+│   ├── sources/            # Starter-feed directory
+│   ├── why/                # Comparison vs Feedly / Inoreader / NetNewsWire
+│   ├── use-cases/          # Reader profiles mapped to features
+│   ├── changelog/          # Release history
+│   ├── press/              # Press kit
+│   ├── about/  privacy/  screenshots/
+│   ├── blog/ + blog/[slug] # Blog index and posts
+│   ├── not-found.tsx       # Branded 404
+│   ├── components/         # Nav, Footer, Breadcrumbs, StructuredData, analytics, …
+│   ├── lib/                # seo.ts (JSON-LD), posts/data.ts, firebase.ts
+│   └── sitemap.ts
+├── public/                 # Static assets (icons, screenshots, feed.xml, llms.txt)
+├── out/                    # Static export (Firebase hosting root)
+├── scripts/build-markdown.mjs  # Markdown mirror for LLM surfaces
+└── package.json / tsconfig.json / firebase.json
 ```
+
+## Routes
+
+`/` `/sources/` `/why/` `/use-cases/` `/changelog/` `/press/` `/about/` `/privacy/` `/screenshots/` `/blog/` `/blog/<slug>/` ×5 — all prerendered static; `sitemap.xml` and `feed.xml` are generated from the same source data.
 
 ## 🎨 Design System
 
 The landing page uses a custom design system built on Tailwind CSS:
 
 ### Colors
-- **Background**: `#0d0e1a` (deep navy)
-- **Gradient**: Indigo to purple (`#1a1b4d` → `#2d2f73` → `#4a3b5c`)
-- **Accent**: `#ff6b9d` (pink/coral)
-- **Surface**: `rgba(255, 255, 255, 0.03)` (subtle transparency)
+- **Paper**: `#faf9f6` (page field)
+- **Ink**: `#17150f` (primary text, button fills)
+- **Rose**: `#c2255c` (accent for text/marks on paper, 5.3:1)
+- **Pink**: `#ff6b9d` (the product's own accent, in-app UI and brand mark)
 
 ### Typography
-- **Display**: Geist Sans (600 weight)
-- **Body**: Geist Sans (400-600 weight)
-- **Mono**: Geist Mono
+- **Display**: Instrument Serif (400, italic for emphasis)
+- **Body**: Geist Sans
+- **Mono**: Geist Mono (eyebrows, meta, indices)
+
+### Font tokens
+`--font-display` / `--font-body` / `--font-mono` are declared on `body`, not `:root`:
+next/font defines its variables on the body element, and custom properties
+compute where declared — declaring them in `:root` substitutes undefined
+vars and the whole tree silently falls back.
 
 ### Spacing
 - Consistent spacing scale from `0.25rem` to `6rem`

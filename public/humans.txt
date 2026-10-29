@@ -1,7 +1,7 @@
 /* TEAM */
   Built with care by Rajat Kashyap
   Site: https://rajatkashyap.com
-  Email: contact@rajatkashyap.com
+  Email: raj15400881@gmail.com
 
 /* SITE */
   Name: Curated Feeds

@@ -1,0 +1,120 @@
+/* Curated Feeds · cinematic night.
+ * One ground (#0b0a09), one ink (warm cream), one accent (gold), and one
+ * cream field at the end for the download. Taken from the app: a queue read
+ * at night, and the colour of a platform lamp. */
+:root {
+  color-scheme: dark;
+
+  --color-paper: #0b0a09;
+  --color-paper-2: #12100e;
+  --color-paper-3: #1a1714;
+  --color-ink: #f4ece0;
+  --color-ink-2: #cdc2b2;
+  --color-muted: #a99e8d;
+  --color-rule: rgba(244, 236, 224, 0.14);
+  --color-rule-2: rgba(244, 236, 224, 0.26);
+  --color-accent: #d9a566;
+  --color-accent-hi: #e8bc85;
+  --color-accent-ink: #0b0a09;
+  --color-focus: #e8bc85;
+  --color-slot: #1a1714;
+  --color-error: #ff8f8f;
+  --color-success: #7fe0b0;
+
+  /* The cream band that closes the page. */
+  --color-band: #f4ece0;
+  --color-band-ink: #0b0a09;
+  --color-band-ink-2: #4a4239;
+  --color-band-rule: rgba(11, 10, 9, 0.28);
+  --color-band-eyebrow: #7a1f2b;
+  --color-accent-deep: #a4551f;
+
+  /* Interior surfaces resolve to tone steps, never glass. */
+  --glass: var(--color-paper-2);
+  --glass-2: var(--color-paper-3);
+  --glass-edge: var(--color-rule-2);
+  --glass-edge-hi: var(--color-muted);
+  --glow-accent: none;
+  --glow-accent-soft: none;
+  --shadow-lift: none;
+
+  /* Folder tabs: five quiet steps of the same night. */
+  --slab-1: #1a1714;
+  --slab-2: #1f1b17;
+  --slab-3: #231e19;
+  --slab-4: #27211b;
+  --slab-5: #2c251e;
+
+  /* ── Type — Instrument Serif display, Inter Tight text ── */
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-body: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --display-weight: 400;
+  --tracking-display: -0.01em;
+  --tracking-text: 0;
+
+  /* Five sizes do the work, plus one micro label. */
+  --step-micro: 0.6875rem;
+  --step-small: 0.8125rem;
+  --step-body: 1.0625rem;
+  --step-lead: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);
+  --step-head: clamp(2.5rem, 1.2rem + 4.6vw, 5rem);
+  --step-display: clamp(3.5rem, 1.5rem + 8vw, 9.25rem);
+
+  /* Legacy names — the interior routes resolve through these. */
+  --text-xs: var(--step-small);
+  --text-sm: var(--step-small);
+  --text-md: var(--step-body);
+  --text-lg: var(--step-lead);
+  --text-xl: var(--step-lead);
+  --text-2xl: var(--step-head);
+  --text-3xl: var(--step-head);
+  --text-display-s: var(--step-head);
+  --text-display: var(--step-display);
+  --text-section: var(--step-head);
+  --text-title: var(--step-lead);
+  --text-lead: var(--step-lead);
+
+  /* ── Space ── */
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+
+  --container: 1280px;
+  --gutter: clamp(20px, 4.4vw, 64px);
+  --gap-columns: 32px;
+  --section-gap-s: clamp(48px, 6vw, 88px);
+  --section-gap: clamp(56px, 7vw, 110px);
+  --section-gap-l: clamp(72px, 9vw, 140px);
+
+  /* ── Motion ── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 200ms;
+  --dur-long: 520ms;
+  --dur-swipe: 300ms;
+
+  /* ── Shape: the house has no rounded corners ── */
+  --radius-card: 2px;
+  --radius-plate: 2px;
+  --radius-pill: 0px;
+  --rule-hair: 1px;
+
+  /* ── Layers ── */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+}

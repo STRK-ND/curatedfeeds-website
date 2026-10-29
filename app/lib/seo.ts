@@ -12,8 +12,8 @@ export const SITE = {
   lang: 'en',
   author: 'Rajat Kashyap',
   authorUrl: 'https://rajatkashyap.com',
-  twitter: '@curatedfeeds',
-  email: 'hello@curatedfeeds.web.app',
+  email: 'raj15400881@gmail.com',
+  instagram: 'https://www.instagram.com/curated_feeds',
   app: {
     package: 'com.curatedfeeds.app',
     version: '1.2.0',
@@ -22,7 +22,6 @@ export const SITE = {
     uptodown: 'https://curated-feeds.en.uptodown.com/android',
     operatingSystem: 'ANDROID',
   },
-  github: 'https://github.com/rajatks',
   founder: { '@type': 'Person', name: 'Rajat Kashyap', url: 'https://rajatkashyap.com' },
   founded: '2024-12-01',
   /** AI crawler directives, split-per-tag for crawler-tagged crawling tiers */
@@ -50,6 +49,30 @@ export function jsonLd(payload: Record<string, unknown>): string {
   return escapeScript(JSON.stringify(payload));
 }
 
+/**
+ * The canonical URL and the alternate representations of a page.
+ *
+ * Every page sets its own canonical: Next replaces the whole `alternates`
+ * object when a page declares one, so a page that sets only `canonical`
+ * loses the feed and Markdown links the layout declares. Keeping the whole
+ * set in one place means a page cannot half-override it.
+ *
+ * `scripts/build-markdown.mjs` writes one `.md` file next to each exported
+ * page, so the Markdown URL mirrors the page URL: `/about/` -> `/about.md`,
+ * and the homepage -> `/index.md`.
+ */
+export function pageAlternates(path: string) {
+  const markdown = path === '/' ? '/index.md' : `${path.replace(/\/$/, '')}.md`;
+  return {
+    canonical: `${SITE.url}${path}`,
+    types: {
+      'application/rss+xml': `${SITE.url}/feed.xml`,
+      'application/atom+xml': `${SITE.url}/feed.xml`,
+      'text/markdown': `${SITE.url}${markdown}`,
+    },
+  };
+}
+
 export function organizationLd() {
   return {
     '@context': 'https://schema.org',
@@ -66,11 +89,7 @@ export function organizationLd() {
     description: SITE.description,
     founder: { '@type': 'Person', name: SITE.author, url: SITE.authorUrl },
     foundingDate: SITE.founded,
-    sameAs: [
-      SITE.github,
-      SITE.authorUrl,
-      `https://twitter.com/${SITE.twitter.replace('@', '')}`,
-    ],
+    sameAs: [SITE.instagram, SITE.authorUrl],
     contactPoint: [
       {
         '@type': 'ContactPoint',
@@ -125,7 +144,7 @@ export function softwareApplicationLd() {
       'Card-based reading interface',
       'Unlimited RSS feed sources',
       'Offline article caching',
-      'Dark indigo-purple theme',
+      'Night-and-cream dark theme',
       'Feed organization by category',
       'No advertisements',
       'No tracking of reading habits',
@@ -133,7 +152,6 @@ export function softwareApplicationLd() {
     screenshot: [
       { '@type': 'ImageObject', url: `${SITE.url}/screenshots/home-feed.webp` },
       { '@type': 'ImageObject', url: `${SITE.url}/screenshots/swipe-gestures.webp` },
-      { '@type': 'ImageObject', url: `${SITE.url}/screenshots/dark-theme.webp` },
     ],
     softwareRequirements: 'Android 8.0 or later',
     storageRequirements: '~25 MB',
@@ -248,7 +266,7 @@ export function personLd() {
     name: SITE.author,
     url: SITE.authorUrl,
     image: `${SITE.url}/og-image.png`,
-    sameAs: [SITE.github, `https://twitter.com/rajatks`],
+    sameAs: [SITE.instagram],
     jobTitle: 'Founder & Lead Developer',
     worksFor: { '@id': `${SITE.url}/#organization` },
     knowsAbout: [

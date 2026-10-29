@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE, privacyPolicyLd, breadcrumbLd } from '../lib/seo';
+import { SITE, privacyPolicyLd, breadcrumbLd, pageAlternates } from '../lib/seo';
 import { StructuredData } from '../components/StructuredData';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     'Curated Feeds privacy policy: we do not collect personal data. Your feeds, articles, and reading history stay on your device. No account, no tracking, no ads.',
   authors: [{ name: SITE.name }],
-  alternates: { canonical: `${SITE.url}/privacy/` },
+  alternates: pageAlternates('/privacy/'),
   robots: { index: true, follow: true },
   openGraph: {
     type: 'article',
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
           <ul>
             <li><strong>Google Analytics (Firebase):</strong> For app usage analytics (data is anonymized).</li>
             <li><strong>Cloudflare R2:</strong> To serve the APK download (no personal data collected).</li>
-            <li><strong>Firebase Realtime Database:</strong> To display the live site counters. This stores only anonymous, aggregate numbers — how many devices are on the page right now, a running total of unique visitors, and how many times the APK download has been clicked. No identifiers, session data, or personal information are written, and the numbers are never linked to a person.</li>
+            <li><strong>Firebase Realtime Database:</strong> To display the live site counters. This stores only anonymous, aggregate numbers: how many devices are on the page right now, a running total of unique visitors, and how many times the APK download has been clicked. No identifiers, session data, or personal information are written, and the numbers are never linked to a person.</li>
           </ul>
           <p>We do not share any personally identifiable information with third parties, as we do not collect such information.</p>
         </section>
@@ -105,7 +105,7 @@ export default function PrivacyPage() {
         <section>
           <h2>Contact Us</h2>
           <p>If you have any questions about this Privacy Policy, please contact us at{' '}
-            <a href={`mailto:${SITE.email}`}>hello@curatedfeeds.web.app</a>.
+            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
           </p>
         </section>
       </main>

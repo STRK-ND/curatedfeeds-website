@@ -1,21 +1,29 @@
 import Link from 'next/link';
-import FevIcon from './FevIcon';
+import MobileMenu from './MobileMenu';
 
-export default function Nav() {
+/**
+ * Navigation: serif wordmark left, small caps links right.
+ * `overlay` lifts the bar onto the hero photograph; interior pages keep the
+ * solid sticky bar.
+ */
+export default function Nav({ overlay = false }: { overlay?: boolean }) {
   return (
-    <nav className="nav nav-scrolled">
-      <div className="nav-content">
-        <Link href="/" className="logo">
-          <FevIcon />
-          <span>Curated Feeds</span>
+    <nav className={overlay ? 'nav nav--overlay' : 'nav'} aria-label="Primary">
+      <div className="container nav__inner">
+        <Link href="/" className="nav__mark" aria-label="Curated Feeds home">
+          <span className="nav__dot" aria-hidden="true" />
+          Curated Feeds
         </Link>
-        <div className="nav-links">
-          <Link href="/blog/">Blog</Link>
-          <Link href="/screenshots/">Screenshots</Link>
-          <Link href="/about/">About</Link>
-          <Link href="/privacy/">Privacy</Link>
-          <Link href="/#download" className="nav-cta">Download</Link>
+        <div className="nav__links" aria-label="Site links">
+          <Link href="/#preview">Screens</Link>
+          <Link href="/#features">Features</Link>
+          <Link href="/sources/">Sources</Link>
+          <Link href="/#faq">FAQ</Link>
         </div>
+        <Link href="/#download" className="nav__cta" aria-label="Download the app">
+          Get the APK
+        </Link>
+        <MobileMenu />
       </div>
     </nav>
   );
