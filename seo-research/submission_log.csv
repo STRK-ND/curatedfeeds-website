@@ -1,0 +1,26 @@
+ID,Domain,Submission URL,Action,Date,Outcome,Evidence,Next Action
+B001,uptodown.com,https://curated-feeds.en.uptodown.com/android,Verified live listing,2026-10-29,Published (live),Listing fetched; developer link to site,Monitor reviews; update on new version
+B002,rss.mobi,https://rss.mobi/submit/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,"Page states no account, instant publish",Founder approves email/submit; submit blog feed URL
+B003,rssamplifier.com,https://rssamplifier.com/submit,Submitted via public API,2026-10-29,Published (live) - https://rssamplifier.com/curated-feeds-blog,"API response accepted, slug curated-feeds-blog",Verify indexing; monitor
+B004,develif.com,https://develif.com/,Submitted via documented API,2026-10-29,Published (live) - https://develif.com/s/curated-feeds,API response status PUBLISHED,Verify indexing; monitor
+B005,directory-index.com,https://directory-index.com/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,"Page states no account, instant",Submit after authorization
+B006,zearches.com,https://zearches.com/submit-website-free.php,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,"Page states free, no account",Submit after authorization
+B007,meweblink.com,https://meweblink.com/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,"Page states no account, no fee",Submit after authorization
+B008,weblist.dev,https://weblist.dev/submit/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,"Page states free, no account, human review",Submit after authorization
+B009,apprater.net,https://apprater.net/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,Submitator review; DR 17,Low value; optional
+B010,applauncher.dev,https://applauncher.dev/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,"Page states free, no account",Submit after authorization
+B011,listyourapp.online,https://listyourapp.online/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,Page states no account,Submit after authorization
+B012,starterlaunch.net,https://starterlaunch.net/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,Page states free listing,Submit after authorization
+B013,greenrocket.app,https://greenrocket.app/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,Page states free launchpad,Verify account requirement first
+B029,saashub.com,https://www.saashub.com/submit,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,"SubmitSaaS: public form, free queue",Submit after authorization
+B050,1000.tools,https://1000.tools/,Verified submission workflow (pre-submit),2026-10-29,Not submitted - pending authorization,"SubmitSaaS: form only, DR 52 dofollow",Submit after authorization
+B017,iheartrss.com,https://iheartrss.com/,Evaluated,2026-10-29,Rejected (reciprocal link required),Page states link-back requirement,Skip unless founder approves badge
+B038,fazier.com,https://fazier.com/,Evaluated,2026-10-29,Rejected (reciprocal link required for free tier),SubmitSaaS,Skip free tier; paid tier optional
+B045,futurepedia.io,https://www.futurepedia.io/submit-tool,Evaluated,2026-10-29,Rejected (not AI tool),SubmitSaaS,Do not submit (misrepresentation)
+B046,toolify.ai,https://www.toolify.ai/submit,Evaluated,2026-10-29,Rejected (paid + not AI),SubmitSaaS,Do not submit
+B047,taaft.com,https://theresanaiforthat.com/,Evaluated,2026-10-29,Rejected (paid + not AI),SubmitSaaS,Do not submit
+B044,devhunt.org,https://devhunt.org/,Evaluated,2026-10-29,Rejected (not dev tool),SubmitSaaS,Do not submit
+B052,betatesta.com (BetaList),https://www.betalist.com/,Evaluated,2026-10-29,Rejected (paid),SubmitSaaS,Do not submit
+B054,microlaunch.net,https://microlaunch.net/,Evaluated,2026-10-29,Rejected (paid),SubmitSaaS,Do not submit
+B061,curlship.com,https://curlship.com/,Submitted via documented API,2026-10-29,Published (live) - https://curlship.com/l/8227,"API response ok, listing id 8227",Verify indexing; monitor
+B085,techtools.cz,https://techtools.cz/launchpad-api/tools,Submitted via documented API,2026-10-29,Published (live) - https://techtools.cz/tools/launchpad/?tool=5867,"API response success, id 5867",Verify indexing; monitor
