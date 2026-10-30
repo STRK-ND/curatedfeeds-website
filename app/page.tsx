@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import ScrollMotion from './components/ScrollMotion';
 import QueueStage, { type DeckCard } from './components/QueueStage';
 import { TrackedDownloadLink } from './components/TrackedLink';
 import {
@@ -137,8 +136,6 @@ export default function Home() {
       <Nav overlay />
 
       <main id="main">
-        <ScrollMotion />
-
         {/* 1. Hero: reading in public, the app named once */}
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero__bg">

@@ -900,10 +900,31 @@ nav[aria-label="Breadcrumb"] a {
   .js [data-anim]:not(.inview) { opacity: 0; }
   .js [data-anim]:not(.inview) [data-anim-child] { opacity: 0; transform: translateY(12px); }
   .js [data-anim].inview [data-anim-child] { opacity: 1; transform: none; }
+  /* Last resort: if the motion layer never boots, the page still appears. */
+  .js:not(.gsap) [data-anim]:not(.inview),
+  .js:not(.gsap) [data-anim]:not(.inview) [data-anim-child] {
+    animation: cf-unhide 1ms 8s forwards;
+  }
   .faq summary .sign { transition: rotate var(--dur-short) var(--ease-out); }
   .faq details[open] summary .sign { rotate: 45deg; }
   .panel, .card, .value-row { transition: background var(--dur-short) var(--ease-out); }
   .panel:hover, .card:hover, .value-row:hover { background: var(--color-paper-3); }
+}
+
+@keyframes cf-unhide {
+  to { opacity: 1; transform: none; visibility: visible; }
+}
+
+/* GSAP owns opacity and transform frame by frame once it boots, so the CSS
+   transitions above must step aside; the rules stay as the no-script path. */
+html.gsap [data-anim],
+html.gsap [data-anim-child] { transition: none; }
+
+/* SplitText clips each line at its line box, which cuts serif descenders at
+   the tight display line-heights. Pad the mask without moving the layout. */
+.g-line-mask {
+  padding-bottom: 0.24em;
+  margin-bottom: -0.24em;
 }
 
 @media (prefers-reduced-motion: reduce) {

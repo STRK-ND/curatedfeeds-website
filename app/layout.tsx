@@ -4,6 +4,7 @@ import { StructuredData } from './components/StructuredData';
 import './globals.css';
 import { AgentationWrapper } from './components/AgentationWrapper';
 import FirebaseAnalytics from './components/FirebaseAnalytics';
+import GsapMotion from './components/GsapMotion';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -164,6 +165,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">Skip to content</a>
         <StructuredData data={[organizationLd(), websiteLd()]} />
         <FirebaseAnalytics />
+        <GsapMotion />
         {children}
         <AgentationWrapper />
       </body>
