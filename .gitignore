@@ -13,6 +13,11 @@
 # testing
 /coverage
 
+# Playwright verification runs (browser artifacts; regenerated on each run)
+/playwright-report/
+/test-results/
+/blob-report/
+
 # Firebase
 .firebase/
 .firebase.hosting.cache
@@ -20,6 +25,11 @@
 
 # MCP servers / tooling
 .mcp-gsc/
+
+# AI assistant tool working dirs (local agent/design scratch state, not site content)
+/.kilo/
+/.kilocode/
+/.kombai/
 
 # Cloudflare Wrangler local emulator state (machine-local)
 .wrangler/
@@ -29,6 +39,8 @@
 
 # Windows junk
 nul
+Thumbs.db
+desktop.ini
 
 # next.js
 /.next/
@@ -46,6 +58,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+
+# throwaway local verification scripts (ad-hoc browser/runtime checks; the
+# durable ones live under scripts/ and stay tracked)
+/_verify-*.mjs
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -73,6 +89,7 @@ next-env.d.ts
 
 # design exploration working files
 /samples/
+/app-screen*/
 
 # backlink tooling caches
 __pycache__/
