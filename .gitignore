@@ -31,6 +31,10 @@
 /.kilocode/
 /.kombai/
 
+# personal editor/assistant settings; the shared ones (.agentation/config.json)
+# stay tracked, ".local" files are machine-specific
+/.claude/settings.local.json
+
 # Cloudflare Wrangler local emulator state (machine-local)
 .wrangler/
 
@@ -90,6 +94,10 @@ next-env.d.ts
 # design exploration working files
 /samples/
 /app-screen*/
+
+# stale asset staging dir: nothing reads it (the one served image was copied to
+# public/assets/train-window.jpg), this only holds the unused originals
+/assets/
 
 # backlink tooling caches
 __pycache__/
