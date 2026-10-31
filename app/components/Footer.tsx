@@ -23,6 +23,7 @@ export default function Footer() {
           <Link href="/#faq">FAQ</Link>
           <Link href="/why/">Why Curated Feeds</Link>
           <Link href="/blog/">Blog</Link>
+          <Link href="/use-cases/">Use cases</Link>
           <Link href="/changelog/">Changelog</Link>
           <Link href="/about/">About</Link>
           <Link href="/privacy/">Privacy policy</Link>
