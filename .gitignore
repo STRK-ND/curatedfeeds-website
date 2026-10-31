@@ -102,3 +102,10 @@ next-env.d.ts
 # backlink tooling caches
 __pycache__/
 **/venv/
+
+# local-only research: never commit or push to GitHub
+/seo-research/
+/growth-system/
+/perch-research/
+/deliverable-*
+Semrush-*.pdf
