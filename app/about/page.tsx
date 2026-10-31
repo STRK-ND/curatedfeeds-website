@@ -9,9 +9,13 @@ export const metadata: Metadata = {
   authors: [{ name: 'Rajat Kashyap', url: 'https://rajatkashyap.com' }],
   alternates: pageAlternates('/about/'),
   openGraph: {
+    type: 'website',
+    locale: SITE.locale,
+    url: `${SITE.url}/about/`,
+    siteName: SITE.name,
     title: 'About | Curated Feeds',
     description: 'Learn about the founder, mission, and values behind Curated Feeds RSS reader app.',
-    type: 'website',
+    images: [`${SITE.url}/og-image.png`],
   },
 };
 

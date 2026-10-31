@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
-import { pageAlternates } from '../../lib/seo';
+import { pageAlternates, SITE } from '../../lib/seo';
 
 const posts = {
   '10-best-tech-blogs-rss': {
@@ -222,12 +222,16 @@ export async function generateMetadata({
     authors: [{ name: post.author, url: post.authorUrl }],
     alternates: pageAlternates(`/blog/${slug}/`),
     openGraph: {
+      type: 'article',
+      locale: SITE.locale,
+      url: `${SITE.url}/blog/${slug}/`,
+      siteName: SITE.name,
       title: post.title,
       description: post.description,
-      type: 'article',
       publishedTime: post.datePublished,
       modifiedTime: post.dateModified,
       authors: [post.author],
+      images: [`${SITE.url}/og-image.png`],
     },
   };
 }
