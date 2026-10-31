@@ -3,9 +3,34 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
-import { pageAlternates, SITE } from '../../lib/seo';
+import { StructuredData } from '../../components/StructuredData';
+import {
+  articleLd,
+  breadcrumbLd,
+  itemListLd,
+  pageAlternates,
+  qaPageLd,
+  SITE,
+} from '../../lib/seo';
 
-const posts = {
+type Post = {
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  author: string;
+  authorUrl: string;
+  readTime: string;
+  body: string;
+  /** Schema type override ('BlogPosting' for listicles). */
+  schemaType?: string;
+  /** Ranked entries emitted as ItemList JSON-LD on listicles. */
+  apps?: string[];
+  /** Q&A pairs rendered as <details> and emitted as QAPage (never FAQPage). */
+  qa?: { q: string; a: string }[];
+};
+
+const posts: Record<string, Post> = {
   '10-best-tech-blogs-rss': {
     title: '10 Best Tech Blogs to Follow in Your RSS Reader',
     description: 'A comprehensive guide to the most valuable technology sources for developers, entrepreneurs, and tech enthusiasts worldwide.',
@@ -202,6 +227,99 @@ const posts = {
 <p>RSS rewards deliberate use more than any other reading tool, because it does the opposite of what social platforms do: it never pushes, it never notifies, and it never decides for you. The routine above is just the smallest structure that lets that property work in your favour.</p>
     `,
   },
+  'best-rss-readers-android-2026': {
+    title: 'Best RSS Readers for Android in 2026: 8 Apps Compared',
+    description:
+      '8 Android RSS readers compared on price, accounts, offline and ads: Curated Feeds, Feedly, Inoreader, Feeder, FeedFlow, NewsBlur, Readwise, The Old Reader.',
+    datePublished: '2026-10-31',
+    dateModified: '2026-10-31',
+    author: 'Rajat Kashyap',
+    authorUrl: 'https://rajatkashyap.com',
+    readTime: '16 min read',
+    schemaType: 'BlogPosting',
+    apps: ['Curated Feeds', 'Feedly', 'Inoreader', 'NewsBlur', 'Feeder', 'FeedFlow', 'Readwise Reader', 'The Old Reader'],
+    qa: [
+      {
+        q: 'Is a "free" RSS reader really free?',
+        a: 'Often only a free tier. Feedly, Inoreader, NewsBlur, Readwise Reader, and The Old Reader all limit the free plan and show ads on it. Curated Feeds, Feeder, and FeedFlow are free in the stronger sense: there is no server infrastructure to fund, so there is no premium tier and no ads.',
+      },
+      {
+        q: 'Do I need an account to read RSS?',
+        a: 'No. RSS is a pull technology: the reader fetches the feed from the publisher. Accounts exist to enable sync and server-side features. Curated Feeds, Feeder, and FeedFlow skip the account entirely and store everything on your device.',
+      },
+      {
+        q: 'Which of these readers work fully offline?',
+        a: 'Curated Feeds caches full articles for offline reading, and Feeder and FeedFlow both support offline reading. The hosted readers offer offline reading on paid plans or in limited form, so check current plan details before relying on it for travel.',
+      },
+      {
+        q: 'Can I move my feeds from Feedly or Inoreader to another app?',
+        a: 'Yes. Export your OPML from the old reader and paste the feed URLs into the new one. For the specifics of leaving Feedly or Inoreader, see the Curated Feeds vs Feedly and Curated Feeds vs Inoreader comparison pages.',
+      },
+    ],
+    body: `
+<p><em>Eight Android RSS readers compared on what actually changes your mornings: price, whether you need an account, offline reading, ads, and how each app treats your attention. Checked against public store listings, pricing pages, and documentation in October 2026.</em></p>
+<p>RSS readers are the quiet corner of the app store. Nobody advertises them, yet they decide what you read every day. This list covers eight Android readers that are actively maintained in 2026. No placement was paid for, and no star ratings are quoted, because store ratings measure popularity, not fit for your habits.</p>
+<h2>The best RSS readers for Android at a glance</h2>
+<div class="table-wrap">
+<table class="data-table" aria-label="Eight Android RSS readers compared">
+<thead><tr><th scope="col">App</th><th scope="col">Price</th><th scope="col">Account</th><th scope="col">Offline</th><th scope="col">Ads</th><th scope="col">Best for</th></tr></thead>
+<tbody>
+<tr><td>Curated Feeds</td><td>Free forever</td><td>No</td><td>Full article cache</td><td>None</td><td>No-account, privacy-first reading</td></tr>
+<tr><td>Feedly</td><td>Free tier, paid Pro</td><td>Yes</td><td>Yes</td><td>On free tier</td><td>Sync, boards, AI on Pro</td></tr>
+<tr><td>Inoreader</td><td>Free tier, paid plans</td><td>Yes</td><td>Yes</td><td>On free tier</td><td>Rules and filters</td></tr>
+<tr><td>NewsBlur</td><td>Free tier, paid</td><td>Yes</td><td>Yes</td><td>On free tier</td><td>Training and social features</td></tr>
+<tr><td>Feeder</td><td>Free, open source</td><td>No</td><td>Yes</td><td>None</td><td>Minimal F-Droid reading</td></tr>
+<tr><td>FeedFlow</td><td>Free, open source</td><td>No</td><td>Offline reading</td><td>None</td><td>Lightweight offline reader</td></tr>
+<tr><td>Readwise Reader</td><td>Free tier, paid</td><td>Yes</td><td>Yes</td><td>None</td><td>RSS plus read-it-later</td></tr>
+<tr><td>The Old Reader</td><td>Free tier, paid</td><td>Yes</td><td>Limited on free</td><td>On free tier</td><td>Google Reader-style reading</td></tr>
+</tbody>
+</table>
+</div>
+<p class="note">Prices and free-tier limits change often; check each vendor's own pricing page before deciding. "Free tier" here means usable but deliberately limited.</p>
+<h2>Best RSS reader for each need</h2>
+<ul>
+<li><strong>No account, no server, no ads:</strong> Curated Feeds, or Feeder if you want open source from F-Droid.</li>
+<li><strong>One reading list on phone, tablet, and laptop:</strong> Feedly, Inoreader, or NewsBlur. Sync is exactly what an account buys you.</li>
+<li><strong>Server-side rules that sort incoming articles:</strong> Inoreader on a paid plan.</li>
+<li><strong>AI summaries and digest newsletters:</strong> Feedly Pro or Readwise Reader.</li>
+<li><strong>Read-it-later combined with RSS:</strong> Readwise Reader.</li>
+<li><strong>Maximum offline on a train or a plane:</strong> Curated Feeds, Feeder, or FeedFlow.</li>
+</ul>
+<h2>1. Curated Feeds: the no-account default</h2>
+<p>Curated Feeds is the app this site ships: free forever, no account, and everything stored on the device. You swipe through articles as cards, group sources into categories, and the full article cache works offline. There are no ads and no tracking, and version 1.2.0 installs directly from this site as an APK (about 67 MB, Android 8.0 and up) or from Uptodown, because it is deliberately not on the Play Store.</p>
+<p>The honest trade-offs: it is Android-only, there is no multi-device sync, no desktop or web reader, and no full-text search across your whole archive, because all of those require a server. If your reading stays on one phone, none of that costs you anything. See <a href="/why/">the full comparison</a> and the head-to-head pages against <a href="/why/feedly/">Feedly</a> and <a href="/why/inoreader/">Inoreader</a>.</p>
+<h2>2. Feedly: the sync-everywhere standard</h2>
+<p>Feedly is the most widely used reader on this list: boards and collections, clean cross-platform sync across Android, iOS, and web, and on paid Pro an AI layer that summarizes feeds and drafts newsletters. The free tier is genuinely usable for a few dozen feeds but shows ads and caps boards; Pro removes both. You need an account, and your reading history lives on Feedly's servers.</p>
+<h2>3. Inoreader: the power user's filter engine</h2>
+<p>Inoreader's differentiator is rules: server-side filters, folders, and automation that sort articles as they arrive, plus strong search across your archive. Most of that sits behind paid plans; the free tier is limited and shows ads. Like Feedly it is account-based and synced, on Android, iOS, and web.</p>
+<h2>4. NewsBlur: reading with a social layer</h2>
+<p>NewsBlur mixes RSS with sharing: you can follow other readers' blurblogs, and its training modes learn which stories you care about. The free tier has limits and ads; paid unlocks the full feature set. Account-based and synced, on Android, iOS, and web.</p>
+<h2>5. Feeder: the minimal open-source pick</h2>
+<p>Feeder is a free, open-source reader distributed on F-Droid and the Play Store. No account, no ads, a straightforward article list with offline reading and a clean design. It deliberately skips sync and server features, which is exactly why it stays fast and private. A solid choice if you want something simpler than Feedly with none of the upsells.</p>
+<h2>6. FeedFlow: offline-first and lightweight</h2>
+<p>FeedFlow is another free, open-source F-Droid reader focused on offline reading and reader mode, with sync options only if you configure them yourself. It is the lightest app on this list and a good fit when storage and battery matter.</p>
+<h2>7. Readwise Reader: RSS meets read-it-later</h2>
+<p>Readwise Reader combines RSS with highlights, a read-it-later queue, and AI features on the paid plan. The free tier is limited. It is account-based and synced across devices, and it suits people who want one place for articles, newsletters, and things to read later rather than a pure feed list.</p>
+<h2>8. The Old Reader: the Google Reader revival</h2>
+<p>The Old Reader rebuilds the classic Google Reader experience: folders, sharing, and a familiar layout. The free tier is limited and ad-supported; paid removes ads and raises limits. Account-based and synced, with Android and web clients.</p>
+<h2>How to choose an RSS reader</h2>
+<p>Start with where your data lives, because that decision is hard to reverse. Account-based readers (Feedly, Inoreader, NewsBlur, Readwise, The Old Reader) give you sync and server-side features in exchange for storing your reading history on their servers. Device-local readers (Curated Feeds, Feeder, FeedFlow) keep everything on the phone and give you nothing to log into.</p>
+<p>Second, look at the price model, not the price: "free" usually means a limited free tier subsidized by ads or an upsell, while "free forever" means there is no server bill to pass on. Third, test offline behavior on your actual commute, and fourth, confirm the platform list matches the devices you actually read on. Then try two or three readers with the same feeds for one week; the real differences show up in daily use, not in feature lists. The <a href="/sources/">starter feed list</a> is a good test set.</p>
+<h2>What this list deliberately leaves out</h2>
+<p>Self-hosted options like FreshRSS and Miniflux are excellent if you run a server, but they are not Android apps you install and open, so they are out of scope here. NetNewsWire is a strong open-source reader but Apple-only. And app-store ratings were left out on purpose: a 4.8 with 200k reviews tells you a product is popular, not that it fits the way you read.</p>
+<h2>Switching readers without losing your feeds</h2>
+<p>Every reader on this list can export your subscriptions as an OPML file, and every reader can add a feed by pasting its URL. To switch: export the OPML from your current reader, open it in a text editor, and copy each <code>xmlUrl</code> value, or add feeds one by one from the original app's share sheet. In Curated Feeds there is no directory approval step: paste any URL that parses as RSS 2.0, Atom, or RDF and it is added. See <a href="/blog/find-rss-feed-url-any-website/">how to find the feed URL of any website</a> if a source does not advertise its feed.</p>
+<h2>Questions</h2>
+<div class="faq-list">
+<details class="faq-item" open><summary>Is a "free" RSS reader really free?</summary><div><p>Often only a free tier. Feedly, Inoreader, NewsBlur, Readwise Reader, and The Old Reader all limit the free plan and show ads on it. Curated Feeds, Feeder, and FeedFlow are free in the stronger sense: there is no server infrastructure to fund, so there is no premium tier and no ads.</p></div></details>
+<details class="faq-item"><summary>Do I need an account to read RSS?</summary><div><p>No. RSS is a pull technology: the reader fetches the feed from the publisher. Accounts exist to enable sync and server-side features. Curated Feeds, Feeder, and FeedFlow skip the account entirely and store everything on your device.</p></div></details>
+<details class="faq-item"><summary>Which of these readers work fully offline?</summary><div><p>Curated Feeds caches full articles for offline reading, and Feeder and FeedFlow both support offline reading. The hosted readers offer offline reading on paid plans or in limited form, so check current plan details before relying on it for travel.</p></div></details>
+<details class="faq-item"><summary>Can I move my feeds from Feedly or Inoreader to another app?</summary><div><p>Yes. Export your OPML from the old reader and paste the feed URLs into the new one; see the switching section above. For the specifics of leaving Feedly or Inoreader, see <a href="/why/feedly/">Curated Feeds vs Feedly</a> and <a href="/why/inoreader/">Curated Feeds vs Inoreader</a>.</p></div></details>
+</div>
+<h2>Try Curated Feeds</h2>
+<p>If the comparison points anywhere for a phone-only, no-account setup, it is here: version 1.2.0, about 67 MB, Android 8.0 and up, free forever with no ads. Download the APK directly from this site or find it on Uptodown, add a few feeds from the <a href="/sources/">starter list</a>, and see how reading feels when nothing is synced, tracked, or sold.</p>
+    `,
+  },
 };
 
 export async function generateStaticParams() {
@@ -245,8 +363,35 @@ export default async function BlogPostPage({
   const post = posts[slug as keyof typeof posts];
   if (!post) notFound();
 
+  const url = `${SITE.url}/blog/${slug}/`;
+  const related = Object.entries(posts)
+    .filter(([s]) => s !== slug)
+    .slice(-3)
+    .map(([s, p]) => ({ slug: s, title: p.title }));
+  const ldNodes: Record<string, unknown>[] = [
+    breadcrumbLd([
+      { name: 'Home', url: '/' },
+      { name: 'Blog', url: '/blog/' },
+      { name: post.title, url: `/blog/${slug}/` },
+    ]),
+    articleLd({
+      slug,
+      title: post.title,
+      description: post.description,
+      body: post.body,
+      author: post.author,
+      authorUrl: post.authorUrl,
+      datePublished: post.datePublished,
+      dateModified: post.dateModified,
+      ...(post.schemaType ? { type: post.schemaType } : {}),
+    }),
+  ];
+  if (post.apps) ldNodes.push(itemListLd(post.apps.map((name) => ({ name })), url));
+  if (post.qa) ldNodes.push(qaPageLd(post.qa, url));
+
   return (
     <>
+      <StructuredData data={ldNodes} />
       <Nav />
       <main id="main" className="blog-post-page">
         <article className="blog-post-article">
@@ -269,6 +414,13 @@ export default async function BlogPostPage({
                   <line x1="3" y1="10" x2="21" y2="10" />
                 </svg>
                 {post.datePublished}
+              </span>
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M21 12a9 9 0 1 1-2.64-6.36" />
+                  <polyline points="21 3 21 9 15 9" />
+                </svg>
+                Updated {post.dateModified}
               </span>
               <span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -304,6 +456,22 @@ export default async function BlogPostPage({
                 </svg>
               </a>
             </div>
+            <section className="related-posts" aria-label="Related reading">
+              <p className="author-label">Related reading</p>
+              <ul>
+                {related.map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/blog/${r.slug}/`}>{r.title}</Link>
+                  </li>
+                ))}
+                <li>
+                  <Link href="/why/">Why Curated Feeds instead of Feedly or Inoreader</Link>
+                </li>
+                <li>
+                  <Link href="/sources/">Starter feeds to try in any reader</Link>
+                </li>
+              </ul>
+            </section>
           </footer>
         </article>
       </main>

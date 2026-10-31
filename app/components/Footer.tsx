@@ -22,6 +22,8 @@ export default function Footer() {
           <Link href="/sources/">Starter feeds</Link>
           <Link href="/#faq">FAQ</Link>
           <Link href="/why/">Why Curated Feeds</Link>
+          <Link href="/why/feedly/">vs Feedly</Link>
+          <Link href="/why/inoreader/">vs Inoreader</Link>
           <Link href="/blog/">Blog</Link>
           <Link href="/use-cases/">Use cases</Link>
           <Link href="/changelog/">Changelog</Link>

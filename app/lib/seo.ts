@@ -4,9 +4,9 @@ export const SITE = {
   name: 'Curated Feeds',
   shortName: 'Curated Feeds',
   tagline: 'Beautiful, fast, distraction-free RSS reader for Android',
-  // 156 chars, the sweet spot for a SERP snippet (70-160).
+  // 141 chars, the sweet spot for a SERP snippet (70-160).
   description:
-    'Curated Feeds is a free, privacy-first RSS reader for Android. Swipe through cards, organize by category, read offline. No ads, no tracking.',
+    'Free, privacy-first RSS reader for Android with no account: swipe through cards, read offline, install the APK directly. No ads, no tracking.',
   url: BASE_URL,
   locale: 'en_US',
   lang: 'en',
@@ -220,11 +220,17 @@ export function articleLd(post: {
   dateModified: string;
   image?: string;
   keywords?: string[];
+  /** Schema type override, e.g. 'BlogPosting' for listicles. Default 'Article'. */
+  type?: string;
+  /** URL path override for non-blog pages (e.g. '/why/feedly/'). */
+  path?: string;
+  /** isPartOf target, default '/blog/'. */
+  isPartOf?: string;
 }) {
-  const url = `${SITE.url}/blog/${post.slug}/`;
+  const url = `${SITE.url}${post.path ?? `/blog/${post.slug}/`}`;
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': post.type ?? 'Article',
     '@id': url,
     headline: post.title,
     description: post.description,
@@ -250,7 +256,7 @@ export function articleLd(post: {
       post.keywords && post.keywords.length
         ? post.keywords
         : ['RSS', 'Curated Feeds', 'productivity', 'content curation'],
-    isPartOf: { '@id': `${SITE.url}/blog/` },
+    isPartOf: { '@id': `${SITE.url}${post.isPartOf ?? '/blog/'}` },
     // Breadcrumb position + license reinforce provenance signals (E-E-A-T).
     copyrightHolder: { '@id': `${SITE.url}/#organization` },
     license: 'https://creativecommons.org/licenses/by/4.0/',
@@ -415,5 +421,46 @@ export function faqPageLd(qa: { q: string; a: string }[], url: string): Record<s
     ...faqLd(qa),
     '@id': `${url}#faq`,
     url,
+  };
+}
+
+/**
+ * QAPage for Q&A sections on NEW pages. Google retired FAQ rich results
+ * (2026-05-07), so new pages must use QAPage, never FAQPage, and never HowTo.
+ */
+export function qaPageLd(qa: { q: string; a: string }[], url: string): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'QAPage',
+    '@id': `${url}#qa`,
+    url,
+    mainEntity: qa.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
+}
+
+/** ItemList for in-article ranked lists (e.g. the compared apps in a listicle). */
+export function itemListLd(
+  items: { name: string; url?: string }[],
+  url: string,
+): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${url}#list`,
+    url,
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    numberOfItems: items.length,
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      ...(item.url
+        ? { url: item.url.startsWith('http') ? item.url : `${SITE.url}${item.url}` }
+        : {}),
+    })),
   };
 }

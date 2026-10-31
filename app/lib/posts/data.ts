@@ -87,6 +87,25 @@ export const POSTS: PostMeta[] = [
     tags: ['RSS', 'Focus', 'Routine'],
     keywords: ['morning reading routine', 'distraction free reading', 'RSS routine', 'attention hygiene'],
   },
+  {
+    slug: 'best-rss-readers-android-2026',
+    title: 'Best RSS Readers for Android in 2026: 8 Apps Compared',
+    description:
+      '8 Android RSS readers compared on price, accounts, offline and ads: Curated Feeds, Feedly, Inoreader, Feeder, FeedFlow, NewsBlur, Readwise, The Old Reader.',
+    excerpt:
+      'Eight Android RSS readers compared on price, account requirements, offline reading and ads, with a pick for every need.',
+    datePublished: '2026-10-31',
+    dateModified: '2026-10-31',
+    category: 'Comparisons',
+    readTime: '16 min read',
+    tags: ['RSS', 'Comparison', 'Android'],
+    keywords: [
+      'best RSS readers 2026',
+      'best RSS reader android',
+      'best RSS readers android 2026',
+      'RSS reader comparison',
+    ],
+  },
 ];
 
 export const BLOG_LAST_MODIFIED = POSTS.reduce(
