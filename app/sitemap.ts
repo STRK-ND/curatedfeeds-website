@@ -18,13 +18,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // always equals "now" makes every recrawl a no-op. changefreq and priority
   // are omitted - Google disregards both and they add noise.
   const PAGES_LAST_REVIEW = new Date('2026-10-31');
-  const HOME_LAST_MODIFIED = new Date('2026-10-31');
+  const HOME_LAST_MODIFIED = new Date('2026-11-09');
+  const SCREENSHOTS_LAST_MODIFIED = new Date('2026-11-09');
   return [
     { url: `${BASE_URL}/`, lastModified: HOME_LAST_MODIFIED },
     { url: `${BASE_URL}/blog/`, lastModified: PAGES_LAST_REVIEW },
     { url: `${BASE_URL}/about/`, lastModified: PAGES_LAST_REVIEW },
     { url: `${BASE_URL}/privacy/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/screenshots/`, lastModified: PAGES_LAST_REVIEW },
+    { url: `${BASE_URL}/screenshots/`, lastModified: SCREENSHOTS_LAST_MODIFIED },
     { url: `${BASE_URL}/sources/`, lastModified: PAGES_LAST_REVIEW },
     { url: `${BASE_URL}/why/`, lastModified: PAGES_LAST_REVIEW },
     { url: `${BASE_URL}/why/feedly/`, lastModified: PAGES_LAST_REVIEW },

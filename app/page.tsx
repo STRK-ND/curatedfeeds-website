@@ -10,7 +10,6 @@ import {
   softwareApplicationLd,
   mobileApplicationLd,
   faqLd,
-  howToLd,
   breadcrumbLd,
   speakableLd,
   siteNavigationLd,
@@ -119,7 +118,9 @@ export default function Home() {
           mobileApplicationLd(),
           breadcrumbLd([{ name: 'Home', url: '/' }]),
           faqLd(faqs),
-          howToLd(steps),
+          // No howToLd: Google retired HowTo rich results, and this site's own
+          // schema policy (seo.ts) says never to emit them. The steps remain as
+          // visible copy in the "How it works" section below.
           siteNavigationLd([
             { name: 'Home', url: '/' },
             { name: 'Screens', url: '/#preview' },

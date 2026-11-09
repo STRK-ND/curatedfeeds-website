@@ -119,6 +119,41 @@ export default function ScreenshotsPage() {
           ))}
         </section>
 
+        {/* Reading the interface: gives image-search visitors and screen-reader
+            users the same orientation the screenshots give sighted users, and
+            carries the entity terms (card queue, unread count, categories)
+            search engines expect near app imagery. */}
+        <section className="page-section" aria-labelledby="anatomy-title">
+          <h2 id="anatomy-title">Reading the interface</h2>
+          <h3>The queue screen</h3>
+          <p>
+            The first screenshot is the whole app in one view: a single article card, the source
+            name and category above it, and the unread count with your source total in the corner
+            (24 unread from 8 sources in this capture). There is no bottom tab bar and no sidebar,
+            because the queue is the only screen you read in.
+          </p>
+          <h3>The swipe</h3>
+          <p>
+            The second screenshot catches a right swipe mid-gesture: the card tilts, a confirmation
+            marks the story as saved, and the next card is already underneath. Swipe left and the
+            card clears instead. Both gestures are one motion, so clearing a morning queue takes
+            seconds, not a filing session.
+          </p>
+          <h3>What the numbers mean</h3>
+          <p>
+            The unread count only moves when you act on a card — there is no badge nagging you from
+            outside the app. Categories (Tech, Science, Research and so on) are groups you define,
+            so the count in each stays meaningful instead of becoming one blended pile.
+          </p>
+          <p>
+            Seen something you want to know more about? The{' '}
+            <Link href="/use-cases/" className="text-link">use-case pages</Link> map each of these
+            behaviours to a reading habit, and the{' '}
+            <Link href="/why/" className="text-link">why pages</Link> explain the design decisions
+            behind the one-card queue.
+          </p>
+        </section>
+
         <section className="screenshots-faq" aria-labelledby="screenshots-faq-title">
           <h2 id="screenshots-faq-title">Quick questions</h2>
           <div className="faq-list">
