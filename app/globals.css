@@ -935,3 +935,24 @@ html.gsap [data-anim-child] { transition: none; }
 @media (prefers-reduced-motion: reduce) {
   .deck__card, .deck__btn, .btn { transition: none; }
 }
+
+/* ── RSS Feed Finder tool (/tools/find-feed/) ─────────────────────────── */
+.finder { display: grid; gap: var(--space-md); max-width: 640px; }
+.finder__form { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+.finder__input { flex: 1 1 260px; min-height: 54px; padding: 0 var(--space-md); background: var(--color-surface, #14120f); color: var(--color-ink); border: 1px solid var(--color-line, #2a2620); font-family: var(--font-body); font-size: 1rem; }
+.finder__input:focus { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.finder__btn { flex: 0 0 auto; }
+.finder__note { color: var(--color-muted, #a39a8d); font-size: 0.9375rem; max-width: 60ch; }
+.finder__results { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-xs); }
+.finder__row { display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); border: 1px solid var(--color-line, #2a2620); background: var(--color-surface, #14120f); flex-wrap: wrap; }
+.finder__kind { font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); min-width: 3.5rem; }
+.finder__url { flex: 1 1 200px; font-size: 0.875rem; overflow-wrap: anywhere; color: var(--color-ink); }
+.finder__copy { border: 1px solid var(--color-line, #2a2620); background: transparent; color: var(--color-ink); padding: 0.4rem 0.9rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+.finder__copy:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.finder__hints { border: 1px dashed var(--color-line, #2a2620); padding: var(--space-md); display: grid; gap: var(--space-xs); }
+.finder__hints-label { margin: 0; font-weight: 500; }
+.finder__hints ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.25rem; }
+.finder__hints code { font-size: 0.8125rem; overflow-wrap: anywhere; }
+.finder__hints-note { margin: 0; color: var(--color-muted, #a39a8d); font-size: 0.875rem; }
+.tool-page .page-section ol { padding-left: 1.25rem; display: grid; gap: var(--space-sm); }
+.tool-page .page-section code { font-size: 0.875em; background: var(--color-surface, #14120f); padding: 0.1em 0.35em; }

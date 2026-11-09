@@ -20,8 +20,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const PAGES_LAST_REVIEW = new Date('2026-10-31');
   const HOME_LAST_MODIFIED = new Date('2026-11-09');
   const SCREENSHOTS_LAST_MODIFIED = new Date('2026-11-09');
+  const TOOL_LAST_MODIFIED = new Date('2026-11-09');
   return [
     { url: `${BASE_URL}/`, lastModified: HOME_LAST_MODIFIED },
+    { url: `${BASE_URL}/tools/find-feed/`, lastModified: TOOL_LAST_MODIFIED },
     { url: `${BASE_URL}/blog/`, lastModified: PAGES_LAST_REVIEW },
     { url: `${BASE_URL}/about/`, lastModified: PAGES_LAST_REVIEW },
     { url: `${BASE_URL}/privacy/`, lastModified: PAGES_LAST_REVIEW },

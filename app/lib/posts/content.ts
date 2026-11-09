@@ -163,7 +163,7 @@ export const POST_CONTENT: Record<string, Post> = {
 <h2>First: look for the standard link</h2>
 <p> Publishers still following the basics place a feed link somewhere predictable: the footer, the sidebar, or under a share menu. It is usually labelled RSS, Feed, Subscribe, or an orange broadcast icon. If you find it, copy that URL directly and you are done.</p>
 <h2>Second: try the conventional paths</h2>
-<p>Feed software converges on a handful of default locations, so guessing works often enough to be worth trying before anything clever:</p>
+<p>Feed software converges on a handful of default locations, so guessing works often enough to be worth trying before anything clever. (Or skip the guessing entirely: the <a href="/tools/find-feed/">RSS Feed Finder tool</a> tests the page markup and all of these paths automatically.)</p>
 <ul>
 <li><strong>/feed</strong>, the most common default, used by WordPress and most blogging platforms.</li>
 <li><strong>/feed/</strong> with a trailing slash, the same feed on some configurations.</li>

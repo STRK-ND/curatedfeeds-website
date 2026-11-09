@@ -20,6 +20,7 @@ export default function Footer() {
           <Link href="/#features">Features</Link>
           <Link href="/#how-it-works">How it works</Link>
           <Link href="/sources/">Starter feeds</Link>
+          <Link href="/tools/find-feed/">Feed finder</Link>
           <Link href="/#faq">FAQ</Link>
           <Link href="/why/">Why Curated Feeds</Link>
           <Link href="/why/feedly/">vs Feedly</Link>
