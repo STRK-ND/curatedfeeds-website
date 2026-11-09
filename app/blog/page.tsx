@@ -5,7 +5,7 @@ import { StructuredData } from '../components/StructuredData';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { POSTS } from '../lib/posts/data';
+import { POSTS, readTimeFor } from '../lib/posts/data';
 
 export const metadata: Metadata = {
   title: 'Blog, RSS Tips & Reading Guides',
@@ -36,7 +36,7 @@ const posts = POSTS.map((p) => ({
   excerpt: p.excerpt,
   date: new Date(p.datePublished).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
   dateISO: p.datePublished,
-  readTime: p.readTime,
+  readTime: readTimeFor(p.slug),
   category: p.category,
   tags: p.tags,
   description: p.description,

@@ -113,6 +113,8 @@ export const metadata: Metadata = {
     'content-signal-preference': `ai-train=${SITE.aiDirectives['ai-train']}, ai-search=${SITE.aiDirectives['ai-search']}, ai-quote=${SITE.aiDirectives['ai-quote']}, ai-assistant-context=${SITE.aiDirectives['ai-assistant-context']}`,
     'preference-rank': SITE.aiDirectives['preference-rank'],
     'google-site-verification': 'CikowM8TK0sklZUlYWe2jZVcJrbNtr5l4oF-v0c4HMU',
+    'msvalidate.01': '50613961B50BC7701DE68F2ED3791347',
+    'yandex-verification': '78897164c49fc106',
     'article:author': SITE.author,
     'article:publisher': SITE.url,
   },

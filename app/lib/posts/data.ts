@@ -3,6 +3,7 @@
  * Consumed by the sitemap, RSS feed, blog index, and blog post pages
  * so slugs, dates, and descriptions can never drift apart.
  */
+import { POST_CONTENT } from './content';
 export type PostMeta = {
   slug: string;
   title: string;
@@ -11,10 +12,30 @@ export type PostMeta = {
   datePublished: string; // ISO 8601
   dateModified: string; // ISO 8601
   category: string;
-  readTime: string;
   tags: string[];
   keywords: string[];
 };
+
+/** Plain words in a post body: tags stripped, entities collapsed. */
+function bodyWords(html: string): number {
+  return html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[a-z]+;/gi, ' ')
+    .split(/\s+/)
+    .filter(Boolean).length;
+}
+
+/**
+ * Reading time for a post, derived from its own body.
+ *
+ * Hand-set read-time strings used to be copied in two places and drifted
+ * badly (a 600-word post labelled "15 min read"). Deriving from the body at
+ * render time means the label always matches the words on the page.
+ */
+export function readTimeFor(slug: string): string {
+  const body = POST_CONTENT[slug]?.body ?? '';
+  return `${Math.max(1, Math.round(bodyWords(body) / 230))} min read`;
+}
 
 export const POSTS: PostMeta[] = [
   {
@@ -25,9 +46,8 @@ export const POSTS: PostMeta[] = [
     excerpt:
       'Follow 10 tech blogs in your RSS reader. Hacker News, The Verge, and more, curated for depth over noise.',
     datePublished: '2026-03-13',
-    dateModified: '2026-03-22',
+    dateModified: '2026-11-01',
     category: 'Tech',
-    readTime: '15 min read',
     tags: ['RSS', 'Tech'],
     keywords: ['best tech blogs', 'RSS feeds', 'tech RSS', 'feeds 2026'],
   },
@@ -39,9 +59,8 @@ export const POSTS: PostMeta[] = [
     excerpt:
       'A data-driven analysis with real statistics and personal experience from three years of RSS-first content consumption.',
     datePublished: '2026-03-20',
-    dateModified: '2026-03-22',
+    dateModified: '2026-11-01',
     category: 'Focus',
-    readTime: '15 min read',
     tags: ['RSS', 'Focus', 'Social Media'],
     keywords: ['RSS vs social media', 'attention', 'focus', 'productivity'],
   },
@@ -55,7 +74,6 @@ export const POSTS: PostMeta[] = [
     datePublished: '2026-03-22',
     dateModified: '2026-03-22',
     category: 'Productivity',
-    readTime: '16 min read',
     tags: ['RSS', 'Tips', 'Productivity'],
     keywords: ['RSS productivity', 'reading habits', 'feed management'],
   },
@@ -69,7 +87,6 @@ export const POSTS: PostMeta[] = [
     datePublished: '2026-10-24',
     dateModified: '2026-10-24',
     category: 'How-to',
-    readTime: '9 min read',
     tags: ['RSS', 'How-to', 'Feeds'],
     keywords: ['find RSS feed URL', 'RSS autodiscovery', 'Atom feed', 'feed URL tricks'],
   },
@@ -83,7 +100,6 @@ export const POSTS: PostMeta[] = [
     datePublished: '2026-10-24',
     dateModified: '2026-10-24',
     category: 'Focus',
-    readTime: '8 min read',
     tags: ['RSS', 'Focus', 'Routine'],
     keywords: ['morning reading routine', 'distraction free reading', 'RSS routine', 'attention hygiene'],
   },
@@ -91,13 +107,12 @@ export const POSTS: PostMeta[] = [
     slug: 'best-rss-readers-android-2026',
     title: 'Best RSS Readers for Android in 2026: 8 Apps Compared',
     description:
-      '8 Android RSS readers compared on price, accounts, offline and ads: Curated Feeds, Feedly, Inoreader, Feeder, FeedFlow, NewsBlur, Readwise, The Old Reader.',
+      '8 Android RSS readers compared on price, accounts, offline reading and free-plan limits: Curated Feeds, Feedly, Inoreader, Feeder, FeedFlow, NewsBlur, Readwise, The Old Reader.',
     excerpt:
-      'Eight Android RSS readers compared on price, account requirements, offline reading and ads, with a pick for every need.',
+      'Eight Android RSS readers compared on price, account requirements, offline reading and free-plan limits, with a pick for every need.',
     datePublished: '2026-10-31',
-    dateModified: '2026-10-31',
+    dateModified: '2026-11-01',
     category: 'Comparisons',
-    readTime: '16 min read',
     tags: ['RSS', 'Comparison', 'Android'],
     keywords: [
       'best RSS readers 2026',

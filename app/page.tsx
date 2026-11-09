@@ -139,14 +139,23 @@ export default function Home() {
         {/* 1. Hero: reading in public, the app named once */}
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero__bg">
-            <img
-              src="/assets/train-window.jpg"
-              alt="A newspaper cart and readers at Mathura railway station, with a man reading a Hindi daily in the foreground."
-              width={1920}
-              height={1440}
-              fetchPriority="high"
-              decoding="async"
-            />
+            {/* Responsive WebP set generated from train-window.jpg (702 KB -> 33-446 KB).
+                Keep the JPEG as the last <source>/fallback for old crawlers. */}
+            <picture>
+              <source
+                type="image/webp"
+                srcSet="/assets/train-window-640.webp 640w, /assets/train-window-960.webp 960w, /assets/train-window-1440.webp 1440w, /assets/train-window-1920.webp 1920w"
+                sizes="100vw"
+              />
+              <img
+                src="/assets/train-window.jpg"
+                alt="A newspaper cart and readers at Mathura railway station, with a man reading a Hindi daily in the foreground."
+                width={1920}
+                height={1440}
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
 
           <div className="container hero__inner" data-anim>
@@ -158,8 +167,8 @@ export default function Home() {
             </h1>
             <div className="hero__row" data-anim-child>
               <p className="hero__sub">
-                Swipe right to keep a story, left to let it go. One card at a time, so the queue
-                never becomes a chore.
+                A free, privacy-first RSS reader for Android: swipe right to keep a story, left to
+                let it go. One card at a time, so the queue never becomes a chore.
               </p>
               <div className="hero__actions">
                 <TrackedDownloadLink

@@ -85,8 +85,12 @@ export default function ScreenshotsPage() {
         <section className="screenshots-hero">
           <h1>Curated Feeds in Action</h1>
           <p>
-            Two screens, captured on a phone: the queue with 24 unread across 8 sources, and a
-            story being filed as saved.
+            Two screens, captured on a phone running version {SITE.app.version}: the queue with 24
+            unread across 8 sources, and a story being filed as saved.
+          </p>
+          <p className="screenshots-note">
+            Captured {SITE.app.version}, published November 2026. Both images are unedited screenshots
+            from a phone in dark theme.
           </p>
         </section>
 

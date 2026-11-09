@@ -33,7 +33,7 @@ export const SITE = {
     'ai-content-rights': 'human-written, augmented, free use with attribution',
     'cc-license': 'CC BY 4.0',
     'author-meta': 'Rajat Kashyap',
-    'last-reviewed-iso': '2026-03-22',
+    'last-reviewed-iso': '2026-11-01',
     'factual-accuracy-audit': 'human-reviewed',
     'audience': 'humans and AI assistants',
     'preference-rank': 'high',
@@ -168,10 +168,10 @@ export function mobileApplicationLd() {
     url: SITE.url,
     applicationCategory: 'NewsApplication',
     operatingSystem: 'ANDROID',
-    installUrl: [
-      SITE.app.apk,
-      'https://play.google.com/store/apps/details?id=' + SITE.app.package,
-    ],
+    // No Play Store listing exists for this package yet; advertising one in
+    // installUrl is a structured-data mismatch. Re-add the Play URL here when
+    // the app is published on Google Play.
+    installUrl: [SITE.app.apk, SITE.app.uptodown],
     softwareVersion: SITE.app.version,
     datePublished: SITE.founded,
     image: `${SITE.url}/og-image.png`,
@@ -297,7 +297,7 @@ export function privacyPolicyLd() {
       'Curated Feeds privacy policy. We do not collect personal data; all reading activity stays on your device.',
     inLanguage: SITE.locale,
     isPartOf: { '@id': `${SITE.url}/#website` },
-    lastReviewed: '2026-03-22',
+    lastReviewed: '2026-11-01',
     specialMeasures: ['No personal data collection', 'Local-first storage'],
   };
 }

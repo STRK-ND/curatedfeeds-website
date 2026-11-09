@@ -6,11 +6,11 @@
     "dev": "next dev",
     "dev:agentation": "npx agentation dev",
     "agentation": "npx agentation",
-    "build": "next build && node scripts/build-markdown.mjs",
+    "build": "next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs",
     "start": "next start",
     "lint": "eslint",
-    "vercel-build": "next build && node scripts/build-markdown.mjs",
-    "export": "next build && node scripts/build-markdown.mjs"
+    "vercel-build": "next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs",
+    "export": "next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs"
   },
   "dependencies": {
     "@firebase/performance": "^0.7.10",
@@ -30,6 +30,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "playwright": "^1.65.0",
     "tailwindcss": "^4",
     "turndown": "^7.2.0",
     "typescript": "^5"

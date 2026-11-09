@@ -6,7 +6,16 @@
     <atom:link href="https://curatedfeeds.web.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>RSS tips, productivity techniques, and content curation strategies from the Curated Feeds team.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 24 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 01 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Best RSS Readers for Android in 2026: 8 Apps Compared</title>
+      <link>https://curatedfeeds.web.app/blog/best-rss-readers-android-2026/</link>
+      <guid isPermaLink="true">https://curatedfeeds.web.app/blog/best-rss-readers-android-2026/</guid>
+      <description><![CDATA[8 Android RSS readers compared on price, accounts, offline reading and free-plan limits: Curated Feeds, Feedly, Inoreader, Feeder, FeedFlow, NewsBlur, Readwise, The Old Reader.]]></description>
+      <category>Tech</category>
+      <author>raj15400881@gmail.com (Rajat Kashyap)</author>
+      <pubDate>Fri, 31 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
     <generator>Next.js static export</generator>
     <copyright>Copyright 2026 Curated Feeds</copyright>
     <managingEditor>raj15400881@gmail.com (Rajat Kashyap)</managingEditor>

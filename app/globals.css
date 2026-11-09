@@ -607,6 +607,8 @@
 .page-hero, .about-hero, .blog-hero, .screenshots-hero { padding: clamp(48px, 7vw, 96px) 0 clamp(32px, 4vw, 56px); }
 .page-hero h1, .about-hero h1, .blog-hero h1, .screenshots-hero h1 { font-size: var(--step-head); line-height: 0.95; max-width: 18ch; }
 .page-hero > .container, .about-hero > .container, .blog-hero > .container, .screenshots-hero > .container { display: grid; gap: var(--space-md); align-content: start; }
+/* Capture stamp under the hero copy: quiet, not a callout. */
+.screenshots-note { color: var(--color-muted); font-size: var(--step-small); max-width: 58ch; }
 .blog-page > *, .about-page > *, .privacy-page > *, .press-page > *, .sources-page > *, .use-cases-page > *, .screenshots-page > *, .changelog-page > *, .why-page > *, .blog-post-page > *, .notfound-page > * { padding-inline: var(--gutter); max-width: var(--container); margin-inline: auto; width: 100%; box-sizing: border-box; }
 .page-lede { color: var(--color-ink-2); max-width: 58ch; font-size: var(--step-lead); }
 .page-section { padding: var(--space-2xl) 0; }

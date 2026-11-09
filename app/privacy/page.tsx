@@ -34,11 +34,11 @@ export default function PrivacyPage() {
       <Nav />
       <main id="main" className="privacy-page" itemScope itemType="https://schema.org/PrivacyPolicy">
         <h1 itemProp="name">Privacy Policy</h1>
-        <p className="policy-date"><time dateTime="2026-03-22">Last Updated: March 22, 2026</time></p>
+        <p className="policy-date"><time dateTime="2026-11-01">Last Updated: November 1, 2026</time></p>
 
         <section>
           <h2>Information We Collect</h2>
-          <p><strong>Local Data Storage:</strong> All your personal data remains on your device. We do not have access to your RSS feed subscriptions, articles you save, reading preferences, or any personal information you enter in the app. This data is stored locally using your device&apos;s standard storage mechanisms and is protected by your device&apos;s security features.</p>
+          <p><strong>Local Data Storage:</strong> All your personal data remains on your device. We do not have access to your RSS feed subscriptions, articles you save, reading preferences, or any personal information you enter in the app. This data is stored locally, using your device&apos;s standard storage mechanisms. It is protected by your device&apos;s own security features.</p>
           <p><strong>Analytics:</strong> We use Firebase Analytics to collect anonymous usage data. This includes:</p>
           <ul>
             <li>App usage patterns (which features are used most)</li>

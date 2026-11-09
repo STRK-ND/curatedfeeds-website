@@ -137,7 +137,8 @@ export default function UseCasesPage() {
           <p className="page-lede">
             One app, several reading habits. Every profile below is mapped to features Curated
             Feeds actually has: offline caching, unlimited RSS feeds, categories, swipe triage, a
-            dark theme, and on-device privacy.
+            dark theme, and on-device privacy. Feature list reviewed against version{' '}
+            {SITE.app.version} on November 1, 2026.
           </p>
         </section>
 

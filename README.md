@@ -98,17 +98,18 @@ curated-feeds-landing/
 │   ├── blog/ + blog/[slug] # Blog index and posts
 │   ├── not-found.tsx       # Branded 404
 │   ├── components/         # Nav, Footer, Breadcrumbs, StructuredData, analytics, …
-│   ├── lib/                # seo.ts (JSON-LD), posts/data.ts, firebase.ts
+│   ├── lib/                # seo.ts (JSON-LD), posts/data.ts + content.ts, firebase.ts
 │   └── sitemap.ts
 ├── public/                 # Static assets (icons, screenshots, feed.xml, llms.txt)
 ├── out/                    # Static export (Firebase hosting root)
-├── scripts/build-markdown.mjs  # Markdown mirror for LLM surfaces
+├── scripts/build-markdown.mjs   # Markdown twin for each page (URL + ".md")
+├── scripts/build-llms-full.mjs  # out/llms-full.txt, generated from those twins
 └── package.json / tsconfig.json / firebase.json
 ```
 
 ## Routes
 
-`/` `/sources/` `/why/` `/use-cases/` `/changelog/` `/press/` `/about/` `/privacy/` `/screenshots/` `/blog/` `/blog/<slug>/` ×5 — all prerendered static; `sitemap.xml` and `feed.xml` are generated from the same source data.
+`/` `/sources/` `/why/` `/use-cases/` `/changelog/` `/press/` `/about/` `/privacy/` `/screenshots/` `/blog/` `/blog/<slug>/` ×6 — all prerendered static; `sitemap.xml` and `feed.xml` are generated from the same source data.
 
 ## 🎨 Design System
 

@@ -127,12 +127,7 @@ const steps = [
   {
     icon: 'paste',
     name: 'Paste the feed URL',
-    text: 'Open the add-source field in Curated Feeds and paste any URL from this page. The full-feed URLs above are already in the exact form the app expects.',
-  },
-  {
-    icon: 'check',
-    name: 'Confirm the feed',
-    text: 'Feeds ending in /feed or /rss point at the full article list, not a homepage. Curated Feeds parses RSS 2.0, Atom, and RDF, which covers every source listed here.',
+    text: 'Open the add-source field in Curated Feeds and paste any URL from this page. Feeds ending in /feed or /rss point at the full article list rather than a homepage, and the app parses RSS 2.0, Atom, and RDF.',
   },
   {
     icon: 'read',
@@ -169,14 +164,6 @@ function StepIcon({ kind }: { kind: string }) {
       </svg>
     );
   }
-  if (kind === 'check') {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M8.5 12.5l2.5 2.5 4.5-5" />
-      </svg>
-    );
-  }
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
       <path d="M4 5.5A2.5 2.5 0 016.5 3H12v18H6.5A2.5 2.5 0 014 18.5z" />
@@ -205,7 +192,9 @@ function FeedSection({
           <div>
             <h3>{feed.name}</h3>
             <p>{feed.blurb}</p>
-            <span className="feed-url">{feed.url}</span>
+            <a className="feed-url" href={feed.url} target="_blank" rel="noopener noreferrer">
+              {feed.url}
+            </a>
           </div>
           <div className="feed-side">{feed.cadence}</div>
         </article>
@@ -237,9 +226,9 @@ export default function SourcesPage() {
         <section className="page-hero">
           <h1>Starter feeds for your first week</h1>
           <p className="page-lede">
-            These are the sources the founder reads daily. Every URL below is real, verified, and
-            copy-paste ready for Curated Feeds, so your first week of reading starts with signal
-            rather than noise.
+            These are the sources the founder reads daily. Every URL below was fetched and parsed as
+            RSS, Atom or RDF in November 2026, and each one is copy-paste ready for Curated Feeds, so
+            your first week of reading starts with signal rather than noise.
           </p>
         </section>
 
@@ -284,7 +273,16 @@ export default function SourcesPage() {
           </div>
           <p className="note">
             The app fetches these feeds on your device. No server account is involved, and nothing
-            here is proxied through an intermediary that could log what you read.
+            here is proxied through an intermediary that could log what you read. For a source that
+            does not advertise its feed,{' '}
+            <Link href="/blog/find-rss-feed-url-any-website/" className="text-link">
+              this guide finds almost any feed URL
+            </Link>
+            , and the{' '}
+            <Link href="/blog/best-rss-readers-android-2026/" className="text-link">
+              reader comparison
+            </Link>{' '}
+            uses the same list as its test set.
           </p>
         </section>
 

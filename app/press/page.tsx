@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     q: 'Where can we download the app to check the claims in this kit?',
-    a: 'The current version is a free direct APK download on this site, and it is also listed on Uptodown. No account, no payment, and no store listing gate.',
+    a: 'The current version is a free direct APK download on this site, and it is also listed on Uptodown. No account, no payment, and no store listing gate. The changelog at curatedfeeds.web.app/changelog/ lists what each public build changed, so claims about features can be checked against the version you install.',
   },
   {
     q: 'Is there an embargo or a press release schedule?',
@@ -94,7 +94,8 @@ export default function PressPage() {
           <p className="page-lede">
             Facts, boilerplate, and brand assets for coverage of Curated Feeds. No embargo, no PR
             contact theater. If you need something that is not on this page, reach the maker
-            directly.
+            directly. Facts on this page reflect version {SITE.app.version} and were reviewed on
+            November 1, 2026.
           </p>
         </section>
 

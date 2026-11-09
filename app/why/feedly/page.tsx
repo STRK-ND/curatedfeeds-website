@@ -35,14 +35,14 @@ export const metadata: Metadata = {
 };
 
 const rows: { label: string; cf: string; feedly: string }[] = [
-  { label: 'Price', cf: 'Free forever, no premium tier', feedly: 'Free tier limited; paid Pro removes ads and limits' },
+  { label: 'Price', cf: 'Free forever, no premium tier', feedly: 'Free plan for basic reading; Pro and Pro+ are paid' },
   { label: 'Account required', cf: 'No', feedly: 'Yes' },
   { label: 'Data stored on', cf: 'Your device only', feedly: 'Feedly servers' },
-  { label: 'Ads / tracking', cf: 'None', feedly: 'Ads on the free tier, analytics on every tier' },
+  { label: 'Free-plan limits', cf: 'None beyond Android 8.0+', feedly: 'Limited by design; paid plans lift the limits' },
   { label: 'Offline reading', cf: 'Full article cache', feedly: 'Yes' },
   { label: 'Platforms', cf: 'Android 8.0+', feedly: 'Android, iOS, web' },
   { label: 'Multi-device sync', cf: 'No', feedly: 'Yes' },
-  { label: 'Boards and AI summaries', cf: 'No', feedly: 'Boards capped on free tier; AI features on Pro' },
+  { label: 'Boards and AI summaries', cf: 'No', feedly: 'AI feeds and RSS Builder on Pro+' },
   { label: 'Adding feeds', cf: 'Paste any RSS 2.0 / Atom / RDF URL directly', feedly: 'Feed directory and search, plus pasted URLs' },
 ];
 
@@ -132,8 +132,16 @@ export default function WhyFeedlyPage() {
             </table>
           </div>
           <p className="note">
-            Free-tier limits and prices change; check Feedly&rsquo;s own pricing page before deciding.
-            The structural difference does not change: Feedly&rsquo;s features run on its servers, so an
+            Sources, checked October 2026:{' '}
+            <a href="https://feedly.com/i/pro" target="_blank" rel="noopener noreferrer">
+              Feedly&rsquo;s plans and pricing page
+            </a>{' '}
+            and their{' '}
+            <a href="https://docs.feedly.com/article/140-what-is-the-difference-between-feedly-free-pro-pro-and-enterprise-plans" target="_blank" rel="noopener noreferrer">
+              documentation on Free, Pro, Pro+ and Enterprise
+            </a>
+            . Free-tier limits and prices change, so check Feedly&rsquo;s own pages before deciding. The
+            structural difference does not change: Feedly&rsquo;s features run on its servers, so an
             account is the price of admission, while Curated Feeds runs entirely on your device.
           </p>
         </section>
@@ -141,12 +149,15 @@ export default function WhyFeedlyPage() {
         <section className="page-section" aria-labelledby="better-title">
           <h2 id="better-title">When Feedly is the better choice</h2>
           <p>
-            If you read on more than one device, Feedly wins outright: your feed list, read state,
-            and boards follow your account to Android, iOS, and the web. If you want server-side
-            organization with boards and collections, or the Pro AI summaries and newsletters,
-            those exist only in the hosted product. Teams and shared collections are also Feedly
-            territory. Curated Feeds deliberately does not compete there, because every one of
-            those features requires a server and an account.
+            If you read on more than one device, Feedly wins outright. Your feed list, read state, and
+            boards follow your account to Android, iOS, and the web, and that transfer is the part
+            Curated Feeds cannot offer.
+          </p>
+          <p>
+            Server-side organization with boards and collections also belongs to the hosted product,
+            as do the AI feeds, AI summaries and newsletters on the paid tiers, and team or shared
+            collections. Curated Feeds deliberately does not compete there, because every one of those
+            features requires a server and an account.
           </p>
         </section>
 

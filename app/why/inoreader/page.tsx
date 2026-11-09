@@ -35,10 +35,10 @@ export const metadata: Metadata = {
 };
 
 const rows: { label: string; cf: string; inoreader: string }[] = [
-  { label: 'Price', cf: 'Free forever, no premium tier', inoreader: 'Free tier limited; rules, filters, and search on paid plans' },
+  { label: 'Price', cf: 'Free forever, no premium tier', inoreader: 'Free up to 150 feeds; Pro from $7.50/month billed annually' },
   { label: 'Account required', cf: 'No', inoreader: 'Yes' },
   { label: 'Data stored on', cf: 'Your device only', inoreader: 'Inoreader servers' },
-  { label: 'Ads / tracking', cf: 'None', inoreader: 'Ads on the free tier, analytics on every tier' },
+  { label: 'Free-plan limits', cf: 'None beyond Android 8.0+', inoreader: '150 feeds; rules, filters and AI features need Pro' },
   { label: 'Offline reading', cf: 'Full article cache', inoreader: 'Yes' },
   { label: 'Platforms', cf: 'Android 8.0+', inoreader: 'Android, iOS, web' },
   { label: 'Multi-device sync', cf: 'No', inoreader: 'Yes' },
@@ -134,21 +134,27 @@ export default function WhyInoreaderPage() {
             </table>
           </div>
           <p className="note">
-            Free-tier limits and prices change; check Inoreader&rsquo;s own pricing page before deciding.
-            The structural difference does not change: Inoreader&rsquo;s power features run on its
-            servers, so an account is the price of admission, while Curated Feeds runs entirely on
-            your device.
+            Source, checked October 2026:{' '}
+            <a href="https://www.inoreader.com/pricing" target="_blank" rel="noopener noreferrer">
+              Inoreader&rsquo;s pricing page
+            </a>
+            , where the free plan is listed at 150 feeds and Pro at $7.50/month billed annually.
+            Limits and prices change, so check their own page before deciding. The structural difference
+            does not change: Inoreader&rsquo;s power features run on its servers, so an account is the
+            price of admission, while Curated Feeds runs entirely on your device.
           </p>
         </section>
 
         <section className="page-section" aria-labelledby="better-title">
           <h2 id="better-title">When Inoreader is the better choice</h2>
           <p>
-            If your reading depends on automation, Inoreader wins: server-side rules can file,
-            flag, or mute articles before they ever reach your queue, folders keep large feed lists
-            organized, and paid plans add full-text search across your whole archive. Reading on
-            phone, tablet, and laptop with everything in sync is also Inoreader&rsquo;s home ground.
-            Curated Feeds deliberately does not compete there, because each of those features
+            If your reading depends on automation, Inoreader wins. Server-side rules can file, flag,
+            or mute articles before they ever reach your queue, and folders keep large feed lists
+            organized. Paid plans add full-text search across your whole archive.
+          </p>
+          <p>
+            Reading on phone, tablet, and laptop with everything in sync is also Inoreader&rsquo;s home
+            ground. Curated Feeds deliberately does not compete there, because each of those features
             needs a server and an account.
           </p>
         </section>

@@ -48,18 +48,26 @@ turndown.addRule('faqDisclosure', {
 
 /** A heading whose text is split across child spans ("Your feeds," +
  *  "curated.") reads as two separate headings in Markdown. Join the parts
- *  back into one line, with a space where the CSS put a line break. */
+ *  back into one line, with a space where the CSS put a line break.
+ *
+ * The one child that keeps its markup is an <a>: a heading that links
+ *  somewhere (a card title on the blog index) must not lose its href, so a
+ *  link child is re-turndowned instead of flattened to text. */
 turndown.addRule('joinSplitHeadings', {
   filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
   replacement: (content, node) => {
     const level = node.nodeName.toLowerCase();
     // JSX drops the whitespace between sibling elements, so the spans arrive
-    // with no separator at all ("Your feeds,curated."). Rebuild the text
+    // with no separator at all ("Your feeds,curated."). Rebuild the heading
     // from the child nodes, one space apart.
     const elements = [];
     for (const child of node.childNodes) {
       if (child.nodeType === 3) elements.push(child.nodeValue);
-      else if (child.nodeType === 1) elements.push(child.textContent);
+      else if (child.nodeType === 1) {
+        // Keep links as links: turndown the child so its href survives.
+        if (child.nodeName === 'A') elements.push(turndown.turndown(child.outerHTML).trim());
+        else elements.push(child.textContent);
+      }
     }
     const text = (elements.length ? elements.join(' ') : content)
       .replace(/\s*\n+\s*/g, ' ')

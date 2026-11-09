@@ -57,13 +57,21 @@ const tradeIcons: Record<'desktop' | 'search' | 'sync', ReactElement> = {
 
 /** Column order is the product, row order is the price paid. */
 const comparisonRows: { label: string; cells: string[] }[] = [
-  { label: 'Price', cells: ['Free forever', 'Freemium, monthly Pro', 'Freemium, paid tiers', 'Free, open source'] },
+  { label: 'Price', cells: ['Free forever', 'Free plan plus paid Pro', 'Free to 150 feeds, then paid', 'Free, open source'] },
   { label: 'Account required', cells: ['No account', 'Account required', 'Account required', 'No account'] },
   { label: 'Data stored on', cells: ['Your device only', 'Their servers', 'Their servers', 'Device, optional sync'] },
-  { label: 'Ads or tracking', cells: ['None', 'Ads and analytics', 'Analytics', 'None'] },
+  { label: 'Free-plan limits', cells: ['None beyond Android 8.0+', 'Limited by design', '150 feeds', 'None'] },
   { label: 'Platform', cells: ['Android 8.0+', 'Android, iOS, Web', 'Android, iOS, Web', 'iPhone, iPad, Mac'] },
   { label: 'Offline reading', cells: ['Full article caching', 'Yes', 'Yes', 'Yes'] },
   { label: 'Source model', cells: ['Unlimited RSS 2.0, Atom, RDF', 'Feeds and boards', 'Rules and filters', 'Standard RSS'] },
+];
+
+/** Where the competitor columns come from, so a reader can check them. */
+const sources: { label: string; href: string }[] = [
+  { label: 'Feedly plans and pricing', href: 'https://feedly.com/i/pro' },
+  { label: 'Feedly plan documentation', href: 'https://docs.feedly.com/article/140-what-is-the-difference-between-feedly-free-pro-pro-and-enterprise-plans' },
+  { label: 'Inoreader pricing', href: 'https://www.inoreader.com/pricing' },
+  { label: 'NetNewsWire', href: 'https://netnewswire.com/' },
 ];
 
 const competitors = ['Curated Feeds', 'Feedly', 'Inoreader', 'NetNewsWire'];
@@ -138,7 +146,7 @@ export default function WhyPage() {
             Most readers ask for an account before they show you anything, mirror your reading history
             to a company server, and monetize the attention you brought with you. This one does none
             of that. It is Android-first, free forever, and it keeps everything on the device in your
-            pocket.
+            pocket. Comparison rows checked against each vendor&rsquo;s own pages in October 2026.
           </p>
         </section>
 
@@ -174,6 +182,18 @@ export default function WhyPage() {
             read. The rows above are the whole trade: an account, a server, and a subscription are
             the price of server-side features, and this app declines all three.
           </p>
+          <p className="note">
+            Sources for the competitor columns:{' '}
+            {sources.map((source, index) => (
+              <span key={source.href}>
+                <a href={source.href} target="_blank" rel="noopener noreferrer">
+                  {source.label}
+                </a>
+                {index < sources.length - 1 ? '. ' : '.'}
+              </span>
+            ))}{' '}
+            Checked October 2026; prices and limits change without notice.
+          </p>
         </section>
 
         <section className="page-section" aria-labelledby="tradeoffs-title">
@@ -190,7 +210,15 @@ export default function WhyPage() {
           <p className="note">
             This list is deliberate, not an omission. There is no server to sync through, no account
             to attach history to, and no revenue to protect, so anything that needs those things is
-            simply not here.
+            simply not here. The{' '}
+            <Link href="/blog/best-rss-readers-android-2026/" className="text-link">
+              eight-reader comparison
+            </Link>{' '}
+            covers the same trade-offs on a wider field, and the{' '}
+            <Link href="/use-cases/" className="text-link">
+              reader profiles
+            </Link>{' '}
+            say which habits fit an account-free reader.
           </p>
         </section>
 
