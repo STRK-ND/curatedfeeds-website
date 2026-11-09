@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Instrument_Serif, Inter_Tight } from 'next/font/google';
 import { SITE, organizationLd, websiteLd } from './lib/seo';
 import { StructuredData } from './components/StructuredData';
 import './globals.css';
@@ -141,22 +142,30 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
 };
 
+// Self-hosted via next/font: no render-blocking request to fonts.googleapis.com,
+// automatic size-adjusted fallbacks (no layout shift), display: swap.
+// Distinct variable names; tokens.css wraps them with the original families as
+// fallbacks, so the visual result is identical if loading ever fails.
+const instrumentSerif = Instrument_Serif({
+  weight: '400',
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-serif-web',
+  display: 'swap',
+});
+const interTight = Inter_Tight({
+  weight: ['300', '400', '500', '600'],
+  subsets: ['latin'],
+  variable: '--font-sans-web',
+  display: 'swap',
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang={SITE.lang}>
+    <html lang={SITE.lang} className={`${instrumentSerif.variable} ${interTight.variable}`}>
       <head>
-        {/* Instrument Serif carries the display; Inter Tight carries the text. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap"
-          rel="stylesheet"
-        />
-        <noscript>
-          <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet" />
-        </noscript>
         <script
           dangerouslySetInnerHTML={{
             __html: "document.documentElement.classList.add('js');",

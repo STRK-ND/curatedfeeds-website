@@ -45,9 +45,11 @@
   --slab-4: #27211b;
   --slab-5: #2c251e;
 
-  /* ── Type — Instrument Serif display, Inter Tight text ── */
-  --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-body: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  /* ── Type — Instrument Serif display, Inter Tight text ──
+     next/font (layout.tsx) self-hosts both and sets --font-serif-web /
+     --font-sans-web on <html>. The quoted families remain as fallbacks. */
+  --font-display: var(--font-serif-web, "Instrument Serif"), "Times New Roman", serif;
+  --font-body: var(--font-sans-web, "Inter Tight"), "Helvetica Neue", Arial, sans-serif;
   --display-weight: 400;
   --tracking-display: -0.01em;
   --tracking-text: 0;
