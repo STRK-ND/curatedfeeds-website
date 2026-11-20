@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-/** Common feed paths by platform family — the heuristic layer, always available. */
+/** Common feed paths by platform family, most likely first. */
 const COMMON_PATHS = [
   '/feed/',
   '/feed',
@@ -17,7 +17,11 @@ const COMMON_PATHS = [
   '/?feed=rss2',
 ];
 
+/** The shorter list shown as suggestions; the full list is what gets probed. */
+const LIKELY_PATHS = COMMON_PATHS.slice(0, 6);
+
 type Found = { url: string; kind: string; source: 'link-tag' | 'probe' };
+type HomepageLookup = { reached: boolean; links: Found[] };
 
 function normalizeOrigin(input: string): string | null {
   try {
@@ -99,32 +103,32 @@ export default function FeedFinder() {
 
     // Everything in parallel: homepage markup + common-path probes, so the
     // worst case is one probe timeout (~6s per proxy hop), not a queue.
-    const candidates = COMMON_PATHS.map((p) => `${origin}${p}`);
-    const [homeResult, probeResults] = await Promise.all([
-      fetchViaProxy(origin).then((html) => (html ? parseLinkTags(html, origin) : [])),
+    const [home, probeResults] = await Promise.all([
+      fetchViaProxy(origin).then((html): HomepageLookup =>
+        html ? { reached: true, links: parseLinkTags(html, origin) } : { reached: false, links: [] },
+      ),
       Promise.all(
-        candidates.slice(0, 8).map(async (c): Promise<Found | null> => {
-          const body = await fetchViaProxy(c);
-          if (body && /<rss|<feed|<rdf/i.test(body.slice(0, 600))) {
-            return { url: c, kind: /<feed/i.test(body.slice(0, 600)) ? 'Atom' : 'RSS', source: 'probe' };
-          }
-          return null;
+        COMMON_PATHS.map(async (p): Promise<Found | null> => {
+          const candidate = `${origin}${p}`;
+          const body = await fetchViaProxy(candidate);
+          const head = body?.slice(0, 600) ?? '';
+          if (!body || !/<rss|<feed|<rdf/i.test(head)) return null;
+          return { url: candidate, kind: /<feed/i.test(head) ? 'Atom' : 'RSS', source: 'probe' };
         }),
       ),
     ]);
 
-    const results: Found[] = [...homeResult, ...probeResults.filter((r): r is Found => r !== null)];
-    const sawMarkup = homeResult.length > 0 || results.length > 0;
+    const results: Found[] = [...home.links, ...probeResults.filter((r): r is Found => r !== null)];
 
-    // De-duplicate: a link-tag hit and a probe hit can point at the same feed
+    // A link-tag hit and a probe hit can point at the same feed.
     const unique = results.filter((r, i) => results.findIndex((x) => x.url === r.url) === i);
 
     setFound(unique);
     if (unique.length === 0) {
       setNote(
-        sawMarkup
-          ? 'No feed link found in the page markup, and none of the common feed paths resolved. The site may not publish a feed — check for a small RSS icon in its header or footer.'
-          : 'Could not reach the site through the lookup proxies (they are free public services and are sometimes rate-limited). The candidate list below still works — paste each into your reader to test.',
+        home.reached
+          ? 'No feed link found in the page markup, and none of the common feed paths resolved. The site may not publish a feed, or it may sit behind a bot check that blocks the lookup proxies.'
+          : 'Could not reach the site through the lookup proxies (they are free public services and are sometimes rate-limited). The candidate list below still works: paste each into your reader to test.',
       );
     }
     setStatus('done');
@@ -132,7 +136,7 @@ export default function FeedFinder() {
 
   const suggestions = (() => {
     const origin = normalizeOrigin(site.trim());
-    return origin ? COMMON_PATHS.slice(0, 6).map((p) => `${origin}${p}`) : [];
+    return origin ? LIKELY_PATHS.map((p) => `${origin}${p}`) : [];
   })();
 
   return (
@@ -190,7 +194,7 @@ export default function FeedFinder() {
             ))}
           </ul>
           <p className="finder__hints-note">
-            Most sites keep a feed at one of these addresses. Press “Find the feed” to test them
+            Most sites keep a feed at one of these addresses. Press &quot;Find the feed&quot; to test them
             automatically, or paste them straight into Curated Feeds.
           </p>
         </div>

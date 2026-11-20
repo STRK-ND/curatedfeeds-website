@@ -1,12 +1,9 @@
-// Curated Feeds landing — one motif: the card stack. The live queue is the thing.
+// Curated Feeds landing. One motif: the card stack. The live queue is the thing.
 
 import Link from 'next/link';
-import Nav from './components/Nav';
-import Footer from './components/Footer';
 import QueueStage, { type DeckCard } from './components/QueueStage';
-import { TrackedDownloadLink } from './components/TrackedLink';
+import { TrackedDownloadLink } from './components/TrackedDownloadLink';
 import {
-  SITE,
   softwareApplicationLd,
   mobileApplicationLd,
   faqLd,
@@ -14,9 +11,9 @@ import {
   speakableLd,
   siteNavigationLd,
 } from './lib/seo';
-import { StructuredData } from './components/StructuredData';
-
-const mb = Math.round(SITE.app.apkBytes / 1048576);
+import { APK_MB, pageUrl, SITE } from './lib/site';
+import { HOME_NAV } from './lib/nav';
+import PageShell from './components/PageShell';
 
 const faqs = [
   {
@@ -45,14 +42,14 @@ const faqs = [
   },
   {
     q: 'Where can I download it?',
-    a: `Direct APK on this page (v${SITE.app.version}, ${mb} MB) or from Uptodown, Android 8.0 or later, no permissions beyond storage.`,
+    a: `Direct APK on this page, version ${SITE.app.version}, ${APK_MB} MB, or from Uptodown. Android 8.0 or later, no permissions beyond storage.`,
   },
 ];
 
 const steps = [
   {
     name: 'Install the APK',
-    text: `Download the file (${mb} MB) and open it on Android 8.0 or later. No store account, no permissions beyond storage for the offline cache.`,
+    text: `Download the file (${APK_MB} MB) and open it on Android 8.0 or later. No store account, no permissions beyond storage for the offline cache.`,
   },
   {
     name: 'Add a feed',
@@ -111,32 +108,17 @@ const deckCards: DeckCard[] = [
 
 export default function Home() {
   return (
-    <>
-      <StructuredData
-        data={[
-          softwareApplicationLd(),
-          mobileApplicationLd(),
-          breadcrumbLd([{ name: 'Home', url: '/' }]),
-          faqLd(faqs),
-          // No howToLd: Google retired HowTo rich results, and this site's own
-          // schema policy (seo.ts) says never to emit them. The steps remain as
-          // visible copy in the "How it works" section below.
-          siteNavigationLd([
-            { name: 'Home', url: '/' },
-            { name: 'Screens', url: '/#preview' },
-            { name: 'Features', url: '/#features' },
-            { name: 'How it works', url: '/#how-it-works' },
-            { name: 'Sources', url: '/sources/' },
-            { name: 'FAQ', url: '/#faq' },
-            { name: 'Download', url: '/#download' },
-          ]),
-          speakableLd(['h1', '.hero h1'], `${SITE.url}/`),
-        ]}
-      />
-
-      <Nav overlay />
-
-      <main id="main">
+    <PageShell
+      navOverlay
+      data={[
+        softwareApplicationLd(),
+        mobileApplicationLd(),
+        breadcrumbLd([{ name: 'Home', url: '/' }]),
+        faqLd(faqs),
+        siteNavigationLd(HOME_NAV),
+        speakableLd(['h1', '.hero h1'], pageUrl('/')),
+      ]}
+    >
         {/* 1. Hero: reading in public, the app named once */}
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero__bg">
@@ -176,7 +158,7 @@ export default function Home() {
                   href={SITE.app.apk}
                   platform="direct"
                   className="btn"
-                  ariaLabel={`Download Curated Feeds APK, ${mb} megabytes`}
+                  ariaLabel={`Download Curated Feeds APK, ${APK_MB} megabytes`}
                 >
                   Download the APK
                 </TrackedDownloadLink>
@@ -190,7 +172,7 @@ export default function Home() {
                 <b>Free</b> forever
               </span>
               <span>
-                <b>{mb} MB</b> direct APK
+                <b>{APK_MB} MB</b> direct APK
               </span>
               <span>
                 <b>Android 8.0</b> or later
@@ -431,7 +413,7 @@ export default function Home() {
           <div className="container download__inner" data-anim>
             <div data-anim-child>
               <p className="eyebrow">
-                Version {SITE.app.version} · {mb} MB
+                Version {SITE.app.version} · {APK_MB} MB
               </p>
               <h2 id="download-title">
                 The first step is <em>already open.</em>
@@ -450,7 +432,7 @@ export default function Home() {
                 href={SITE.app.apk}
                 platform="direct"
                 className="btn"
-                ariaLabel={`Download Curated Feeds APK, ${mb} megabytes`}
+                ariaLabel={`Download Curated Feeds APK, ${APK_MB} megabytes`}
               >
                 Download the APK
               </TrackedDownloadLink>
@@ -460,16 +442,13 @@ export default function Home() {
                 className="download__alt"
                 target="_blank"
                 rel="noopener noreferrer"
-                ariaLabel="Get Curated Feeds on Uptodown (opens in a new tab)"
+                ariaLabel="Get Curated Feeds on Uptodown, opens in a new tab"
               >
                 Or get it on Uptodown
               </TrackedDownloadLink>
             </div>
           </div>
         </section>
-      </main>
-
-      <Footer />
-    </>
+    </PageShell>
   );
 }

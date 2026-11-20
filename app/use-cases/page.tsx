@@ -1,33 +1,24 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE, breadcrumbLd, faqPageLd, pageAlternates } from '../lib/seo';
-import { StructuredData } from '../components/StructuredData';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import { faqPageLd } from '../lib/seo';
+import { pageMetadata, pageUrl, SITE } from '../lib/site';
+import PageShell from '../components/PageShell';
+import FaqList from '../components/FaqList';
+import CtaBand from '../components/CtaBand';
 
-export const metadata: Metadata = {
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Use Cases', url: '/use-cases/' },
+];
+
+export const metadata = pageMetadata({
+  path: '/use-cases/',
   title: 'Use Cases, Built for How You Read',
   description:
     'Reader profiles mapped to real Curated Feeds capabilities: commuting offline, developer changelogs, research triage, minimalist news, night reading, and privacy-first reading on Android.',
-  alternates: pageAlternates('/use-cases/'),
-  openGraph: {
-    type: 'website',
-    locale: SITE.locale,
-    url: `${SITE.url}/use-cases/`,
-    siteName: SITE.name,
-    title: 'Curated Feeds Use Cases, Built for How You Read',
-    description:
-      'Six reading habits and the app features that serve each one, from offline caching to on-device privacy.',
-  images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Curated Feeds Use Cases',
-    description: 'Six reading habits, mapped to the features that serve them.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
+  socialTitle: 'Curated Feeds Use Cases, Built for How You Read',
+  socialDescription:
+    'Six reading habits and the app features that serve each one, from offline caching to on-device privacy.',
+});
 
 const faqs = [
   {
@@ -114,24 +105,11 @@ const readers = [
 
 export default function UseCasesPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([
-            { name: 'Home', url: '/' },
-            { name: 'Use Cases', url: '/use-cases/' },
-          ]),
-          faqPageLd(faqs, `${SITE.url}/use-cases/`),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs
-        items={[
-          { name: 'Home', url: '/' },
-          { name: 'Use Cases', url: '/use-cases/' },
-        ]}
-      />
-      <main id="main" className="use-cases-page">
+    <PageShell
+      crumbs={CRUMBS}
+      mainClass="use-cases-page"
+      data={faqPageLd(faqs, pageUrl('/use-cases/'))}
+    >
         <section className="page-hero">
           <h1>Built for how you read</h1>
           <p className="page-lede">
@@ -200,35 +178,17 @@ export default function UseCasesPage() {
 
         <section className="page-section page-faq" aria-labelledby="use-cases-faq-title">
           <h2 id="use-cases-faq-title">Questions</h2>
-          <div className="faq-list">
-            {faqs.map((item, i) => (
-              <details key={item.q} className="faq-item" open={i === 0}>
-                <summary>{item.q}</summary>
-                <div>
-                  <p>{item.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs} openFirst />
         </section>
 
-        <section className="blog-cta">
-          <h2>Find your reading profile?</h2>
-          <p>
-            Download Curated Feeds for Android, free forever, no ads, no account required, version{' '}
-            {SITE.app.version}.
-          </p>
-          <div className="blog-cta-actions">
-            <Link href={SITE.app.apk} className="cta-button primary">
-              Download APK
-            </Link>
-            <Link href="/sources/" className="cta-button secondary">
-              Starter feeds
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        <CtaBand
+          title="Find your reading profile?"
+          primary={{ label: 'Download APK', href: SITE.app.apk }}
+          secondary={{ label: 'Starter feeds', href: '/sources/' }}
+        >
+          Download Curated Feeds for Android, free forever, no ads, no account required, version{' '}
+          {SITE.app.version}.
+        </CtaBand>
+    </PageShell>
   );
 }

@@ -1,4 +1,4 @@
-import type { DataSnapshot, Database } from 'firebase/database';
+import type { Database } from 'firebase/database';
 
 /**
  * Firebase Analytics, lazily driven.
@@ -84,26 +84,16 @@ export const logScrollDepth = (percent: number): void => {
 export const logTimeOnPage = (seconds: number): void => {
   logAnalyticsEvent('time_on_page', { seconds });
 };
-
 /* ------------------------------------------------------------------ *
- * Live visitor counter (Realtime Database)
+ * Download counter (Realtime Database)
  *
- * Real data, no estimates: every open page registers a presence node and
- * heartbeats it, while `stats/totalVisitors` and `stats/downloads` are
- * raised with server-side transactions, so two simultaneous clicks raise
- * the count by two rather than clobbering each other.
+ * Raised by the download CTAs with a server-side transaction, so two
+ * simultaneous clicks raise the count by two rather than clobbering each
+ * other. Best-effort: a database outage never blocks a download.
  * ------------------------------------------------------------------ */
-
-const PRESENCE_HEARTBEAT_MS = 20000;
-const PRESENCE_TTL_MS = 90000;
-const PRESENCE_SCAN_LIMIT = 500;
-const SESSION_KEY = 'cf_visitor_session';
-const VISITED_KEY = 'cf_visited';
-type CounterName = 'totalVisitors' | 'downloads';
 
 let databasePromise: Promise<Database | null> | null = null;
 
-/** Resolve the Realtime Database instance on demand; never throws. */
 function getDatabaseLazy(): Promise<Database | null> {
   if (typeof window === 'undefined') return Promise.resolve(null);
 
@@ -115,130 +105,19 @@ function getDatabaseLazy(): Promise<Database | null> {
         const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
         return getDatabase(app);
       })
-      .catch(() => null); // A counter outage must never break the page.
+      .catch(() => null);
   }
 
   return databasePromise;
 }
 
-/** Stable per-tab session id, created once and reused across heartbeats. */
-export function getVisitorSessionId(): string {
-  let id = sessionStorage.getItem(SESSION_KEY);
-  if (!id) {
-    id = `s_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
-    sessionStorage.setItem(SESSION_KEY, id);
-  }
-  return id;
-}
-
-/**
- * Register this tab in the presence tree and heartbeat it. Returns a stop
- * function; `onDisconnect().remove()` also drops the node if the tab closes
- * without running the pagehide handler.
- */
-export async function startPresence(): Promise<() => void> {
-  const db = await getDatabaseLazy();
-  if (!db) return () => undefined;
-
-  const { ref, set, serverTimestamp, onDisconnect, remove } = await import('firebase/database');
-  const presenceRef = ref(db, `presence/${getVisitorSessionId()}`);
-
-  const beat = () => void set(presenceRef, { t: serverTimestamp() });
-  beat();
-  await onDisconnect(presenceRef).remove().catch(() => undefined);
-
-  const heartbeat = window.setInterval(beat, PRESENCE_HEARTBEAT_MS);
-  window.addEventListener(
-    'pagehide',
-    () => {
-      window.clearInterval(heartbeat);
-      void remove(presenceRef);
-    },
-    { once: true },
-  );
-
-  return () => {
-    window.clearInterval(heartbeat);
-    void remove(presenceRef);
-  };
-}
-
-/** Live visitor count: presence nodes heartbeated within the TTL window. */
-export function subscribeLiveCount(cb: (count: number) => void): () => void {
-  const unsubscribers: Array<() => void> = [];
-
-  void getDatabaseLazy().then(async (db) => {
-    if (!db) return;
-    const { ref, query, orderByChild, limitToLast, onValue, off } = await import('firebase/database');
-    const liveQuery = query(ref(db, 'presence'), orderByChild('t'), limitToLast(PRESENCE_SCAN_LIMIT));
-
-    const onLive = (snapshot: DataSnapshot) => {
-      const cutoff = Date.now() - PRESENCE_TTL_MS;
-      let live = 0;
-      snapshot.forEach((child) => {
-        const beatenAt = child.child('t').val();
-        if (typeof beatenAt === 'number' && beatenAt >= cutoff) live += 1;
-      });
-      cb(live);
-    };
-
-    onValue(liveQuery, onLive);
-    unsubscribers.push(() => off(liveQuery, 'value', onLive));
-  });
-
-  return () => unsubscribers.forEach((unsubscribe) => unsubscribe());
-}
-
-/** Subscribe to a stat (`totalVisitors` or `downloads`). */
-export function subscribeCounter(
-  counter: CounterName,
-  cb: (value: number) => void,
-): () => void {
-  const unsubscribers: Array<() => void> = [];
-
-  void getDatabaseLazy().then(async (db) => {
-    if (!db) return;
-    const { ref, onValue, off } = await import('firebase/database');
-    const counterRef = ref(db, `stats/${counter}`);
-
-    const onCounter = (snapshot: DataSnapshot) => {
-      const value = snapshot.val();
-      cb(typeof value === 'number' ? value : 0);
-    };
-
-    onValue(counterRef, onCounter);
-    unsubscribers.push(() => off(counterRef, 'value', onCounter));
-  });
-
-  return () => unsubscribers.forEach((unsubscribe) => unsubscribe());
-}
-
-/**
- * Raise a counter through a transaction. `oncePerBrowser` keeps the total
- * visitor count unique per device instead of counting every page load.
- */
-function incrementCounter(counter: CounterName, oncePerBrowser: boolean): void {
-  if (oncePerBrowser) {
-    if (localStorage.getItem(VISITED_KEY) === '1') return;
-    localStorage.setItem(VISITED_KEY, '1');
-  }
-
+/** Raised by the download CTAs, alongside the GA4 `app_download` event. */
+export function countDownload(): void {
   void getDatabaseLazy().then(async (db) => {
     if (!db) return;
     const { ref, runTransaction } = await import('firebase/database');
-    const counterRef = ref(db, `stats/${counter}`);
-    await runTransaction(counterRef, (current: number | null) =>
+    await runTransaction(ref(db, 'stats/downloads'), (current: number | null) =>
       (typeof current === 'number' ? current : 0) + 1,
     ).catch(() => undefined);
   });
-}
-
-/** Raised by the download CTAs, alongside the GA4 `app_download` event. */
-export function countDownload(): void {
-  incrementCounter('downloads', false);
-}
-
-/** Raised once per browser, from the stats widget on first paint. */
-export function countVisitorOnce(): void {
-  incrementCounter('totalVisitors', true);
 }

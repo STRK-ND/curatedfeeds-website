@@ -1,37 +1,23 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE, breadcrumbLd, faqPageLd, pageAlternates } from '../lib/seo';
-import { StructuredData } from '../components/StructuredData';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import { faqPageLd } from '../lib/seo';
+import { APK_MB, pageMetadata, pageUrl, SITE } from '../lib/site';
+import PageShell from '../components/PageShell';
+import FaqList from '../components/FaqList';
 
-export const metadata: Metadata = {
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Press Kit', url: '/press/' },
+];
+
+export const metadata = pageMetadata({
+  path: '/press/',
   title: 'Press Kit, Facts, Boilerplate, and Brand Assets',
   description:
     'Facts, boilerplate, and downloadable brand assets for coverage of Curated Feeds, the free privacy-first RSS reader for Android. No embargo, no PR agency.',
-  alternates: pageAlternates('/press/'),
-  openGraph: {
-    type: 'website',
-    locale: SITE.locale,
-    url: `${SITE.url}/press/`,
-    siteName: SITE.name,
-    title: 'Curated Feeds Press Kit',
-    description:
-      'Facts, boilerplate, and downloadable brand assets for covering the free, privacy-first RSS reader for Android.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Curated Feeds Press Kit',
-    description:
-      'Facts, boilerplate, and downloadable brand assets for covering the free, privacy-first RSS reader for Android.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
-
-/** The APK size the store listing and download page quote, derived from the build. */
-const apkMb = Math.round(SITE.app.apkBytes / 1048576);
+  socialTitle: 'Curated Feeds Press Kit',
+  socialDescription:
+    'Facts, boilerplate, and downloadable brand assets for covering the free, privacy-first RSS reader for Android.',
+});
 
 /** Every file is a real asset in public/, verified present before it was listed. */
 const assets = [
@@ -42,7 +28,6 @@ const assets = [
   { label: 'Swipe gestures screenshot, 1080 × 1920 WebP', href: '/screenshots/swipe-gestures.webp' },
 ];
 
-/** The four colours the product and the site are actually painted in. */
 const swatches = [
   { name: 'Ink', hex: '#0b0a09' },
   { name: 'Cream', hex: '#f4ece0' },
@@ -71,24 +56,7 @@ const faqs = [
 
 export default function PressPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([
-            { name: 'Home', url: '/' },
-            { name: 'Press Kit', url: '/press/' },
-          ]),
-          faqPageLd(faqs, `${SITE.url}/press/`),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs
-        items={[
-          { name: 'Home', url: '/' },
-          { name: 'Press Kit', url: '/press/' },
-        ]}
-      />
-      <main id="main" className="press-page">
+    <PageShell crumbs={CRUMBS} mainClass="press-page" data={faqPageLd(faqs, pageUrl('/press/'))}>
         <section className="page-hero">
           <h1>Press kit</h1>
           <p className="page-lede">
@@ -99,8 +67,6 @@ export default function PressPage() {
           </p>
         </section>
 
-        {/* Size is derived from the shipped build rather than hand-written, so the
-            number cannot drift from the file readers actually download. */}
         <div className="stat-band">
           <div>
             <strong>Free</strong>
@@ -111,7 +77,7 @@ export default function PressPage() {
             <span>Minimum</span>
           </div>
           <div>
-            <strong>~{apkMb} MB</strong>
+            <strong>~{APK_MB} MB</strong>
             <span>APK size</span>
           </div>
         </div>
@@ -150,7 +116,7 @@ export default function PressPage() {
             </li>
             <li>
               <span>Size</span>
-              <span>~{apkMb} MB</span>
+              <span>~{APK_MB} MB</span>
             </li>
             <li>
               <span>Current version</span>
@@ -248,19 +214,8 @@ export default function PressPage() {
 
         <section className="page-section page-faq" aria-labelledby="press-faq-title">
           <h2 id="press-faq-title">Coverage questions</h2>
-          <div className="faq-list">
-            {faqs.map((item, i) => (
-              <details key={item.q} className="faq-item" open={i === 0}>
-                <summary>{item.q}</summary>
-                <div>
-                  <p>{item.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs} openFirst />
         </section>
-      </main>
-      <Footer />
-    </>
+    </PageShell>
   );
 }

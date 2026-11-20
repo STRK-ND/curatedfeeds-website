@@ -1,38 +1,26 @@
-import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
 import Link from 'next/link';
-import { SITE, breadcrumbLd, faqPageLd, pageAlternates } from '../lib/seo';
-import { StructuredData } from '../components/StructuredData';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import { faqPageLd } from '../lib/seo';
+import { APK_MB, pageMetadata, pageUrl, SITE } from '../lib/site';
+import PageShell from '../components/PageShell';
+import FaqList from '../components/FaqList';
+import CtaBand from '../components/CtaBand';
 
-export const metadata: Metadata = {
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Why Curated Feeds', url: '/why/' },
+];
+
+export const metadata = pageMetadata({
+  path: '/why/',
   title: 'Why Curated Feeds, An Honest Comparison',
   description:
     'An honest comparison of Curated Feeds against Feedly, Inoreader, and NetNewsWire: what you gain, what you give up, and who the app is not for.',
-  authors: [{ name: 'Rajat Kashyap', url: SITE.authorUrl }],
-  alternates: pageAlternates('/why/'),
-  openGraph: {
-    type: 'website',
-    locale: SITE.locale,
-    url: `${SITE.url}/why/`,
-    siteName: SITE.name,
-    title: 'Why Curated Feeds, An Honest Comparison',
-    description:
-      'The case for an account-free, device-local RSS reader on Android, and the features it deliberately leaves out.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Why Curated Feeds',
-    description:
-      'Accounts, servers, and ads are optional in RSS reading. This is the comparison that shows where they are not.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
+  socialTitle: 'Why Curated Feeds, An Honest Comparison',
+  socialDescription:
+    'The case for an account-free, device-local RSS reader on Android, and the features it deliberately leaves out.',
+});
 
-/** Trade-offs, drawn as plain stroke weights so they read at 1.375rem. */
 const tradeIcons: Record<'desktop' | 'search' | 'sync', ReactElement> = {
   desktop: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -122,31 +110,14 @@ const faqs = [
 
 export default function WhyPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([
-            { name: 'Home', url: '/' },
-            { name: 'Why Curated Feeds', url: '/why/' },
-          ]),
-          faqPageLd(faqs, `${SITE.url}/why/`),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs
-        items={[
-          { name: 'Home', url: '/' },
-          { name: 'Why Curated Feeds', url: '/why/' },
-        ]}
-      />
-      <main id="main" className="why-page">
+    <PageShell crumbs={CRUMBS} mainClass="why-page" data={faqPageLd(faqs, pageUrl('/why/'))}>
         <section className="page-hero">
           <h1>Why another RSS reader</h1>
           <p className="page-lede">
             Most readers ask for an account before they show you anything, mirror your reading history
             to a company server, and monetize the attention you brought with you. This one does none
             of that. It is Android-first, free forever, and it keeps everything on the device in your
-            pocket. Comparison rows checked against each vendor&rsquo;s own pages in October 2026.
+            pocket. Comparison rows checked against each vendor&apos;s own pages in October 2026.
           </p>
         </section>
 
@@ -210,7 +181,7 @@ export default function WhyPage() {
           <p className="note">
             This list is deliberate, not an omission. There is no server to sync through, no account
             to attach history to, and no revenue to protect, so anything that needs those things is
-            simply not here. The{' '}
+            not here. The{' '}
             <Link href="/blog/best-rss-readers-android-2026/" className="text-link">
               eight-reader comparison
             </Link>{' '}
@@ -243,35 +214,17 @@ export default function WhyPage() {
 
         <section className="page-section page-faq" aria-labelledby="why-faq-title">
           <h2 id="why-faq-title">Questions this raises</h2>
-          <div className="faq-list">
-            {faqs.map((item, index) => (
-              <details key={item.q} className="faq-item" open={index === 0}>
-                <summary>{item.q}</summary>
-                <div>
-                  <p>{item.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs} openFirst />
         </section>
 
-        <section className="blog-cta">
-          <h2>Read on your own terms</h2>
-          <p>
-            Version {SITE.app.version}, about {Math.round(SITE.app.apkBytes / 1048576)} MB, Android
-            8.0 and up. No account, no ads, no server.
-          </p>
-          <div className="blog-cta-actions">
-            <a href={SITE.app.apk} className="cta-button primary">
-              Download Curated Feeds
-            </a>
-            <Link href="/#faq" className="cta-button secondary">
-              Read the FAQ
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        <CtaBand
+          title="Read on your own terms"
+          primary={{ label: 'Download Curated Feeds', href: SITE.app.apk }}
+          secondary={{ label: 'Read the FAQ', href: '/#faq' }}
+        >
+          Version {SITE.app.version}, about {APK_MB} MB, Android 8.0 and up. No account, no ads, no
+          server.
+        </CtaBand>
+    </PageShell>
   );
 }

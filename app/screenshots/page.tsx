@@ -1,33 +1,23 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE, breadcrumbLd, faqPageLd, pageAlternates } from '../lib/seo';
-import { StructuredData } from '../components/StructuredData';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import { faqPageLd } from '../lib/seo';
+import { pageMetadata, pageUrl, SITE } from '../lib/site';
+import PageShell from '../components/PageShell';
+import FaqList from '../components/FaqList';
 
-export const metadata: Metadata = {
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Screenshots', url: '/screenshots/' },
+];
+
+export const metadata = pageMetadata({
+  path: '/screenshots/',
   title: 'Screenshots, See the App in Action',
   description:
     'Two real screenshots of Curated Feeds: the card queue with 24 unread across 8 sources, and a right swipe filing a story as saved.',
-  alternates: pageAlternates('/screenshots/'),
-  openGraph: {
-    type: 'website',
-    locale: SITE.locale,
-    url: `${SITE.url}/screenshots/`,
-    siteName: SITE.name,
-    title: 'Curated Feeds Screenshots, RSS Reader for Android',
-    description:
-      'The card-based feed and swipe gestures of the privacy-first RSS reader for Android.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Curated Feeds Screenshots',
-    description: 'The card-based feed and swipe gestures, see the app.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
+  socialTitle: 'Curated Feeds Screenshots, RSS Reader for Android',
+  socialDescription:
+    'The card-based feed and swipe gestures of the privacy-first RSS reader for Android.',
+});
 
 /** Each shot pairs a real WebP asset with descriptive alt text (no keyword stuffing). */
 const shots = [
@@ -58,30 +48,17 @@ const faqs = [
   },
   {
     q: 'Which Android versions are supported?',
-    a: 'Curated Feeds runs on Android 8.0 (Oreo) and later. It requires roughly 25 MB of storage for the app and cached articles.',
+    a: 'Curated Feeds runs on Android 8.0 Oreo and later. It requires roughly 25 MB of storage for the app and cached articles.',
   },
 ];
 
 export default function ScreenshotsPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([
-            { name: 'Home', url: '/' },
-            { name: 'Screenshots', url: '/screenshots/' },
-          ]),
-          faqPageLd(faqs, `${SITE.url}/screenshots/`),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs
-        items={[
-          { name: 'Home', url: '/' },
-          { name: 'Screenshots', url: '/screenshots/' },
-        ]}
-      />
-      <main id="main" className="screenshots-page">
+    <PageShell
+      crumbs={CRUMBS}
+      mainClass="screenshots-page"
+      data={faqPageLd(faqs, pageUrl('/screenshots/'))}
+    >
         <section className="screenshots-hero">
           <h1>Curated Feeds in Action</h1>
           <p>
@@ -128,8 +105,8 @@ export default function ScreenshotsPage() {
           <h3>The queue screen</h3>
           <p>
             The first screenshot is the whole app in one view: a single article card, the source
-            name and category above it, and the unread count with your source total in the corner
-            (24 unread from 8 sources in this capture). There is no bottom tab bar and no sidebar,
+            name and category above it, and the unread count with your source total in the corner,
+            24 unread from 8 sources in this capture. There is no bottom tab bar and no sidebar,
             because the queue is the only screen you read in.
           </p>
           <h3>The swipe</h3>
@@ -141,8 +118,8 @@ export default function ScreenshotsPage() {
           </p>
           <h3>What the numbers mean</h3>
           <p>
-            The unread count only moves when you act on a card — there is no badge nagging you from
-            outside the app. Categories (Tech, Science, Research and so on) are groups you define,
+            The unread count only moves when you act on a card. There is no badge nagging you from
+            outside the app. Categories such as Tech, Science and Research are groups you define,
             so the count in each stays meaningful instead of becoming one blended pile.
           </p>
           <p>
@@ -156,16 +133,7 @@ export default function ScreenshotsPage() {
 
         <section className="screenshots-faq" aria-labelledby="screenshots-faq-title">
           <h2 id="screenshots-faq-title">Quick questions</h2>
-          <div className="faq-list">
-            {faqs.map((item) => (
-              <details key={item.q} className="faq-item">
-                <summary>{item.q}</summary>
-                <div>
-                  <p>{item.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs} />
         </section>
 
         <section className="screenshots-cta">
@@ -175,8 +143,6 @@ export default function ScreenshotsPage() {
             Download Curated Feeds
           </Link>
         </section>
-      </main>
-      <Footer />
-    </>
+    </PageShell>
   );
 }

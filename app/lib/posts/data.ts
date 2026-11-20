@@ -1,9 +1,10 @@
 /**
- * Single source of truth for blog post metadata.
- * Consumed by the sitemap, RSS feed, blog index, and blog post pages
- * so slugs, dates, and descriptions can never drift apart.
+ * Single source of truth for blog posts: metadata plus the body from
+ * content.ts. The sitemap, the RSS feed, the blog index and the post pages
+ * all read POSTS, so slugs, dates, titles and bodies cannot drift apart.
  */
-import { POST_CONTENT } from './content';
+import { POST_CONTENT, type PostContent } from './content';
+
 export type PostMeta = {
   slug: string;
   title: string;
@@ -16,6 +17,8 @@ export type PostMeta = {
   keywords: string[];
 };
 
+export type Post = PostMeta & PostContent;
+
 /** Plain words in a post body: tags stripped, entities collapsed. */
 function bodyWords(html: string): number {
   return html
@@ -26,18 +29,15 @@ function bodyWords(html: string): number {
 }
 
 /**
- * Reading time for a post, derived from its own body.
- *
- * Hand-set read-time strings used to be copied in two places and drifted
- * badly (a 600-word post labelled "15 min read"). Deriving from the body at
- * render time means the label always matches the words on the page.
+ * Reading time, derived from the post's own body. Hand-set read-time strings
+ * used to be copied in two places and drifted badly (a 600-word post labelled
+ * "15 min read").
  */
-export function readTimeFor(slug: string): string {
-  const body = POST_CONTENT[slug]?.body ?? '';
-  return `${Math.max(1, Math.round(bodyWords(body) / 230))} min read`;
+export function readTimeFor(post: Post): string {
+  return `${Math.max(1, Math.round(bodyWords(post.body) / 230))} min read`;
 }
 
-export const POSTS: PostMeta[] = [
+const POST_META: PostMeta[] = [
   {
     slug: '10-best-tech-blogs-rss',
     title: '10 Best Tech Blogs to Follow in Your RSS Reader',
@@ -123,7 +123,12 @@ export const POSTS: PostMeta[] = [
   },
 ];
 
-export const BLOG_LAST_MODIFIED = POSTS.reduce(
-  (latest, post) => (post.dateModified > latest ? post.dateModified : latest),
-  POSTS[0].dateModified,
-);
+const contentFor = (slug: string): PostContent => {
+  const content = POST_CONTENT[slug];
+  if (!content) throw new Error(`Missing body for blog post "${slug}"`);
+  return content;
+};
+
+export const POSTS: Post[] = POST_META.map((meta) => ({ ...meta, ...contentFor(meta.slug) }));
+
+export const getPost = (slug: string): Post | undefined => POSTS.find((post) => post.slug === slug);

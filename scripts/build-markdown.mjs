@@ -81,8 +81,8 @@ turndown.addRule('joinSplitHeadings', {
  *  separator in the HTML, so their text runs together in Markdown. Put each
  *  on its own line, which is how the page renders them visually. */
 const INLINE_META = [
-  'hero-badges', 'hero-actions', 'blog-row-meta', 'blog-post-meta',
-  'blog-cta-actions', 'download-buttons', 'footer-links',
+  'hero__actions', 'hero__meta', 'blog-row-meta', 'blog-post-meta',
+  'blog-cta-actions', 'footer__links', 'download__panel',
 ];
 
 turndown.addRule('separateInlineMeta', {

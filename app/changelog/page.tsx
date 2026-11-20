@@ -1,39 +1,28 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { SITE, breadcrumbLd, faqPageLd, pageAlternates } from '../lib/seo';
-import { StructuredData } from '../components/StructuredData';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import { faqPageLd } from '../lib/seo';
+import { APK_MB, pageMetadata, pageUrl, SITE } from '../lib/site';
+import PageShell from '../components/PageShell';
+import FaqList from '../components/FaqList';
+import CtaBand from '../components/CtaBand';
 
-export const metadata: Metadata = {
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Changelog', url: '/changelog/' },
+];
+
+export const metadata = pageMetadata({
+  path: '/changelog/',
   title: 'Changelog, Every Public Build of Curated Feeds',
   description:
-    'Release history of Curated Feeds for Android: the current version 1.2.0 build and the 1.0.0 initial public release, with direct APK downloads and the update policy.',
-  alternates: pageAlternates('/changelog/'),
-  openGraph: {
-    type: 'website',
-    locale: SITE.locale,
-    url: `${SITE.url}/changelog/`,
-    siteName: SITE.name,
-    title: 'Curated Feeds Changelog | Version History',
-    description:
-      'Every public build of Curated Feeds, newest first, with direct APK links and the update policy.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Curated Feeds Changelog',
-    description:
-      'Version 1.2.0 and the 1.0.0 initial public release, with direct APK downloads and update policy.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
+    `Release history of Curated Feeds for Android: the current version ${SITE.app.version} build and the 1.0.0 initial public release, with direct APK downloads and the update policy.`,
+  socialTitle: 'Curated Feeds Changelog | Version History',
+  socialDescription:
+    'Every public build of Curated Feeds, newest first, with direct APK links and the update policy.',
+});
 
 const faqs = [
   {
     q: 'Which version of Curated Feeds should I download?',
-    a: 'Version 1.2.0. It is the current public build and the one linked from the download section of this site. It runs on Android 8.0 (Oreo) and later and is roughly 67 MB.',
+    a: `Version ${SITE.app.version}. It is the current public build and the one linked from the download section of this site. It runs on Android 8.0 Oreo and later, and the APK is roughly ${APK_MB} MB.`,
   },
   {
     q: 'Is version 1.0.0 still available for download?',
@@ -55,24 +44,11 @@ const faqs = [
 
 export default function ChangelogPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([
-            { name: 'Home', url: '/' },
-            { name: 'Changelog', url: '/changelog/' },
-          ]),
-          faqPageLd(faqs, `${SITE.url}/changelog/`),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs
-        items={[
-          { name: 'Home', url: '/' },
-          { name: 'Changelog', url: '/changelog/' },
-        ]}
-      />
-      <main id="main" className="changelog-page">
+    <PageShell
+      crumbs={CRUMBS}
+      mainClass="changelog-page"
+      data={faqPageLd(faqs, pageUrl('/changelog/'))}
+    >
         <section className="page-hero">
           <h1>Changelog</h1>
           <p className="page-lede">
@@ -86,7 +62,7 @@ export default function ChangelogPage() {
 
           <div className="release">
             <div className="release-head">
-              <span className="release-version">v1.2.0</span>
+              <span className="release-version">v{SITE.app.version}</span>
               <span className="release-date">Current release</span>
             </div>
             <p>
@@ -124,7 +100,7 @@ export default function ChangelogPage() {
               >
                 <path d="M8 3v10M3 8l5 5 5-5" />
               </svg>
-              Download v1.2.0, {Math.round(SITE.app.apkBytes / 1048576)} MB
+              Download v{SITE.app.version}, {APK_MB} MB
             </a>
           </div>
 
@@ -161,15 +137,12 @@ export default function ChangelogPage() {
 
         <section className="page-section" aria-labelledby="before-update-title">
           <h2 id="before-update-title">Before you update</h2>
-          {/* The `.release` scope is the only place the shared list styling
-              (bulleted rows at body size) lives in globals.css, so the checklist
-              borrows it rather than introducing a second list convention. */}
           <div className="release">
             <ul>
               <li>
-                The current APK is about 67 MB, so download it over Wi-Fi rather than mobile data.
+                The current APK is about {APK_MB} MB, so download it over Wi-Fi rather than mobile data.
               </li>
-              <li>Curated Feeds runs on Android 8.0 (Oreo) and later.</li>
+              <li>Curated Feeds runs on Android 8.0 Oreo and later.</li>
               <li>
                 Installing an APK downloaded from this site asks for permission to install from your
                 browser once. Allow it in that prompt and the install continues as usual.
@@ -188,37 +161,16 @@ export default function ChangelogPage() {
 
         <section className="page-faq" aria-labelledby="changelog-faq-title">
           <h2 id="changelog-faq-title">Questions about updates</h2>
-          <div className="faq-list">
-            {faqs.map((item, i) => (
-              <details key={item.q} className="faq-item" open={i === 0}>
-                <summary>{item.q}</summary>
-                <div>
-                  <p>{item.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs} openFirst />
         </section>
 
-        <section className="blog-cta">
-          <h2>Install the current build</h2>
-          <p>Curated Feeds is free forever, with no ads, no account, and no tracking.</p>
-          <div className="blog-cta-actions">
-            <a
-              href={SITE.app.apk}
-              className="cta-button primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download v{SITE.app.version}
-            </a>
-            <Link href="/screenshots/" className="cta-button secondary">
-              Screenshots
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        <CtaBand
+          title="Install the current build"
+          primary={{ label: `Download v${SITE.app.version}`, href: SITE.app.apk }}
+          secondary={{ label: 'Screenshots', href: '/screenshots/' }}
+        >
+          Curated Feeds is free forever, with no ads, no account, and no tracking.
+        </CtaBand>
+    </PageShell>
   );
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PRIMARY_NAV } from '../lib/nav';
 import MobileMenu from './MobileMenu';
 
 /**
@@ -15,10 +16,11 @@ export default function Nav({ overlay = false }: { overlay?: boolean }) {
           Curated Feeds
         </Link>
         <div className="nav__links" aria-label="Site links">
-          <Link href="/#preview">Screens</Link>
-          <Link href="/#features">Features</Link>
-          <Link href="/sources/">Sources</Link>
-          <Link href="/#faq">FAQ</Link>
+          {PRIMARY_NAV.map((link) => (
+            <Link key={link.url} href={link.url}>
+              {link.name}
+            </Link>
+          ))}
         </div>
         <Link href="/#download" className="nav__cta" aria-label="Download the app">
           Get the APK

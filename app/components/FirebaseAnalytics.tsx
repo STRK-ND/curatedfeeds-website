@@ -18,27 +18,22 @@ export default function FirebaseAnalytics() {
   useEffect(() => {
     startTimeRef.current = Date.now();
 
-    // Log page view on initial load
     logAnalyticsEvent('page_view', {
       page_path: window.location.pathname,
       page_title: document.title
     });
 
-    // Set user properties
     setPlatform();
 
-    // Check if returning user
     const visitCount = parseInt(sessionStorage.getItem('visitCount') || '0') + 1;
     sessionStorage.setItem('visitCount', visitCount.toString());
     setUserType(visitCount > 1);
 
-    // Track scroll depth
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = Math.round((scrollTop / docHeight) * 100);
 
-      // Track at 25%, 50%, 75%, 100%
       if (scrollPercent >= 25 && maxScrollRef.current < 25) {
         maxScrollRef.current = 25;
         logScrollDepth(25);
@@ -54,7 +49,6 @@ export default function FirebaseAnalytics() {
       }
     };
 
-    // Track time on page (when leaving)
     const handleBeforeUnload = () => {
       const timeOnPage = Math.round((Date.now() - startTimeRef.current) / 1000);
       if (timeOnPage > 5) {
@@ -62,7 +56,6 @@ export default function FirebaseAnalytics() {
       }
     };
 
-    // Listen for popstate events (browser back/forward)
     const handleNavigation = () => {
       const timeOnPage = Math.round((Date.now() - startTimeRef.current) / 1000);
       if (timeOnPage > 5) {
@@ -81,7 +74,6 @@ export default function FirebaseAnalytics() {
     window.addEventListener('popstate', handleNavigation);
     window.addEventListener('beforeunload', handleBeforeUnload);
 
-    // Monitor URL changes (for Next.js navigation)
     let lastUrl = window.location.href;
     const observer = new MutationObserver(() => {
       if (window.location.href !== lastUrl) {
@@ -98,7 +90,6 @@ export default function FirebaseAnalytics() {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       observer.disconnect();
 
-      // Final time log on unmount
       const timeOnPage = Math.round((Date.now() - startTimeRef.current) / 1000);
       if (timeOnPage > 5) {
         logTimeOnPage(timeOnPage);

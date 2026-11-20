@@ -1,39 +1,23 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import Nav from '../../components/Nav';
-import Footer from '../../components/Footer';
-import Breadcrumbs from '../../components/Breadcrumbs';
-import { StructuredData } from '../../components/StructuredData';
 import FeedFinder from '../../components/FeedFinder';
-import { SITE, breadcrumbLd, pageAlternates, faqPageLd } from '../../lib/seo';
+import PageShell from '../../components/PageShell';
+import FaqList from '../../components/FaqList';
+import { faqPageLd } from '../../lib/seo';
+import { pageMetadata, pageUrl, SITE } from '../../lib/site';
 
 const PATH = '/tools/find-feed/';
-const PAGE_URL = `${SITE.url}${PATH}`;
-const TITLE = 'RSS Feed Finder — Find Any Site’s Feed URL Instantly';
+const PAGE_URL = pageUrl(PATH);
+const TITLE = 'RSS Feed Finder: Find Any Site\'s Feed URL Instantly';
 const DESCRIPTION =
   'Free tool: enter any website address and find its RSS or Atom feed URL instantly. Checks the page markup and common feed paths, with copy-paste results. No signup.';
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  authors: [{ name: SITE.author, url: SITE.authorUrl }],
-  alternates: pageAlternates(PATH),
-  openGraph: {
-    type: 'website',
-    locale: SITE.locale,
-    url: PAGE_URL,
-    siteName: SITE.name,
-    title: TITLE,
-    description: DESCRIPTION,
-    images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: TITLE,
-    description: DESCRIPTION,
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Tools', url: PATH },
+  { name: 'RSS Feed Finder', url: PATH },
+];
+
+export const metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
 
 const faqs = [
   {
@@ -42,7 +26,7 @@ const faqs = [
   },
   {
     q: 'Why does a lookup sometimes fail?',
-    a: 'The network lookups run through free public CORS proxies, which are sometimes rate-limited or temporarily down. The tool always shows the likely feed addresses for your domain even when the live check cannot complete — paste any of them into your reader to test.',
+    a: 'The network lookups run through free public CORS proxies, which are sometimes rate-limited or temporarily down. The tool always shows the likely feed addresses for your domain even when the live check cannot complete. Paste any of them into your reader to test.',
   },
   {
     q: 'What can I do with the feed URL once I have it?',
@@ -50,44 +34,31 @@ const faqs = [
   },
   {
     q: 'Is it free?',
-    a: 'Yes, completely — no signup, no limits, no tracking. It runs in your browser.',
+    a: 'Yes. No signup, no limits, no tracking. It runs in your browser.',
   },
 ];
 
 export default function FindFeedPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([
-            { name: 'Home', url: '/' },
-            { name: 'Tools', url: '/tools/find-feed/' },
-            { name: 'RSS Feed Finder', url: PATH },
-          ]),
-          {
-            '@context': 'https://schema.org',
-            '@type': 'WebApplication',
-            '@id': `${PAGE_URL}#app`,
-            name: 'RSS Feed Finder',
-            url: PAGE_URL,
-            applicationCategory: 'UtilityApplication',
-            operatingSystem: 'Any (web browser)',
-            description: DESCRIPTION,
-            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-            publisher: { '@id': `${SITE.url}/#organization` },
-          },
-          faqPageLd(faqs, PAGE_URL),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs
-        items={[
-          { name: 'Home', url: '/' },
-          { name: 'Tools', url: PATH },
-          { name: 'RSS Feed Finder', url: PATH },
-        ]}
-      />
-      <main id="main" className="tool-page">
+    <PageShell
+      crumbs={CRUMBS}
+      mainClass="tool-page"
+      data={[
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebApplication',
+          '@id': `${PAGE_URL}#app`,
+          name: 'RSS Feed Finder',
+          url: PAGE_URL,
+          applicationCategory: 'UtilityApplication',
+          operatingSystem: 'Any (web browser)',
+          description: DESCRIPTION,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          publisher: { '@id': `${SITE.url}/#organization` },
+        },
+        faqPageLd(faqs, PAGE_URL),
+      ]}
+    >
         <section className="page-hero">
           <h1>RSS Feed Finder</h1>
           <p className="page-lede">
@@ -118,7 +89,7 @@ export default function FindFeedPage() {
             <li>
               <strong>Honest limits.</strong> The live lookups pass through free public proxies,
               which are occasionally rate-limited. When they are, the tool still lists the likely
-              candidates for your domain — one of them is usually right.
+              candidates for your domain. One of them is usually right.
             </li>
           </ol>
           <p>
@@ -136,16 +107,7 @@ export default function FindFeedPage() {
 
         <section className="page-section" aria-labelledby="faq-title">
           <h2 id="faq-title">Questions</h2>
-          <div className="faq-list">
-            {faqs.map((item) => (
-              <details className="faq-item" key={item.q}>
-                <summary>{item.q}</summary>
-                <div>
-                  <p>{item.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs} />
         </section>
 
         <section className="page-section" aria-labelledby="use-title">
@@ -163,8 +125,6 @@ export default function FindFeedPage() {
             </Link>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+    </PageShell>
   );
 }

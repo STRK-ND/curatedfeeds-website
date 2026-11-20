@@ -1,18 +1,11 @@
 import { jsonLd } from '../lib/seo';
 import type { JSX } from 'react';
 
-export type LdNode = Record<string, unknown> | null | undefined;
+export type LdNode = Record<string, unknown>;
 
-/**
- * Emits JSON-LD <script> blocks into the document.
- *
- * `null`/`undefined` nodes are dropped so a schema builder can bail out
- * (e.g. `howToLd()` with no steps) without the call site needing a guard.
- */
+/** Emits one JSON-LD <script> per node. */
 export function StructuredData({ data }: { data: LdNode | LdNode[] }): JSX.Element {
-  const payload = (Array.isArray(data) ? data : [data]).filter(
-    (node): node is Record<string, unknown> => node !== null && node !== undefined,
-  );
+  const payload = Array.isArray(data) ? data : [data];
 
   return (
     <>

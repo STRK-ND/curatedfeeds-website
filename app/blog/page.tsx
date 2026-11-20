@@ -1,101 +1,85 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE, breadcrumbLd, blogCollectionLd, blogListLd, pageAlternates } from '../lib/seo';
-import { StructuredData } from '../components/StructuredData';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import { blogCollectionLd, blogListLd } from '../lib/seo';
+import { pageMetadata, SITE } from '../lib/site';
 import { POSTS, readTimeFor } from '../lib/posts/data';
+import PageShell from '../components/PageShell';
+import CtaBand from '../components/CtaBand';
 
-export const metadata: Metadata = {
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog/' },
+];
+
+export const metadata = pageMetadata({
+  path: '/blog/',
   title: 'Blog, RSS Tips & Reading Guides',
   description:
     'Practical guides on RSS readers, attention hygiene, and intentional reading, from the team behind the privacy-first RSS reader for Android.',
-  authors: [{ name: 'Rajat Kashyap', url: SITE.authorUrl }],
-  alternates: pageAlternates('/blog/'),
-  openGraph: {
-    type: 'website',
-    locale: SITE.locale,
-    url: `${SITE.url}/blog/`,
-    siteName: SITE.name,
-    title: 'Blog | Curated Feeds',
-    description: 'RSS tips, productivity techniques, and content curation strategies.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Blog | Curated Feeds',
-    description: 'RSS tips, productivity techniques, and content curation strategies.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
+  socialTitle: 'Blog | Curated Feeds',
+  socialDescription: 'RSS tips, productivity techniques, and content curation strategies.',
+});
 
-const posts = POSTS.map((p) => ({
-  slug: p.slug,
-  title: p.title,
-  excerpt: p.excerpt,
-  date: new Date(p.datePublished).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
-  dateISO: p.datePublished,
-  readTime: readTimeFor(p.slug),
-  category: p.category,
-  tags: p.tags,
-  description: p.description,
+const postSummaries = POSTS.map((post) => ({
+  slug: post.slug,
+  title: post.title,
+  description: post.description,
+  dateISO: post.datePublished,
 }));
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
 export default function BlogPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }]),
-          blogCollectionLd(posts),
-          // Flat ItemList mirror, helps list carousels and crawl budgets.
-          blogListLd(posts),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs items={[{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog/' }]} />
-      <main id="main" className="blog-page">
-        <section className="blog-hero">
-          <h1>Blog</h1>
-          <p>Practical guides on RSS readers, attention hygiene, content curation, and intentional reading, from the team behind Curated Feeds.</p>
-        </section>
+    <PageShell
+      crumbs={CRUMBS}
+      mainClass="blog-page"
+      data={[blogCollectionLd(postSummaries), blogListLd(postSummaries)]}
+    >
+      <section className="blog-hero">
+        <h1>Blog</h1>
+        <p>
+          Practical guides on RSS readers, attention hygiene, content curation, and intentional
+          reading, from the team behind Curated Feeds.
+        </p>
+      </section>
 
-        <section className="blog-cards" aria-label="Blog posts">
-          {posts.map((post) => (
-            <article key={post.slug} className="blog-row" itemScope itemType="https://schema.org/BlogPosting">
-              <h2 itemProp="headline">
-                <Link href={`/blog/${post.slug}/`} itemProp="url">{post.title}</Link>
-              </h2>
-              <p itemProp="description">{post.excerpt}</p>
-              <div className="blog-row-meta">
-                <span itemProp="articleSection">{post.category}</span>
-                <span><time dateTime={post.dateISO} itemProp="datePublished">{post.date}</time></span>
-                <span>{post.readTime}</span>
-                {post.tags.length > 0 && <span className="blog-row-tags">{post.tags.join(', ')}</span>}
-              </div>
-              <meta itemProp="author" content={SITE.author} />
-            </article>
-          ))}
-        </section>
+      <section className="blog-cards" aria-label="Blog posts">
+        {POSTS.map((post) => (
+          <article
+            key={post.slug}
+            className="blog-row"
+            itemScope
+            itemType="https://schema.org/BlogPosting"
+          >
+            <h2 itemProp="headline">
+              <Link href={`/blog/${post.slug}/`} itemProp="url">
+                {post.title}
+              </Link>
+            </h2>
+            <p itemProp="description">{post.excerpt}</p>
+            <div className="blog-row-meta">
+              <span itemProp="articleSection">{post.category}</span>
+              <span>
+                <time dateTime={post.datePublished} itemProp="datePublished">
+                  {formatDate(post.datePublished)}
+                </time>
+              </span>
+              <span>{readTimeFor(post)}</span>
+              {post.tags.length > 0 && <span className="blog-row-tags">{post.tags.join(', ')}</span>}
+            </div>
+            <meta itemProp="author" content={SITE.author} />
+          </article>
+        ))}
+      </section>
 
-        <section className="blog-cta">
-          <h2>Ready to take back your attention?</h2>
-          <p>Download Curated Feeds and start reading on your terms.</p>
-          <div className="blog-cta-actions">
-            <Link href={SITE.app.apk} className="cta-button primary">Get the App</Link>
-            <Link
-              href={SITE.app.uptodown}
-              className="cta-button secondary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Get it on Uptodown
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+      <CtaBand
+        title="Ready to take back your attention?"
+        primary={{ label: 'Get the App', href: SITE.app.apk }}
+        secondary={{ label: 'Get it on Uptodown', href: SITE.app.uptodown }}
+      >
+        Download Curated Feeds and start reading on your terms.
+      </CtaBand>
+    </PageShell>
   );
 }

@@ -1,38 +1,27 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE, articleLd, breadcrumbLd, pageAlternates, qaPageLd } from '../../lib/seo';
-import { StructuredData } from '../../components/StructuredData';
-import Nav from '../../components/Nav';
-import Footer from '../../components/Footer';
-import Breadcrumbs from '../../components/Breadcrumbs';
+import { articleLd, qaPageLd } from '../../lib/seo';
+import { APK_MB, pageMetadata, pageUrl, SITE } from '../../lib/site';
+import PageShell from '../../components/PageShell';
+import FaqList from '../../components/FaqList';
 
 const PATH = '/why/feedly/';
-const PAGE_URL = `${SITE.url}${PATH}`;
+const PAGE_URL = pageUrl(PATH);
 const TITLE = 'Curated Feeds vs Feedly: Best Free Alternative (2026)';
 const DESCRIPTION =
   'Curated Feeds vs Feedly in 2026: price, accounts, privacy, offline reading, and sync. Curated Feeds is free forever with no account; Feedly requires one.';
 
-export const metadata: Metadata = {
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Why Curated Feeds', url: '/why/' },
+  { name: 'vs Feedly', url: PATH },
+];
+
+export const metadata = pageMetadata({
+  path: PATH,
   title: TITLE,
   description: DESCRIPTION,
-  authors: [{ name: 'Rajat Kashyap', url: SITE.authorUrl }],
-  alternates: pageAlternates(PATH),
-  openGraph: {
-    type: 'article',
-    locale: SITE.locale,
-    url: PAGE_URL,
-    siteName: SITE.name,
-    title: TITLE,
-    description: DESCRIPTION,
-    images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: TITLE,
-    description: DESCRIPTION,
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
+  type: 'article',
+});
 
 const rows: { label: string; cf: string; feedly: string }[] = [
   { label: 'Price', cf: 'Free forever, no premium tier', feedly: 'Free plan for basic reading; Pro and Pro+ are paid' },
@@ -53,7 +42,7 @@ const qa = [
   },
   {
     q: 'Is Curated Feeds really free, or is there a catch?',
-    a: 'There is no server bill to cover, so there is no premium tier and no ads. One free build, distributed as a direct APK from this site and from Uptodown, version ' + SITE.app.version + ', about ' + Math.round(SITE.app.apkBytes / 1048576) + ' MB.',
+    a: 'There is no server bill to cover, so there is no premium tier and no ads. One free build, distributed as a direct APK from this site and from Uptodown, version '    + SITE.app.version + ', about ' + APK_MB + ' MB.',
   },
   {
     q: 'What do I lose by leaving Feedly?',
@@ -67,16 +56,12 @@ const qa = [
 
 export default function WhyFeedlyPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([
-            { name: 'Home', url: '/' },
-            { name: 'Why Curated Feeds', url: '/why/' },
-            { name: 'vs Feedly', url: PATH },
-          ]),
-          articleLd({
-            slug: 'why-feedly',
+    <PageShell
+      crumbs={CRUMBS}
+      mainClass="why-page"
+      data={[
+        articleLd({
+            path: PATH,
             title: TITLE,
             description: DESCRIPTION,
             body:
@@ -85,21 +70,11 @@ export default function WhyFeedlyPage() {
             authorUrl: SITE.authorUrl,
             datePublished: '2026-10-31',
             dateModified: '2026-10-31',
-            path: PATH,
             isPartOf: '/why/',
           }),
-          qaPageLd(qa, PAGE_URL),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs
-        items={[
-          { name: 'Home', url: '/' },
-          { name: 'Why Curated Feeds', url: '/why/' },
-          { name: 'vs Feedly', url: PATH },
-        ]}
-      />
-      <main id="main" className="why-page">
+        qaPageLd(qa, PAGE_URL),
+      ]}
+    >
         <section className="page-hero">
           <h1>Curated Feeds vs Feedly</h1>
           <p className="page-lede">
@@ -134,14 +109,14 @@ export default function WhyFeedlyPage() {
           <p className="note">
             Sources, checked October 2026:{' '}
             <a href="https://feedly.com/i/pro" target="_blank" rel="noopener noreferrer">
-              Feedly&rsquo;s plans and pricing page
+              Feedly&apos;s plans and pricing page
             </a>{' '}
             and their{' '}
             <a href="https://docs.feedly.com/article/140-what-is-the-difference-between-feedly-free-pro-pro-and-enterprise-plans" target="_blank" rel="noopener noreferrer">
               documentation on Free, Pro, Pro+ and Enterprise
             </a>
-            . Free-tier limits and prices change, so check Feedly&rsquo;s own pages before deciding. The
-            structural difference does not change: Feedly&rsquo;s features run on its servers, so an
+            . Free-tier limits and prices change, so check Feedly&apos;s own pages before deciding. The
+            structural difference does not change: Feedly&apos;s features run on its servers, so an
             account is the price of admission, while Curated Feeds runs entirely on your device.
           </p>
         </section>
@@ -165,37 +140,27 @@ export default function WhyFeedlyPage() {
           <h2 id="switch-title">How to switch from Feedly</h2>
           <ol>
             <li>In Feedly, open Settings and export your subscriptions as an OPML file.</li>
-            <li>Open the OPML file in any text editor and copy each <code>xmlUrl</code> value, or use Feedly&rsquo;s share sheet per feed.</li>
+            <li>Open the OPML file in any text editor and copy each <code>xmlUrl</code> value, or use Feedly&apos;s share sheet per feed.</li>
             <li>In Curated Feeds, paste each URL into the add-feed field. Any RSS 2.0, Atom, or RDF URL is accepted directly, with no directory approval step.</li>
             <li>Keep Feedly installed for a week as a fallback, then uninstall it once the new queue feels right.</li>
           </ol>
           <p>
-            Your read state does not transfer, because it lives in Feedly&rsquo;s account. The feeds
+            Your read state does not transfer, because it lives in Feedly&apos;s account. The feeds
             themselves are just URLs, and those move over in minutes.
           </p>
         </section>
 
         <section className="page-section" aria-labelledby="qa-title">
           <h2 id="qa-title">Questions</h2>
-          <div className="faq-list">
-            {qa.map((item) => (
-              <details className="faq-item" key={item.q}>
-                <summary>{item.q}</summary>
-                <div>
-                  <p>{item.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <FaqList items={qa} />
         </section>
 
         <section className="page-section" aria-labelledby="try-title">
           <h2 id="try-title">Try Curated Feeds</h2>
           <p>
-            Free forever, no account, no ads: version {SITE.app.version}, about{' '}
-            {Math.round(SITE.app.apkBytes / 1048576)} MB, Android 8.0 and up, as a direct APK from
-            this site or from Uptodown. Add a few feeds from the starter list and see whether
-            reading without a server behind it suits you.
+            Free forever, no account, no ads: version {SITE.app.version}, about {APK_MB} MB, Android
+            8.0 and up, as a direct APK from this site or from Uptodown. Add a few feeds from the
+            starter list and see whether reading without a server behind it suits you.
           </p>
           <div className="blog-cta-actions">
             <Link href={SITE.app.apk} className="cta-button primary">
@@ -206,8 +171,6 @@ export default function WhyFeedlyPage() {
             </Link>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+    </PageShell>
   );
 }

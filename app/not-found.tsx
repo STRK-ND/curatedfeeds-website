@@ -20,7 +20,7 @@ export default function NotFound() {
           <p className="notfound-code" aria-hidden="true">404</p>
           <h1 id="notfound-title" className="section-title">This page went offline</h1>
           <p className="notfound-description">
-            The page you were looking for doesn&rsquo;t exist or has moved. Your feeds are still
+            The page you were looking for doesn&apos;t exist or has moved. Your feeds are still
             where you left them. No reading history lost, no re-subscribing needed.
           </p>
           <div className="notfound-actions">

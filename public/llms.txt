@@ -7,6 +7,7 @@
 - [Blog](https://curatedfeeds.web.app/blog/): RSS tips, productivity, content curation
 - [About](https://curatedfeeds.web.app/about/): founder story, mission, technical stack, timeline
 - [Screenshots](https://curatedfeeds.web.app/screenshots/): UI previews (home feed, swipe gestures)
+- [RSS Feed Finder](https://curatedfeeds.web.app/tools/find-feed/): finds any site's feed URL from its markup or common paths
 - [Starter Feeds](https://curatedfeeds.web.app/sources/): curated high-signal feed directory with copy-paste URLs
 - [Why Curated Feeds](https://curatedfeeds.web.app/why/): honest comparison with Feedly, Inoreader, NetNewsWire
 - [Curated Feeds vs Feedly](https://curatedfeeds.web.app/why/feedly/): head-to-head on accounts, free-plan limits, and sync
@@ -21,7 +22,7 @@
 - [How to Find the RSS Feed URL for Any Website](https://curatedfeeds.web.app/blog/find-rss-feed-url-any-website/)
 - [Best RSS Readers for Android in 2026: 8 Apps Compared](https://curatedfeeds.web.app/blog/best-rss-readers-android-2026/)
 - [The Distraction-Free Morning Reading Routine](https://curatedfeeds.web.app/blog/distraction-free-morning-reading-routine/)
-- [10 Best Tech Blogs to Follow in Your RSS Reader (2026)](https://curatedfeeds.web.app/blog/10-best-tech-blogs-rss/)
+- [10 Best Tech Blogs to Follow in Your RSS Reader](https://curatedfeeds.web.app/blog/10-best-tech-blogs-rss/)
 - [RSS vs Social Media: Why RSS Still Wins for Focus](https://curatedfeeds.web.app/blog/rss-vs-social-media/)
 - [10 Productivity Tips for RSS Power Users](https://curatedfeeds.web.app/blog/productivity-tips-rss-readers/)
 

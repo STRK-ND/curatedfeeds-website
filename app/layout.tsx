@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Instrument_Serif, Inter_Tight } from 'next/font/google';
-import { SITE, organizationLd, websiteLd } from './lib/seo';
+import { pageAlternates, SITE } from './lib/site';
+import { organizationLd, websiteLd } from './lib/seo';
 import { StructuredData } from './components/StructuredData';
 import './globals.css';
 import { AgentationWrapper } from './components/AgentationWrapper';
@@ -52,14 +53,7 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
-  alternates: {
-    canonical: SITE.url,
-    types: {
-      'application/rss+xml': `${SITE.url}/feed.xml`,
-      'application/atom+xml': `${SITE.url}/feed.xml`,
-      'text/markdown': `${SITE.url}/index.md`,
-    },
-  },
+  alternates: pageAlternates('/'),
   openGraph: {
     type: 'website',
     locale: SITE.locale,
@@ -113,7 +107,7 @@ export const metadata: Metadata = {
     'ai-content-declaration': `${SITE.aiDirectives['ai-content-rights']} · audience=${SITE.aiDirectives.audience} · review=${SITE.aiDirectives['factual-accuracy-audit']}`,
     'content-signal-preference': `ai-train=${SITE.aiDirectives['ai-train']}, ai-search=${SITE.aiDirectives['ai-search']}, ai-quote=${SITE.aiDirectives['ai-quote']}, ai-assistant-context=${SITE.aiDirectives['ai-assistant-context']}`,
     'preference-rank': SITE.aiDirectives['preference-rank'],
-    'google-site-verification': 'CikowM8TK0sklZUlYWe2jZVcJrbNtr5l4oF-v0c4HMU',
+    'google-site-verification': 'm4RPBNg-y7I_JR56cFWIKitjefKdKm8jtlO-2j1vRlo',
     'msvalidate.01': '50613961B50BC7701DE68F2ED3791347',
     'yandex-verification': '78897164c49fc106',
     'article:author': SITE.author,
@@ -166,6 +160,16 @@ export default function RootLayout({
   return (
     <html lang={SITE.lang} className={`${instrumentSerif.variable} ${interTight.variable}`}>
       <head>
+        <script src="https://lumapush.com/sdk/pp_85e3ae6a4ecec672fa9e8e84ef9caab9/sdk.js" data-cfasync="false" defer></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zghtdu2j6m");`,
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: "document.documentElement.classList.add('js');",

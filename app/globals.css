@@ -588,11 +588,6 @@
 /* ════════════════════════════════════════════════════════════════
    Interior pages — kept markup, flat surfaces
    ════════════════════════════════════════════════════════════════ */
-.visitor-stats { display: flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-lg); font-size: var(--step-small); color: var(--color-muted); }
-.visitor-stat strong { color: var(--color-ink); font-variant-numeric: tabular-nums; font-weight: 600; }
-.visitor-stat-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); margin-inline: var(--space-2xs) 0; }
-.visitor-stat-live strong { color: var(--color-accent); }
-
 .notfound-page { min-height: 60svh; display: grid; align-content: center; }
 .notfound-code { font-size: var(--step-head); color: var(--color-muted); font-variant-numeric: tabular-nums; }
 .notfound-description { color: var(--color-ink-2); }

@@ -1,9 +1,10 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { MOBILE_NAV } from '../lib/nav';
 
 /**
- * Mobile menu — night ground, cream links, one gold action.
+ * Mobile menu, night ground, cream links, one gold action.
  * The only client island in the nav; the rest stays server-rendered.
  */
 export default function MobileMenu() {
@@ -24,7 +25,7 @@ export default function MobileMenu() {
         closeMenu();
       }
     },
-    [open, closeMenu]
+    [open, closeMenu],
   );
 
   const handleKeyDown = useCallback(
@@ -34,16 +35,20 @@ export default function MobileMenu() {
         closeMenu();
         return;
       }
-      if (event.key === 'Tab') {
-        event.preventDefault();
-        const links = menuRef.current?.querySelectorAll<HTMLAnchorElement>('a.mobile-link');
-        const linkArray = Array.from(links ?? []);
-        const currentIndex = linkArray.indexOf(document.activeElement as HTMLAnchorElement);
-        const nextIndex = (currentIndex + 1) % linkArray.length;
-        linkArray[nextIndex]?.focus();
-      }
+      if (event.key !== 'Tab') return;
+
+      const links = Array.from(
+        menuRef.current?.querySelectorAll<HTMLAnchorElement>('a.mobile-link') ?? [],
+      );
+      if (!links.length) return;
+
+      event.preventDefault();
+      const current = links.indexOf(document.activeElement as HTMLAnchorElement);
+      const step = event.shiftKey ? -1 : 1;
+      const next = (current + step + links.length) % links.length;
+      links[next].focus();
     },
-    [open, closeMenu]
+    [open, closeMenu],
   );
 
   useEffect(() => {
@@ -92,15 +97,20 @@ export default function MobileMenu() {
       <div
         ref={menuRef}
         id="mobile-menu"
-        className={`mobile-menu ${open ? "mobile-menu-open" : ""}`}
+        className={`mobile-menu ${open ? 'mobile-menu-open' : ''}`}
         role="dialog"
         aria-label="Navigation menu"
       >
-        <a href="/#preview" onClick={closeMenu} className="mobile-link">Screens</a>
-        <a href="/#features" onClick={closeMenu} className="mobile-link">Features</a>
-        <a href="/sources/" onClick={closeMenu} className="mobile-link">Sources</a>
-        <a href="/#faq" onClick={closeMenu} className="mobile-link">FAQ</a>
-        <a href="/#download" onClick={closeMenu} className="mobile-link mobile-link-cta">Download</a>
+        {MOBILE_NAV.map((link) => (
+          <a
+            key={link.url}
+            href={link.url}
+            onClick={closeMenu}
+            className={link.cta ? 'mobile-link mobile-link-cta' : 'mobile-link'}
+          >
+            {link.name}
+          </a>
+        ))}
       </div>
     </>
   );

@@ -1,43 +1,47 @@
 import type { MetadataRoute } from 'next';
+import { POSTS } from './lib/posts/data';
+import { pageUrl } from './lib/site';
 
 export const dynamic = 'force-static';
 
-const BASE_URL = 'https://curatedfeeds.web.app';
+/**
+ * Content-change dates for the static sections.
+ *
+ * Truthful dates only, never the build date: a lastModified that always equals
+ * "now" makes every recrawl a no-op, and Google only honours lastmod when it is
+ * consistently accurate. Each value comes from the last commit that changed the
+ * page's own content (`git log -1 --format=%ad --date=short -- app/<page>`).
+ *
+ * Sections that were edited together share one constant, so a coordinated
+ * content change is a one-line update rather than nine.
+ */
+const SECTIONS_REVIEWED = new Date('2026-11-09T00:00:00Z');
+const CHANGELOG_REVISED = new Date('2026-10-30T00:00:00Z');
 
-const blogPosts = [
-  { slug: '10-best-tech-blogs-rss', lastmod: '2026-03-22' },
-  { slug: 'rss-vs-social-media', lastmod: '2026-03-22' },
-  { slug: 'productivity-tips-rss-readers', lastmod: '2026-03-22' },
-  { slug: 'find-rss-feed-url-any-website', lastmod: '2026-10-24' },
-  { slug: 'distraction-free-morning-reading-routine', lastmod: '2026-10-24' },
-  { slug: 'best-rss-readers-android-2026', lastmod: '2026-10-31' },
+const STATIC_PATHS = [
+  '/',
+  '/tools/find-feed/',
+  '/screenshots/',
+  '/blog/',
+  '/about/',
+  '/privacy/',
+  '/sources/',
+  '/why/',
+  '/why/feedly/',
+  '/why/inoreader/',
+  '/use-cases/',
+  '/press/',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Truthful content-change dates, never the build date: a lastModified that
-  // always equals "now" makes every recrawl a no-op. changefreq and priority
-  // are omitted - Google disregards both and they add noise.
-  const PAGES_LAST_REVIEW = new Date('2026-10-31');
-  const HOME_LAST_MODIFIED = new Date('2026-11-09');
-  const SCREENSHOTS_LAST_MODIFIED = new Date('2026-11-09');
-  const TOOL_LAST_MODIFIED = new Date('2026-11-09');
   return [
-    { url: `${BASE_URL}/`, lastModified: HOME_LAST_MODIFIED },
-    { url: `${BASE_URL}/tools/find-feed/`, lastModified: TOOL_LAST_MODIFIED },
-    { url: `${BASE_URL}/blog/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/about/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/privacy/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/screenshots/`, lastModified: SCREENSHOTS_LAST_MODIFIED },
-    { url: `${BASE_URL}/sources/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/why/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/why/feedly/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/why/inoreader/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/changelog/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/use-cases/`, lastModified: PAGES_LAST_REVIEW },
-    { url: `${BASE_URL}/press/`, lastModified: PAGES_LAST_REVIEW },
-    ...blogPosts.map((p) => ({
-      url: `${BASE_URL}/blog/${p.slug}/`,
-      lastModified: new Date(p.lastmod),
+    ...STATIC_PATHS.map((path) => ({ url: pageUrl(path), lastModified: SECTIONS_REVIEWED })),
+    { url: pageUrl('/changelog/'), lastModified: CHANGELOG_REVISED },
+    // Post dates come from POSTS, the same list the blog index and the post
+    // pages read, so a sitemap entry cannot disagree with its page.
+    ...POSTS.map((post) => ({
+      url: pageUrl(`/blog/${post.slug}/`),
+      lastModified: new Date(`${post.dateModified}T00:00:00Z`),
     })),
   ];
 }

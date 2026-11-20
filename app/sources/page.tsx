@@ -1,34 +1,24 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE, breadcrumbLd, faqPageLd, pageAlternates } from '../lib/seo';
-import { StructuredData } from '../components/StructuredData';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import Breadcrumbs from '../components/Breadcrumbs';
+import { faqPageLd } from '../lib/seo';
+import { pageMetadata, pageUrl, SITE } from '../lib/site';
+import PageShell from '../components/PageShell';
+import FaqList from '../components/FaqList';
+import CtaBand from '../components/CtaBand';
 
-export const metadata: Metadata = {
+const CRUMBS = [
+  { name: 'Home', url: '/' },
+  { name: 'Starter Feeds', url: '/sources/' },
+];
+
+export const metadata = pageMetadata({
+  path: '/sources/',
   title: 'Starter Feeds for Your First Week',
   description:
     'The highest-signal RSS feeds to add on day one: technology, business, world, and science sources with copy-paste ready URLs for Curated Feeds on Android.',
-  alternates: pageAlternates('/sources/'),
-  openGraph: {
-    type: 'website',
-    locale: SITE.locale,
-    url: `${SITE.url}/sources/`,
-    siteName: SITE.name,
-    title: 'Starter Feeds for Your First Week | Curated Feeds',
-    description:
-      'A curated starter-feed directory: verified RSS URLs across technology, business, world, and science.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Starter Feeds for Your First Week',
-    description:
-      'A curated starter-feed directory: verified RSS URLs across technology, business, world, and science.',
-    images: [`${SITE.url}/og-image.png`],
-  },
-};
+  socialTitle: 'Starter Feeds for Your First Week | Curated Feeds',
+  socialDescription:
+    'A curated starter-feed directory: verified RSS URLs across technology, business, world, and science.',
+});
 
 type Feed = {
   name: string;
@@ -43,7 +33,7 @@ const techFeeds: Feed[] = [
     url: 'https://techcrunch.com/feed/',
     cadence: 'Daily',
     blurb:
-      'Startups, venture funding rounds, and product launches, reported quickly and updated through the day.',
+      'Startups, venture funding rounds, and product launches, reported as it happens and updated through the day.',
   },
   {
     name: 'The Verge',
@@ -123,7 +113,7 @@ const worldFeeds: Feed[] = [
   },
 ];
 
-const steps = [
+const steps: { icon: 'paste' | 'read'; name: string; text: string }[] = [
   {
     icon: 'paste',
     name: 'Paste the feed URL',
@@ -155,22 +145,20 @@ const faqs = [
   },
 ];
 
-function StepIcon({ kind }: { kind: string }) {
-  if (kind === 'paste') {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-        <rect x="4" y="3" width="16" height="18" rx="2" />
-        <path d="M9 7h6M9 11h6M9 15h3" />
-      </svg>
-    );
-  }
-  return (
+const stepIcons = {
+  paste: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+      <rect x="4" y="3" width="16" height="18" rx="2" />
+      <path d="M9 7h6M9 11h6M9 15h3" />
+    </svg>
+  ),
+  read: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
       <path d="M4 5.5A2.5 2.5 0 016.5 3H12v18H6.5A2.5 2.5 0 014 18.5z" />
       <path d="M20 5.5A2.5 2.5 0 0017.5 3H12v18h5.5A2.5 2.5 0 0020 18.5z" />
     </svg>
-  );
-}
+  ),
+};
 
 function FeedSection({
   id,
@@ -205,24 +193,7 @@ function FeedSection({
 
 export default function SourcesPage() {
   return (
-    <>
-      <StructuredData
-        data={[
-          breadcrumbLd([
-            { name: 'Home', url: '/' },
-            { name: 'Starter Feeds', url: '/sources/' },
-          ]),
-          faqPageLd(faqs, `${SITE.url}/sources/`),
-        ]}
-      />
-      <Nav />
-      <Breadcrumbs
-        items={[
-          { name: 'Home', url: '/' },
-          { name: 'Starter Feeds', url: '/sources/' },
-        ]}
-      />
-      <main id="main" className="sources-page">
+    <PageShell crumbs={CRUMBS} mainClass="sources-page" data={faqPageLd(faqs, pageUrl('/sources/'))}>
         <section className="page-hero">
           <h1>Starter feeds for your first week</h1>
           <p className="page-lede">
@@ -234,21 +205,21 @@ export default function SourcesPage() {
 
         <FeedSection
           id="technology"
-          title="Technology & Engineering"
+          title="Technology and engineering"
           intro="The general-interest technology desk, from fast-breaking startup news to deeper reporting on research and engineering practice. Start here if you want to know what shipped."
           feeds={techFeeds}
         />
 
         <FeedSection
           id="business"
-          title="Business & Strategy"
+          title="Business and strategy"
           intro="Two slower, denser sources. These publish less often, and each piece is an argument about how technology businesses actually work."
           feeds={businessFeeds}
         />
 
         <FeedSection
           id="world"
-          title="World & Science"
+          title="World and science"
           intro="One wire-service-scale desk for the rest of the story. Everything else on this page is trade press; this is the context it sits inside of."
           feeds={worldFeeds}
         />
@@ -264,7 +235,7 @@ export default function SourcesPage() {
             {steps.map((step) => (
               <article key={step.name} className="panel">
                 <span className="panel-icon" aria-hidden="true">
-                  <StepIcon kind={step.icon} />
+                  {stepIcons[step.icon]}
                 </span>
                 <h3>{step.name}</h3>
                 <p>{step.text}</p>
@@ -288,35 +259,17 @@ export default function SourcesPage() {
 
         <section className="page-section page-faq" aria-labelledby="sources-faq-title">
           <h2 id="sources-faq-title">Starter feed questions</h2>
-          <div className="faq-list">
-            {faqs.map((item, i) => (
-              <details key={item.q} className="faq-item" open={i === 0}>
-                <summary>{item.q}</summary>
-                <div>
-                  <p>{item.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs} openFirst />
         </section>
 
-        <section className="blog-cta">
-          <h2>Add them all in an evening</h2>
-          <p>
-            Download Curated Feeds for Android, free, no ads, no account. Paste a feed URL and start
-            swiping.
-          </p>
-          <div className="blog-cta-actions">
-            <Link href={SITE.app.apk} className="cta-button primary">
-              Download Curated Feeds
-            </Link>
-            <Link href="/screenshots/" className="cta-button secondary">
-              See screenshots
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        <CtaBand
+          title="Add them all in an evening"
+          primary={{ label: 'Download Curated Feeds', href: SITE.app.apk }}
+          secondary={{ label: 'See screenshots', href: '/screenshots/' }}
+        >
+          Download Curated Feeds for Android, free, no ads, no account. Paste a feed URL and start
+          swiping.
+        </CtaBand>
+    </PageShell>
   );
 }
