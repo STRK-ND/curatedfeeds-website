@@ -92,6 +92,12 @@ export const metadata: Metadata = {
     },
     web: { url: SITE.url },
   },
+  verification: {
+    google: [
+      'm4RPBNg-y7I_JR56cFWIKitjefKdKm8jtlO-2j1vRlo',
+      'cEDoPC_UikdZRwrUsZWx4zgejghqlSAC2nAn7Adw02o',
+    ],
+  },
   other: {
     'google-play-app': `app-id=${SITE.app.package}`,
     'mobile-web-app-capable': 'yes',
@@ -107,7 +113,6 @@ export const metadata: Metadata = {
     'ai-content-declaration': `${SITE.aiDirectives['ai-content-rights']} · audience=${SITE.aiDirectives.audience} · review=${SITE.aiDirectives['factual-accuracy-audit']}`,
     'content-signal-preference': `ai-train=${SITE.aiDirectives['ai-train']}, ai-search=${SITE.aiDirectives['ai-search']}, ai-quote=${SITE.aiDirectives['ai-quote']}, ai-assistant-context=${SITE.aiDirectives['ai-assistant-context']}`,
     'preference-rank': SITE.aiDirectives['preference-rank'],
-    'google-site-verification': 'm4RPBNg-y7I_JR56cFWIKitjefKdKm8jtlO-2j1vRlo',
     'msvalidate.01': '50613961B50BC7701DE68F2ED3791347',
     'yandex-verification': '78897164c49fc106',
     'article:author': SITE.author,
