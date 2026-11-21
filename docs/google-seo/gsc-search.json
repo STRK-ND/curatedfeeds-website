@@ -1,0 +1,81 @@
+{
+  "property": "https://curatedfeeds.web.app/",
+  "rows": [
+    {
+      "keys": [
+        "curated feeds",
+        "https://curatedfeeds.web.app/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2,
+      "query": "curated feeds",
+      "page": "https://curatedfeeds.web.app/"
+    },
+    {
+      "keys": [
+        "curatedfeeds.web.app",
+        "https://curatedfeeds.web.app/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1,
+      "query": "curatedfeeds.web.app",
+      "page": "https://curatedfeeds.web.app/"
+    },
+    {
+      "keys": [
+        "curatedfeeds.web.app",
+        "https://curatedfeeds.web.app/about/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "query": "curatedfeeds.web.app",
+      "page": "https://curatedfeeds.web.app/about/"
+    },
+    {
+      "keys": [
+        "curatedfeeds.web.app",
+        "https://curatedfeeds.web.app/blog/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4.5,
+      "query": "curatedfeeds.web.app",
+      "page": "https://curatedfeeds.web.app/blog/"
+    },
+    {
+      "keys": [
+        "hacker news site:web.app",
+        "https://curatedfeeds.web.app/blog/"
+      ],
+      "clicks": 0,
+      "impressions": 16,
+      "ctr": 0,
+      "position": 14.6,
+      "query": "hacker news site:web.app",
+      "page": "https://curatedfeeds.web.app/blog/"
+    }
+  ],
+  "totals": {
+    "clicks": 0,
+    "impressions": 40,
+    "ctr": 0,
+    "position": 11.3
+  },
+  "totals_source": "dimensionless_aggregate",
+  "totals_complete": true,
+  "quick_wins": [],
+  "warnings": [],
+  "row_count": 5,
+  "error": null,
+  "date_range": {
+    "start": "2026-10-13",
+    "end": "2026-11-07"
+  }
+}

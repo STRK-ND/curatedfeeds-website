@@ -1,0 +1,53 @@
+{
+  "property": "https://curatedfeeds.web.app/",
+  "collected": "2026-11-10",
+  "sitemap": {
+    "path": "https://curatedfeeds.web.app/sitemap.xml",
+    "last_submitted": "2026-11-09T06:27:22.751Z",
+    "is_pending": true,
+    "warnings": 0,
+    "errors": 0
+  },
+  "summary": { "pass": 4, "fail": 0, "neutral": 15, "error": 0, "total": 19 },
+  "indexed": [
+    "https://curatedfeeds.web.app/",
+    "https://curatedfeeds.web.app/blog/",
+    "https://curatedfeeds.web.app/about/",
+    "https://curatedfeeds.web.app/blog/rss-vs-social-media/"
+  ],
+  "crawled_not_indexed": [
+    "https://curatedfeeds.web.app/privacy/"
+  ],
+  "unknown_to_google": [
+    "https://curatedfeeds.web.app/tools/find-feed/",
+    "https://curatedfeeds.web.app/screenshots/",
+    "https://curatedfeeds.web.app/sources/",
+    "https://curatedfeeds.web.app/why/",
+    "https://curatedfeeds.web.app/why/feedly/",
+    "https://curatedfeeds.web.app/why/inoreader/",
+    "https://curatedfeeds.web.app/changelog/",
+    "https://curatedfeeds.web.app/use-cases/",
+    "https://curatedfeeds.web.app/press/",
+    "https://curatedfeeds.web.app/blog/10-best-tech-blogs-rss/",
+    "https://curatedfeeds.web.app/blog/productivity-tips-rss-readers/",
+    "https://curatedfeeds.web.app/blog/find-rss-feed-url-any-website/",
+    "https://curatedfeeds.web.app/blog/distraction-free-morning-reading-routine/",
+    "https://curatedfeeds.web.app/blog/best-rss-readers-android-2026/"
+  ],
+  "last_crawl_times": {
+    "https://curatedfeeds.web.app/": "2026-11-03T16:07:39Z",
+    "https://curatedfeeds.web.app/blog/": "2026-11-08T22:16:03Z",
+    "https://curatedfeeds.web.app/about/": "2026-08-11T00:36:24Z",
+    "https://curatedfeeds.web.app/blog/rss-vs-social-media/": "2026-11-08T21:15:08Z",
+    "https://curatedfeeds.web.app/privacy/": "2026-06-07T09:39:01Z"
+  },
+  "canonical_verification": {
+    "method": "fetched live HTML, extracted <link rel=canonical> per URL",
+    "date": "2026-11-10",
+    "result": "all emitted canonicals correct and page-specific",
+    "gsc_stale_user_canonicals": [
+      "https://curatedfeeds.web.app/about/",
+      "https://curatedfeeds.web.app/privacy/"
+    ]
+  }
+}

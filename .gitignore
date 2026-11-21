@@ -30,6 +30,9 @@
 /.kilo/
 /.kilocode/
 /.kombai/
+/.kiro/
+/.pi/
+/scripts/.backlink-shots/
 
 # personal editor/assistant settings; the shared ones (.agentation/config.json)
 # stay tracked, ".local" files are machine-specific
