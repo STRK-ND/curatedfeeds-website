@@ -7,6 +7,13 @@ export const metadata = pageMetadata({
   title: 'Privacy Policy, We Do Not Collect Your Data',
   description:
     'Curated Feeds privacy policy: we do not collect personal data. Your feeds, articles, and reading history stay on your device. No account, no tracking, no ads.',
+  keywords: [
+    'Curated Feeds privacy policy',
+    'private RSS reader',
+    'no tracking feed reader',
+    'anonymous RSS app',
+    'zero data collection app',
+  ],
   socialTitle: 'Privacy Policy | Curated Feeds',
   socialDescription:
     'We do not collect personal data. All your RSS feeds and reading preferences stay on your device.',

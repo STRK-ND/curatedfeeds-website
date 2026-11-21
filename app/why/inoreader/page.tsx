@@ -6,9 +6,9 @@ import FaqList from '../../components/FaqList';
 
 const PATH = '/why/inoreader/';
 const PAGE_URL = pageUrl(PATH);
-const TITLE = 'Curated Feeds vs Inoreader: Best Free Alternative (2026)';
+const TITLE = 'Curated Feeds vs Inoreader: Best Free Alternative (2026/2027)';
 const DESCRIPTION =
-  'Curated Feeds vs Inoreader in 2026: price, accounts, rules, filters, and privacy. Curated Feeds is free forever with no account; Inoreader requires one.';
+  'Curated Feeds vs Inoreader (2026/2027): price, accounts, rules, filters, and privacy. Curated Feeds is free forever with no account; Inoreader requires one.';
 
 const CRUMBS = [
   { name: 'Home', url: '/' },
@@ -20,6 +20,20 @@ export const metadata = pageMetadata({
   path: PATH,
   title: TITLE,
   description: DESCRIPTION,
+  keywords: [
+    'Inoreader alternative',
+    'Inoreader alternative 2027',
+    'Inoreader alternative free',
+    'Inoreader alternative free 2027',
+    'Inoreader alternative android',
+    'free Inoreader alternative 2026',
+    'Curated Feeds vs Inoreader',
+    'best Inoreader replacement',
+    'RSS reader without subscription',
+    'Inoreader free plan limit alternative',
+    'offline RSS reader android',
+    'privacy RSS app android',
+  ],
   type: 'article',
 });
 

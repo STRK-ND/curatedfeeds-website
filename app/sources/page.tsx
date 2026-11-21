@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { faqPageLd } from '../lib/seo';
 import { pageMetadata, pageUrl, SITE } from '../lib/site';
+import { CATEGORIES } from '../lib/data/categories';
 import PageShell from '../components/PageShell';
 import FaqList from '../components/FaqList';
 import CtaBand from '../components/CtaBand';
@@ -15,6 +16,17 @@ export const metadata = pageMetadata({
   title: 'Starter Feeds for Your First Week',
   description:
     'The highest-signal RSS feeds to add on day one: technology, business, world, and science sources with copy-paste ready URLs for Curated Feeds on Android.',
+  keywords: [
+    'best RSS feeds',
+    'starter RSS feeds',
+    'RSS feed list 2026',
+    'top technology RSS feeds',
+    'business RSS feeds',
+    'science RSS feeds',
+    'verified RSS feed URLs',
+    'RSS feed directory',
+    'feeds to subscribe to',
+  ],
   socialTitle: 'Starter Feeds for Your First Week | Curated Feeds',
   socialDescription:
     'A curated starter-feed directory: verified RSS URLs across technology, business, world, and science.',
@@ -223,6 +235,29 @@ export default function SourcesPage() {
           intro="One wire-service-scale desk for the rest of the story. Everything else on this page is trade press; this is the context it sits inside of."
           feeds={worldFeeds}
         />
+
+        <section className="page-section" aria-labelledby="hubs-title">
+          <h2 id="hubs-title">Specialized Topic Feed Directories (2027)</h2>
+          <p>
+            Looking for high-signal RSS sources in specific fields? Explore our curated directories:
+          </p>
+          <div className="panel-grid">
+            <article className="panel">
+              <h3><Link href="/sources/ai/" className="text-link">AI & Machine Learning</Link></h3>
+              <p>Frontier model labs, deep learning research, and local LLM logs.</p>
+            </article>
+            <article className="panel">
+              <h3><Link href="/sources/developer/" className="text-link">Developer & Engineering</Link></h3>
+              <p>Distributed systems architecture, language internals, and senior blogs.</p>
+            </article>
+            {CATEGORIES.map((cat) => (
+              <article key={cat.slug} className="panel">
+                <h3><Link href={`/sources/${cat.slug}/`} className="text-link">{cat.name}</Link></h3>
+                <p>{cat.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <section className="page-section" aria-labelledby="how-to-add-title">
           <h2 id="how-to-add-title">How to add these</h2>

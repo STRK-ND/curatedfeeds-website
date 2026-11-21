@@ -14,6 +14,13 @@ export const metadata = pageMetadata({
   title: 'Changelog, Every Public Build of Curated Feeds',
   description:
     `Release history of Curated Feeds for Android: the current version ${SITE.app.version} build and the 1.0.0 initial public release, with direct APK downloads and the update policy.`,
+  keywords: [
+    'Curated Feeds changelog',
+    'Curated Feeds release notes',
+    'Curated Feeds APK download',
+    'Android RSS app updates',
+    'Curated Feeds version history',
+  ],
   socialTitle: 'Curated Feeds Changelog | Version History',
   socialDescription:
     'Every public build of Curated Feeds, newest first, with direct APK links and the update policy.',

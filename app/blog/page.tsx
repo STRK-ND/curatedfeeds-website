@@ -15,6 +15,17 @@ export const metadata = pageMetadata({
   title: 'Blog, RSS Tips & Reading Guides',
   description:
     'Practical guides on RSS readers, attention hygiene, and intentional reading, from the team behind the privacy-first RSS reader for Android.',
+  keywords: [
+    'RSS blog',
+    'RSS reader tips',
+    'reading guides',
+    'RSS vs social media',
+    'best RSS reader android 2026',
+    'how to find RSS feeds',
+    'attention hygiene',
+    'productivity reading tips',
+    'content curation strategies',
+  ],
   socialTitle: 'Blog | Curated Feeds',
   socialDescription: 'RSS tips, productivity techniques, and content curation strategies.',
 });

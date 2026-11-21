@@ -7,6 +7,14 @@ export const metadata = pageMetadata({
   title: 'About Curated Feeds, Our Story & Mission',
   description:
     'Learn about Rajat Kashyap, the founder of Curated Feeds, and our mission to restore intentional content consumption through beautiful RSS technology.',
+  keywords: [
+    'about Curated Feeds',
+    'Rajat Kashyap',
+    'Curated Feeds mission',
+    'indie developer RSS reader',
+    'privacy first software',
+    'intentional reading tools',
+  ],
   socialTitle: 'About | Curated Feeds',
   socialDescription:
     'Learn about the founder, mission, and values behind Curated Feeds RSS reader app.',

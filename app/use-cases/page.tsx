@@ -15,6 +15,17 @@ export const metadata = pageMetadata({
   title: 'Use Cases, Built for How You Read',
   description:
     'Reader profiles mapped to real Curated Feeds capabilities: commuting offline, developer changelogs, research triage, minimalist news, night reading, and privacy-first reading on Android.',
+  keywords: [
+    'RSS reader use cases',
+    'offline reading app android',
+    'developer RSS reader',
+    'researcher feed reader',
+    'minimalist news app',
+    'night reading mode RSS',
+    'commuter RSS reader',
+    'privacy-first RSS reader',
+    'reading habits workflow',
+  ],
   socialTitle: 'Curated Feeds Use Cases, Built for How You Read',
   socialDescription:
     'Six reading habits and the app features that serve each one, from offline caching to on-device privacy.',

@@ -6,9 +6,9 @@ import FaqList from '../../components/FaqList';
 
 const PATH = '/why/feedly/';
 const PAGE_URL = pageUrl(PATH);
-const TITLE = 'Curated Feeds vs Feedly: Best Free Alternative (2026)';
+const TITLE = 'Curated Feeds vs Feedly: Best Free Alternative (2026/2027)';
 const DESCRIPTION =
-  'Curated Feeds vs Feedly in 2026: price, accounts, privacy, offline reading, and sync. Curated Feeds is free forever with no account; Feedly requires one.';
+  'Curated Feeds vs Feedly (2026/2027): price, accounts, privacy, offline reading, and sync. Curated Feeds is free forever with no account; Feedly requires one.';
 
 const CRUMBS = [
   { name: 'Home', url: '/' },
@@ -20,6 +20,20 @@ export const metadata = pageMetadata({
   path: PATH,
   title: TITLE,
   description: DESCRIPTION,
+  keywords: [
+    'Feedly alternative',
+    'Feedly alternative 2027',
+    'Feedly alternative free',
+    'Feedly alternative free 2027',
+    'Feedly alternative android',
+    'free Feedly alternative 2026',
+    'Curated Feeds vs Feedly',
+    'best Feedly replacement',
+    'RSS reader without account',
+    'Feedly free plan limits',
+    'offline RSS reader android',
+    'privacy RSS reader',
+  ],
   type: 'article',
 });
 

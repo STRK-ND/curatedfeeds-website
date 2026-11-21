@@ -274,6 +274,143 @@ ${qaHtml(BEST_READERS_QA)}
 <p>If the comparison points anywhere for a phone-only, no-account setup, it points here. Version ${SITE.app.version}, about ${APK_MB} MB, Android 8.0 and up, free forever with no ads. Download the APK directly from this site or find it on Uptodown, add a few feeds from the <a href="/sources/">starter list</a>, and see how reading feels when nothing is synced, tracked, or sold.</p>
     `,
   },
+  'best-rss-readers-android-2027': {
+    schemaType: 'BlogPosting',
+    apps: ['Curated Feeds', 'Feedly', 'Inoreader', 'Feeder', 'FeedFlow', 'Read You', 'NewsBlur', 'Readwise Reader', 'Capy Reader', 'The Old Reader'],
+    body: `
+<p><em>Ten Android RSS readers tested and ranked for 2027 on privacy, price, offline performance, gesture ergonomics, and freedom from algorithm traps.</em></p>
+<p>Heading into 2027, the mobile content landscape has become more hostile than ever. Social platforms and algorithmic news feeds optimize exclusively for rage and screen time, burying creators behind sponsored reels and paywalled snippets. RSS remains the antidote: quiet, chronological, and entirely under your control.</p>
+<p>We tested ten Android RSS readers to determine the best picks for different reading habits heading into 2027. None of these placements are sponsored.</p>
+<h2>Top Android RSS Readers for 2027 at a Glance</h2>
+<div class="table-wrap">
+<table class="data-table" aria-label="Ten Android RSS readers compared for 2027">
+<thead><tr><th scope="col">App</th><th scope="col">Price</th><th scope="col">Account Required</th><th scope="col">Offline Support</th><th scope="col">Best Fit</th></tr></thead>
+<tbody>
+<tr><td>Curated Feeds</td><td>Free forever ($0)</td><td>No</td><td>Full article cache</td><td>Zero-account privacy & fast card triage</td></tr>
+<tr><td>Feedly</td><td>Free tier / Pro from $6/mo</td><td>Yes</td><td>Yes</td><td>Cross-device sync & web reader</td></tr>
+<tr><td>Inoreader</td><td>Free to 150 feeds / Pro from $7.50/mo</td><td>Yes</td><td>Yes</td><td>Advanced automation rules & keyword filters</td></tr>
+<tr><td>Feeder</td><td>Free, open source (GPL-3)</td><td>No</td><td>Yes</td><td>Traditional open-source headline list</td></tr>
+<tr><td>FeedFlow</td><td>Free, open source</td><td>No</td><td>Webview cache</td><td>Minimalist desktop-and-mobile reader</td></tr>
+<tr><td>Read You</td><td>Free, open source</td><td>No</td><td>Yes</td><td>Material You / Reeder design fans</td></tr>
+<tr><td>NewsBlur</td><td>Free to 64 sites / $36/yr</td><td>Yes</td><td>Limited</td><td>Intelligence training & social blurblogs</td></tr>
+<tr><td>Readwise Reader</td><td>Paid subscription</td><td>Yes</td><td>Full</td><td>All-in-one RSS, read-it-later & PDF highlights</td></tr>
+<tr><td>Capy Reader</td><td>Free, open source</td><td>Optional</td><td>Yes</td><td>Fast sync client for FreshRSS / Fever</td></tr>
+<tr><td>The Old Reader</td><td>Free to 100 feeds / Paid</td><td>Yes</td><td>Web/app sync</td><td>Nostalgic Google Reader community feel</td></tr>
+</tbody>
+</table>
+</div>
+<h2>1. Curated Feeds: The Best No-Account Reader for 2027</h2>
+<p>Curated Feeds is built for users who refuse to log in to read the news. Operating entirely on your Android phone with zero server infrastructure, version ${SITE.app.version} (about ${APK_MB} MB) turns your unread feeds into a tactile stack of cards.</p>
+<p>Instead of managing overwhelming lists with thousands of unread items, you swipe right to save what matters and swipe left to dismiss the rest. Articles are automatically cached on first open so your morning commute on the subway or flight remains completely uninterrupted.</p>
+<h2>2. Feedly: The Cross-Platform Giant</h2>
+<p>If your reading spans an Android phone, an iPad, and a corporate MacBook, Feedly remains the most versatile ecosystem. Its cloud backend synchronizes unread states seamlessly across all clients. The trade-off is mandatory account creation, data storage on Feedly servers, and increasingly aggressive upsells toward paid AI tiers.</p>
+<h2>3. Inoreader: Power Filters for Information Firehoses</h2>
+<p>Inoreader is the developer and researcher favorite when following hundreds of high-cadence feeds. Its server-side rule engine can automatically tag, star, forward, or deduplicate articles before you even open the app. The free tier is capped at 150 feeds.</p>
+<h2>4. Feeder & FeedFlow: Trusted Open Source Picks</h2>
+<p>Both Feeder and FeedFlow provide clean, tracker-free alternatives available on F-Droid. Feeder offers a traditional, familiar headline list, while FeedFlow keeps UI elements to an absolute minimum.</p>
+<h2>5. Read You: The Material You Aesthetic Leader</h2>
+<p>For fans of Google's Material Design 3 and iOS Reeder aesthetics, Read You provides smooth animations and dynamic Android wallpaper-based theming. It requires manual installation via GitHub or F-Droid and targets self-hosted sync backends.</p>
+<h2>How to Choose Your 2027 Setup</h2>
+<p>If you read on multiple devices daily, pick an account-based service like Feedly or Inoreader. But if you do your primary reading on your phone and care about battery life, zero telemetry, and avoiding subscription fatigue, download Curated Feeds directly to experience true distraction-free reading.</p>
+    `,
+  },
+  'how-to-get-youtube-channel-rss-feed': {
+    schemaType: 'HowTo',
+    body: `
+<p><em>Follow your favorite YouTube creators in 2027 without algorithmic rabbit holes, sponsored shorts, or mandatory Google logins.</em></p>
+<p>YouTube's mobile app is engineered to hijack your attention. You open the app to watch a 5-minute tech review, and 45 minutes later you are trapped in an endless stream of autoplaying Shorts and algorithmic recommendations. Every YouTube channel quietly maintains a direct, real-time RSS feed that broadcasts new video uploads the second they go live.</p>
+<h2>The Universal YouTube RSS Feed URL Format</h2>
+<p>Every YouTube channel feed follows this simple URL structure:</p>
+<p><code>https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID</code></p>
+<p>All you need to locate is the creator's unique 24-character <strong>Channel ID</strong> (which starts with <code>UC</code>).</p>
+<h2>How to Find Any YouTube Channel ID in Seconds</h2>
+<ol>
+<li><strong>Using our automated tool:</strong> Simply paste the creator's YouTube URL into our free <a href="/tools/find-feed/">RSS Feed Finder</a>. The tool extracts the feed link automatically.</li>
+<li><strong>From the page source:</strong> On any desktop browser, visit the channel page (e.g., <code>youtube.com/@mkbhd</code>), right-click and choose <em>View Page Source</em> (or press Ctrl+U), search (Ctrl+F) for <code>itemprop="channelId"</code> or <code>"channelId":"</code>. Copy the 24-character string starting with <code>UC</code>.</li>
+<li><strong>Form the feed URL:</strong> Combine the prefix with your ID. For example, Marques Brownlee's Channel ID is <code>UCBJycsmduvYEL83R_U4JriQ</code>, making his direct feed: <code>https://www.youtube.com/feeds/videos.xml?channel_id=UCBJycsmduvYEL83R_U4JriQ</code>.</li>
+</ol>
+<h2>How to Subscribe to a YouTube Playlist via RSS</h2>
+<p>You can also follow specific video playlists (like a tutorial series or podcast season) rather than an entire channel. The URL format is:</p>
+<p><code>https://www.youtube.com/feeds/videos.xml?playlist_id=PLAYLIST_ID</code></p>
+<p>Simply copy the playlist ID from any playlist link (the string following <code>list=</code>) and append it to the address above.</p>
+<h2>Why Read YouTube Feeds in Curated Feeds?</h2>
+<ul>
+<li><strong>No Recommended Videos:</strong> You only see uploads from channels you explicitly chose to follow.</li>
+<li><strong>Zero Distraction Shorts:</strong> YouTube Shorts are not force-fed into your timeline.</li>
+<li><strong>Offline Watch Later Queue:</strong> In Curated Feeds, swipe right to save video alerts into your Saved deck to watch whenever you have dedicated downtime.</li>
+</ul>
+<p>Download <a href="${SITE.app.apk}">Curated Feeds APK</a> to start building your clean YouTube video feed today.</p>
+    `,
+  },
+  'how-to-get-reddit-rss-feeds': {
+    schemaType: 'HowTo',
+    body: `
+<p><em>Read subreddits, multireddits, and user posts cleanly in 2027 without third-party API restrictions, promoted ads, or account logins.</em></p>
+<p>Since Reddit's API changes and mobile app redesigns, casual browsing has become cluttered with promoted ads, pop-ups prompting you to log in, and algorithmically injected recommendations. Few users know that Reddit continues to publish full RSS feeds for virtually every public community and search query.</p>
+<h2>1. Subreddit RSS Feeds</h2>
+<p>To follow any subreddit, simply append <code>.rss</code> to the standard URL:</p>
+<p><code>https://www.reddit.com/r/technology/.rss</code></p>
+<p>You can also filter by sorting criteria:</p>
+<ul>
+<li><strong>Top posts of the week:</strong> <code>https://www.reddit.com/r/android/.rss?sort=top&t=week</code></li>
+<li><strong>Newest submissions:</strong> <code>https://www.reddit.com/r/webdev/new/.rss</code></li>
+</ul>
+<h2>2. Combining Multiple Subreddits (Multireddit Feeds)</h2>
+<p>Instead of adding ten separate feeds for related communities, combine them into a single streamlined feed using the <code>+</code> operator:</p>
+<p><code>https://www.reddit.com/r/technology+programming+science/.rss</code></p>
+<p>This delivers a unified, chronological feed across all three subreddits in one single subscription.</p>
+<h2>3. Reddit Search Query Feeds</h2>
+<p>You can even monitor specific keywords or product releases across the entirety of Reddit:</p>
+<p><code>https://www.reddit.com/search.rss?q=flutter+android&sort=new</code></p>
+<h2>Why Follow Reddit in Curated Feeds?</h2>
+<p>When you subscribe to a subreddit feed in Curated Feeds on Android, you get a calm, distraction-free card deck. No comments sections baiting arguments, no promoted brand posts, and no data tracking your browsing behavior. Swipe right to save insightful guides; swipe left to clear the rest.</p>
+    `,
+  },
+  'how-to-follow-substack-with-rss': {
+    schemaType: 'HowTo',
+    body: `
+<p><em>Free your email inbox in 2027 by moving long-form Substack newsletters into your personal RSS reader.</em></p>
+<p>Substack has revolutionized independent writing, but subscribing to a dozen writers can quickly destroy your email inbox. Your critical personal and work messages get buried under 3,000-word essays and weekly roundups.</p>
+<p>Fortunately, every Substack publication automatically generates an open RSS feed. You can read every public post in an RSS reader without giving away your email address.</p>
+<h2>Standard Substack RSS Feed URL Format</h2>
+<p>For any publication hosted on Substack's default domain, simply add <code>/feed</code> to the publication URL:</p>
+<p><code>https://authorname.substack.com/feed</code></p>
+<p>For example, if the publication is <code>pragmaticengineer.substack.com</code>, the RSS feed is:</p>
+<p><code>https://pragmaticengineer.substack.com/feed</code></p>
+<h2>Substack Publications with Custom Domains</h2>
+<p>Many popular publications use their own custom domain name (e.g., <code>newsletter.pragmaticengineer.com</code>). The rule remains identical:</p>
+<p><code>https://customdomain.com/feed</code></p>
+<p>If you are unsure whether a custom domain supports RSS, paste the URL into our <a href="/tools/find-feed/">RSS Feed Finder tool</a> to verify the endpoint instantly.</p>
+<h2>Free vs Paid Substack Articles</h2>
+<p>Substack's public RSS feed delivers full text for all free articles. If a writer publishes a post reserved strictly for paid subscribers, the RSS feed will display the public teaser with a link to read the full issue on the web. This makes RSS the perfect way to sample new writers without inbox commitment.</p>
+<h2>The Better Way to Read Newsletters in 2027</h2>
+<p>Newsletters are meant for quiet, intentional reading—not quick replies during the workday. In Curated Feeds, your Substack articles arrive cleanly formatted, stored offline on your device, and completely isolated from your work email notifications.</p>
+    `,
+  },
+  'github-releases-commits-rss-feed': {
+    schemaType: 'HowTo',
+    body: `
+<p><em>Track open-source project releases, framework updates, and security tags in 2027 without noisy GitHub notifications.</em></p>
+<p>As a developer or tech enthusiast, keeping up with releases for dozens of libraries (like React, Flutter, Python, or Next.js) usually means either constantly checking GitHub or suffering through hundreds of notification emails.</p>
+<p>GitHub provides built-in, unauthenticated Atom/RSS feeds for every public repository. You can subscribe to releases, tags, or commit logs directly in any standard feed reader.</p>
+<h2>1. How to Track GitHub Releases via RSS</h2>
+<p>To receive an instant update whenever a repository cuts a new formal release, append <code>/releases.atom</code> to the repository URL:</p>
+<p><code>https://github.com/owner/repository/releases.atom</code></p>
+<p><strong>Real Examples:</strong></p>
+<ul>
+<li><strong>Next.js Releases:</strong> <code>https://github.com/vercel/next.js/releases.atom</code></li>
+<li><strong>Flutter Framework Releases:</strong> <code>https://github.com/flutter/flutter/releases.atom</code></li>
+<li><strong>Linux Kernel Releases:</strong> <code>https://github.com/torvalds/linux/tags.atom</code></li>
+</ul>
+<h2>2. How to Track Specific Repository Commits</h2>
+<p>If a project does not use formal GitHub Releases and you need to track main branch commits or changelogs, use the commits feed:</p>
+<p><code>https://github.com/owner/repository/commits.atom</code></p>
+<p>You can also track commits to a specific branch:</p>
+<p><code>https://github.com/owner/repository/commits/main.atom</code></p>
+<h2>Developer Triage on Android with Curated Feeds</h2>
+<p>Curated Feeds makes developer changelog monitoring effortless. Group your GitHub feeds under a dedicated <strong>"Dev"</strong> category. When a new major version drops, swipe right to keep the release notes cached for review, or swipe left to dismiss minor patch notices.</p>
+    `,
+  },
 };
 
 

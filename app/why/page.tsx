@@ -16,6 +16,18 @@ export const metadata = pageMetadata({
   title: 'Why Curated Feeds, An Honest Comparison',
   description:
     'An honest comparison of Curated Feeds against Feedly, Inoreader, and NetNewsWire: what you gain, what you give up, and who the app is not for.',
+  keywords: [
+    'why curated feeds',
+    'RSS reader comparison',
+    'Feedly alternative',
+    'Inoreader alternative',
+    'NetNewsWire alternative android',
+    'best RSS reader android',
+    'free RSS reader no account',
+    'device-local RSS reader',
+    'offline feed reader',
+    'privacy first RSS app',
+  ],
   socialTitle: 'Why Curated Feeds, An Honest Comparison',
   socialDescription:
     'The case for an account-free, device-local RSS reader on Android, and the features it deliberately leaves out.',
@@ -165,6 +177,39 @@ export default function WhyPage() {
             ))}{' '}
             Checked October 2026; prices and limits change without notice.
           </p>
+        </section>
+
+        <section className="page-section" aria-labelledby="deep-dives-title">
+          <h2 id="deep-dives-title">Head-to-head comparisons</h2>
+          <p>
+            Detailed breakdowns comparing Curated Feeds directly against the most popular hosted and open-source readers:
+          </p>
+          <div className="panel-grid">
+            <div className="panel">
+              <h3><Link href="/why/feedly/" className="text-link">vs Feedly</Link></h3>
+              <p>Accounts, cloud sync, boards, and free-plan limits compared.</p>
+            </div>
+            <div className="panel">
+              <h3><Link href="/why/inoreader/" className="text-link">vs Inoreader</Link></h3>
+              <p>150-feed caps, server-side rules, archive search, and subscription tiers.</p>
+            </div>
+            <div className="panel">
+              <h3><Link href="/why/feeder/" className="text-link">vs Feeder</Link></h3>
+              <p>Card-swipe triage vs classic headline lists for privacy-focused Android users.</p>
+            </div>
+            <div className="panel">
+              <h3><Link href="/why/feedflow/" className="text-link">vs FeedFlow</Link></h3>
+              <p>Tactile card decks vs minimalist browser-tab reader mode.</p>
+            </div>
+            <div className="panel">
+              <h3><Link href="/why/read-you/" className="text-link">vs Read You</Link></h3>
+              <p>Zero-configuration triage vs Material You multi-pane Reeder styling.</p>
+            </div>
+            <div className="panel">
+              <h3><Link href="/why/newsblur/" className="text-link">vs NewsBlur</Link></h3>
+              <p>Unlimited device-local reading vs 64-site caps and $36/year subscriptions.</p>
+            </div>
+          </div>
         </section>
 
         <section className="page-section" aria-labelledby="tradeoffs-title">

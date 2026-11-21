@@ -8,10 +8,17 @@
 - [About](https://curatedfeeds.web.app/about/): founder story, mission, technical stack, timeline
 - [Screenshots](https://curatedfeeds.web.app/screenshots/): UI previews (home feed, swipe gestures)
 - [RSS Feed Finder](https://curatedfeeds.web.app/tools/find-feed/): finds any site's feed URL from its markup or common paths
+- [RSS Publication Directory](https://curatedfeeds.web.app/directory/): 50 verified publication feed endpoints across tech, news, and science
 - [Starter Feeds](https://curatedfeeds.web.app/sources/): curated high-signal feed directory with copy-paste URLs
+- [AI & ML RSS Feeds](https://curatedfeeds.web.app/sources/ai/): verified research labs, papers, and engineering logs
+- [Developer RSS Feeds](https://curatedfeeds.web.app/sources/developer/): software architecture, systems, and engineering blogs
 - [Why Curated Feeds](https://curatedfeeds.web.app/why/): honest comparison with Feedly, Inoreader, NetNewsWire
 - [Curated Feeds vs Feedly](https://curatedfeeds.web.app/why/feedly/): head-to-head on accounts, free-plan limits, and sync
 - [Curated Feeds vs Inoreader](https://curatedfeeds.web.app/why/inoreader/): head-to-head on rules, filters, and archive search
+- [Curated Feeds vs Feeder](https://curatedfeeds.web.app/why/feeder/): card-swipe triage vs classic headline lists for privacy users
+- [Curated Feeds vs FeedFlow](https://curatedfeeds.web.app/why/feedflow/): tactile card decks vs minimalist browser-tab reader mode
+- [Curated Feeds vs Read You](https://curatedfeeds.web.app/why/read-you/): zero-config triage vs Material You multi-pane Reeder styling
+- [Curated Feeds vs NewsBlur](https://curatedfeeds.web.app/why/newsblur/): unlimited local reading vs 64-site caps and subscriptions
 - [Use Cases](https://curatedfeeds.web.app/use-cases/): six reading profiles mapped to real features
 - [Changelog](https://curatedfeeds.web.app/changelog/): every public build, newest first
 - [Press Kit](https://curatedfeeds.web.app/press/): boilerplate, product facts, brand assets
@@ -19,6 +26,11 @@
 
 ## Blog Posts
 
+- [Best RSS Readers for Android in 2027: 10 Apps Compared](https://curatedfeeds.web.app/blog/best-rss-readers-android-2027/)
+- [How to Get an RSS Feed for Any YouTube Channel in 2027](https://curatedfeeds.web.app/blog/how-to-get-youtube-channel-rss-feed/)
+- [How to Use Reddit RSS Feeds in 2027](https://curatedfeeds.web.app/blog/how-to-get-reddit-rss-feeds/)
+- [How to Follow Substack Newsletters with RSS in 2027](https://curatedfeeds.web.app/blog/how-to-follow-substack-with-rss/)
+- [How to Track GitHub Releases and Commits via RSS in 2027](https://curatedfeeds.web.app/blog/github-releases-commits-rss-feed/)
 - [How to Find the RSS Feed URL for Any Website](https://curatedfeeds.web.app/blog/find-rss-feed-url-any-website/)
 - [Best RSS Readers for Android in 2026: 8 Apps Compared](https://curatedfeeds.web.app/blog/best-rss-readers-android-2026/)
 - [The Distraction-Free Morning Reading Routine](https://curatedfeeds.web.app/blog/distraction-free-morning-reading-routine/)

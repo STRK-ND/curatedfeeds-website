@@ -14,6 +14,13 @@ export const metadata = pageMetadata({
   title: 'Press Kit, Facts, Boilerplate, and Brand Assets',
   description:
     'Facts, boilerplate, and downloadable brand assets for coverage of Curated Feeds, the free privacy-first RSS reader for Android. No embargo, no PR agency.',
+  keywords: [
+    'Curated Feeds press kit',
+    'Curated Feeds media kit',
+    'Curated Feeds brand assets',
+    'Android RSS reader press',
+    'privacy RSS app press release',
+  ],
   socialTitle: 'Curated Feeds Press Kit',
   socialDescription:
     'Facts, boilerplate, and downloadable brand assets for covering the free, privacy-first RSS reader for Android.',

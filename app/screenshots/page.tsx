@@ -14,6 +14,13 @@ export const metadata = pageMetadata({
   title: 'Screenshots, See the App in Action',
   description:
     'Two real screenshots of Curated Feeds: the card queue with 24 unread across 8 sources, and a right swipe filing a story as saved.',
+  keywords: [
+    'Curated Feeds screenshots',
+    'RSS reader UI android',
+    'card swipe RSS app interface',
+    'minimalist RSS reader screenshots',
+    'dark mode RSS reader android',
+  ],
   socialTitle: 'Curated Feeds Screenshots, RSS Reader for Android',
   socialDescription:
     'The card-based feed and swipe gestures of the privacy-first RSS reader for Android.',

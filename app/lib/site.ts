@@ -83,6 +83,7 @@ type PageMetadata = {
   /** Heading used by OpenGraph and Twitter when it should differ from the title. */
   socialTitle?: string;
   socialDescription?: string;
+  keywords?: string[];
   type?: 'website' | 'article';
   robots?: Metadata['robots'];
   article?: { publishedTime: string; modifiedTime: string; author: string };
@@ -99,6 +100,7 @@ export function pageMetadata({
   description,
   socialTitle,
   socialDescription,
+  keywords,
   type = 'website',
   robots,
   article,
@@ -108,6 +110,7 @@ export function pageMetadata({
   return {
     title,
     description,
+    ...(keywords && keywords.length ? { keywords } : {}),
     authors: [{ name: SITE.author, url: SITE.authorUrl }],
     alternates: pageAlternates(path),
     ...(robots ? { robots } : {}),

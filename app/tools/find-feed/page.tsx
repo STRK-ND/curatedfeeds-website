@@ -4,6 +4,7 @@ import PageShell from '../../components/PageShell';
 import FaqList from '../../components/FaqList';
 import { faqPageLd } from '../../lib/seo';
 import { pageMetadata, pageUrl, SITE } from '../../lib/site';
+import { PLATFORMS } from '../../lib/data/platforms';
 
 const PATH = '/tools/find-feed/';
 const PAGE_URL = pageUrl(PATH);
@@ -17,7 +18,22 @@ const CRUMBS = [
   { name: 'RSS Feed Finder', url: PATH },
 ];
 
-export const metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
+export const metadata = pageMetadata({
+  path: PATH,
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: [
+    'RSS feed finder',
+    'find RSS feed URL',
+    'RSS feed search tool',
+    'Atom feed finder',
+    'find feed URL for any website',
+    'get RSS link from website',
+    'free RSS feed generator finder',
+    'RSS autodiscovery tool',
+    'find blog RSS link',
+  ],
+});
 
 const faqs = [
   {
@@ -103,6 +119,25 @@ export default function FindFeedPage() {
             </Link>{' '}
             has 8 ready-made feeds if you just want to start reading.
           </p>
+        </section>
+
+        <section className="page-section" aria-labelledby="platforms-title">
+          <h2 id="platforms-title">Platform-Specific Feed Guides (2027)</h2>
+          <p>
+            Looking for feed addresses on specific platforms? Browse our step-by-step extraction guides:
+          </p>
+          <div className="panel-grid">
+            {PLATFORMS.map((platform) => (
+              <article key={platform.slug} className="panel">
+                <h3>
+                  <Link href={`/tools/find-feed/${platform.slug}/`} className="text-link">
+                    {platform.name} RSS Feeds
+                  </Link>
+                </h3>
+                <p>{platform.description}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="page-section" aria-labelledby="faq-title">
