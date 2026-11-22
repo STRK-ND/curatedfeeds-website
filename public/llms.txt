@@ -27,6 +27,9 @@
 
 ## Blog Posts
 
+- [Why RSS Is Making a Massive Comeback in 2027](https://curatedfeeds.web.app/blog/why-rss-is-making-a-comeback-2027/)
+- [How to Read Email Newsletters via RSS in 2027](https://curatedfeeds.web.app/blog/read-newsletters-via-rss-2027/)
+- [The Minimalist Android Setup for 2027](https://curatedfeeds.web.app/blog/minimalist-android-setup-2027/)
 - [Best RSS Readers for Android in 2027: 10 Apps Compared](https://curatedfeeds.web.app/blog/best-rss-readers-android-2027/)
 - [How to Get an RSS Feed for Any YouTube Channel in 2027](https://curatedfeeds.web.app/blog/how-to-get-youtube-channel-rss-feed/)
 - [How to Use Reddit RSS Feeds in 2027](https://curatedfeeds.web.app/blog/how-to-get-reddit-rss-feeds/)

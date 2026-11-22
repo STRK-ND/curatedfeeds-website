@@ -411,6 +411,118 @@ ${qaHtml(BEST_READERS_QA)}
 <p>Curated Feeds makes developer changelog monitoring effortless. Group your GitHub feeds under a dedicated <strong>"Dev"</strong> category. When a new major version drops, swipe right to keep the release notes cached for review, or swipe left to dismiss minor patch notices.</p>
     `,
   },
+  'why-rss-is-making-a-comeback-2027': {
+    schemaType: 'Article',
+    body: `
+<p><em>Why millions of readers are abandoning algorithmic feeds and returning to open, decentralized RSS heading into 2027.</em></p>
+<p>For more than a decade, tech monopolies convinced the internet that recommendation algorithms were superior to chronological reading. We surrendered our attention to black-box machine learning models trained on a single objective: maximize time-on-screen at all costs.</p>
+<p>By 2026, the cracks in that model became impossible to ignore. Social timelines degraded into engagement bait, synthetic AI-generated content farms, intrusive sponsored carousels, and polarization. Readers did not feel informed; they felt exhausted.</p>
+<p>Heading into 2027, a quiet revolution is underway: <strong>the massive comeback of RSS (Really Simple Syndication).</strong></p>
+<h2>1. The Problem: The Algorithmic Slop Cycle</h2>
+<p>When an algorithm controls what you read, three things inevitably happen:</p>
+<ul>
+<li><strong>Outrage is prioritized over insight:</strong> Algorithms optimize for strong emotional reactions (comments and shares), systematically suppressing thoughtful, slow-form analysis.</li>
+<li><strong>You miss content from sources you chose:</strong> Even if you follow an author on modern platforms, their posts are shown to less than 10% of their audience unless they pay to boost it.</li>
+<li><strong>AI-generated volume swamps human journalism:</strong> Feeds are flooded with synthesized rewrites and SEO content designed to capture search rankings rather than deliver truth.</li>
+</ul>
+<h2>2. The Solution: Direct, Chronological Syndication</h2>
+<p>RSS operates on an entirely different philosophy: <strong>sovereignty over your own attention.</strong></p>
+<p>An RSS reader does exactly one thing: when a website or creator you follow publishes an article, it fetches the XML feed and shows it to you in the exact order it was written. No recommendation model sits between you and the publisher. If your sources publish 15 articles today, you see 15 articles. When you finish them, your queue is empty.</p>
+<h2>3. Freedom from Cloud Accounts and Data Tracking</h2>
+<p>First-generation RSS readers like Google Reader, and hosted cloud readers like Feedly, introduced cloud synchronization at the cost of your privacy. Your reading habits, click rates, and personal topic preferences were logged on company servers.</p>
+<p>Modern readers like <strong>Curated Feeds</strong> take an anti-surveillance stance: all subscriptions, saved articles, and triage histories live 100% locally on your phone's SQLite database. There are no user profiles, no advertising SDKs, and no tracking cookies.</p>
+<h2>4. Card-Based Triage: Replacing the Infinite Scroll</h2>
+<p>Legacy RSS readers suffered from one major flaw: the intimidating, endless unread list. Staring at an unread counter of "999+" triggered guilt and backlog anxiety.</p>
+<p>Curated Feeds solves this by reimagining RSS as a deck of physical cards: read the headline and excerpt, swipe right to save it to your offline archive, or swipe left to mark it done. A batch of 30 new articles can be triaged in under three minutes.</p>
+<h2>How to Start Your RSS Diet in 2027</h2>
+<p>Getting started takes less than five minutes:</p>
+<ol>
+<li>Download a privacy-first reader like Curated Feeds on Android.</li>
+<li>Import a pre-built starter collection from our <a href="/opml/">Curated OPML Directory</a> or browse our list of the <a href="/directory/">50 Best Publication Feeds</a>.</li>
+<li>Set a firm reading block: triage your queue for five minutes in the morning, read your saved queue offline during commutes, and close the app when you are done.</li>
+</ol>
+<p>Reading the internet can be calm, intentional, and deeply informative again. RSS is the tool that makes it possible.</p>
+    `,
+  },
+  'read-newsletters-via-rss-2027': {
+    schemaType: 'HowTo',
+    body: `
+<p><em>Reclaim your email inbox in 2027 by extracting clean RSS and Atom feeds from Substack, Beehiiv, Ghost, and Medium.</em></p>
+<p>Email newsletters were supposed to save independent journalism, but they ended up breaking email. When you subscribe to fifteen newsletters across tech, business, and culture, your personal inbox turns into a wall of unread essays. Urgent messages from colleagues and family get lost beneath weekly digests and promotional discounts.</p>
+<p>Email is designed for bidirectional correspondence; it is a terrible reading interface. The smart solution in 2027 is to <strong>read all your newsletters in an RSS reader</strong>, keeping your inbox clean and reserving reading for designated focus blocks.</p>
+<h2>Platform-by-Platform RSS Extraction Guide</h2>
+<h3>1. Substack Publications</h3>
+<p>Substack natively supports RSS on every publication. Simply append <code>/feed</code> to any publication address:</p>
+<p><code>https://publicationname.substack.com/feed</code></p>
+<p>For custom domain Substack publications (e.g., <code>newsletter.pragmaticengineer.com</code>), the rule is identical: append <code>/feed</code> to the root domain.</p>
+<h3>2. Beehiiv Newsletters</h3>
+<p>Beehiiv is one of the fastest-growing newsletter platforms. Every Beehiiv publication provides a standard RSS 2.0 feed at:</p>
+<p><code>https://publication.beehiiv.com/feed</code></p>
+<p>If the creator uses a custom domain (e.g., <code>milkroad.com</code>), the feed endpoint is located at <code>https://customdomain.com/feed</code>.</p>
+<h3>3. Ghost Publications</h3>
+<p>Ghost powers thousands of independent magazines and newsletters (such as 404 Media and The Browser). Ghost serves its XML feed from the <code>/rss/</code> directory:</p>
+<p><code>https://domain.com/rss/</code></p>
+<h3>4. Medium Authors & Publications</h3>
+<p>To follow any writer or topic on Medium without logging into a Medium account:</p>
+<ul>
+<li><strong>Author Feed:</strong> <code>https://medium.com/feed/@username</code></li>
+<li><strong>Publication Feed:</strong> <code>https://medium.com/feed/publication-slug</code></li>
+<li><strong>Topic Feed:</strong> <code>https://medium.com/feed/tag/technology</code></li>
+</ul>
+<h3>5. Buttondown Newsletters</h3>
+<p>Buttondown is popular among software engineers and technical essayists. Its feed format is:</p>
+<p><code>https://buttondown.email/username/rss</code></p>
+<h2>What About Paid Subscription Posts?</h2>
+<p>For publications with a paid tier (like Substack or Ghost), public RSS feeds deliver the complete text of all free issues. If an issue is locked behind a paywall, the feed displays the public preview and opening paragraphs. This lets you monitor top writers freely and only open your browser when you want to purchase a specific edition.</p>
+<h2>Why Read Newsletters in Curated Feeds?</h2>
+<p>When you read newsletters in Curated Feeds on Android:</p>
+<ul>
+<li><strong>No email tracking pixels:</strong> Publishers cannot track when you opened the email, what links you clicked, or your physical IP location.</li>
+<li><strong>Zero email clutter:</strong> Your personal inbox returns to Inbox Zero.</li>
+<li><strong>Offline reading:</strong> Newsletters cache automatically to your phone so you can read lengthy 4,000-word analyses on flights or subway commutes without cell service.</li>
+</ul>
+<p>Test any newsletter address in our free <a href="/tools/find-feed/">RSS Feed Finder</a> to discover its feed URL in seconds.</p>
+    `,
+  },
+  'minimalist-android-setup-2027': {
+    schemaType: 'Article',
+    body: `
+<p><em>How to turn your Android smartphone into a calm, distraction-free reading tool in 2027 using digital minimalism and card-based RSS.</em></p>
+<p>The modern smartphone is designed by behavioral psychologists to hijack attention. Variable reward schedules, red notification badges, algorithmic news feeds (like Google Discover), and auto-playing videos are engineered to pull you into subconscious doomscrolling loops.</p>
+<p>A growing number of developers, designers, and knowledge workers in 2027 are embracing <strong>digital minimalism</strong>: turning their smartphones from dopamine slots into calm, utility-first tools.</p>
+<p>Here is the four-step setup to declutter your Android reading habit.</p>
+<h2>Step 1: Disable Google Discover & Notification Badges</h2>
+<p>The default home screen on most Android devices includes Google Discover on the leftmost pane. Discover is an algorithmic engagement engine that promotes clickbait headlines and celebrity gossip based on your browsing history.</p>
+<ul>
+<li>Long-press on your home screen, tap <strong>Home Settings</strong>, and toggle off <strong>Google Discover</strong> (or "Show Google app").</li>
+<li>Go to <strong>Settings &gt; Notifications &gt; App icon badges</strong> and turn off number badges to stop anxiety-inducing badge accumulation.</li>
+</ul>
+<h2>Step 2: Replace Social News with Intentional RSS</h2>
+<p>When you delete social media apps from your phone, you still need a way to stay informed about your industry, world news, and hobbies. This is where RSS excels.</p>
+<p>Instead of receiving random notifications throughout the day, choose 15 to 25 high-signal sources. Group them into three clean categories:</p>
+<ul>
+<li><strong>Industry:</strong> Technical engineering logs, research papers, and startup developments.</li>
+<li><strong>Perspective:</strong> Deep long-form essays and strategic analyses (like Stratechery or MIT Tech Review).</li>
+<li><strong>World:</strong> A single reliable wire service (like Reuters or BBC News) for global events.</li>
+</ul>
+<h2>Step 3: The Power of Card-Based Triage</h2>
+<p>Traditional RSS readers look like email inboxes: long vertical lists of unread headlines with intimidating counts. This leads right back to information overload.</p>
+<p>Curated Feeds approaches reading differently with a tactile <strong>card stack interface</strong>:</p>
+<ul>
+<li>Each article is presented as a clean physical card.</li>
+<li><strong>Swipe right</strong> to save an article to your permanent reading queue.</li>
+<li><strong>Swipe left</strong> to mark it done and remove it from view.</li>
+<li>No unread badge counts, no guilt, and no infinite scroll. Once your card stack is empty, you are finished.</li>
+</ul>
+<h2>Step 4: Take Advantage of True Offline Caching</h2>
+<p>One of the best habits for digital focus is reading in airplane mode or during disconnected moments. Curated Feeds downloads and caches the full article body on your device the moment a feed refreshes.</p>
+<p>Whether you are on a morning subway commute, a long flight, or sitting in a quiet cafe without Wi-Fi, your saved articles are immediately available with zero loading spinners or network delays.</p>
+<h2>A Calmer Relationship with Technology</h2>
+<p>Your smartphone is a tool that should serve your life, not consume your hours. By replacing algorithmic feeds with Curated Feeds, you regain sovereignty over what you consume every day.</p>
+<p>Download the free, ad-free APK today and experience calm, focused reading on Android.</p>
+    `,
+  },
 };
+
 
 

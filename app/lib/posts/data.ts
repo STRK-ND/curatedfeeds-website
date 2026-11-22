@@ -290,6 +290,73 @@ const POST_META: PostMeta[] = [
       'open source release tracker 2027',
     ],
   },
+  {
+    slug: 'why-rss-is-making-a-comeback-2027',
+    title: 'Why RSS Is Making a Massive Comeback in 2027 (The Antidote to Algorithmic Fatigue)',
+    description:
+      'Why millions of readers are abandoning algorithmic feeds and AI content slop to return to open, decentralized RSS in 2027. Regain ownership over your reading.',
+    excerpt:
+      'Algorithmic fatigue, synthetic AI content, and platform lock-in are driving a massive RSS revival. Why intentional, chronological reading is winning again.',
+    datePublished: '2026-11-22',
+    dateModified: '2026-11-22',
+    category: 'Focus',
+    tags: ['RSS', 'Focus', 'Algorithms', '2027'],
+    keywords: [
+      'why RSS is making a comeback 2027',
+      'RSS revival 2027',
+      'algorithmic fatigue news 2027',
+      'stop doomscrolling with RSS',
+      'open web RSS 2027',
+      'RSS vs AI algorithms',
+      'privacy first news reading',
+      'decentralized web news reader',
+      'return to RSS feeds',
+    ],
+  },
+  {
+    slug: 'read-newsletters-via-rss-2027',
+    title: 'How to Read Email Newsletters via RSS in 2027 (Substack, Beehiiv, & Ghost)',
+    description:
+      'Reclaim your email inbox in 2027 by extracting clean RSS feeds from Substack, Beehiiv, Ghost, Medium, and Buttondown. Read long-form essays with zero email clutter.',
+    excerpt:
+      'Free your email inbox: step-by-step extraction guide to read Substack, Beehiiv, Ghost, and Medium newsletters in your RSS reader without inbox clutter.',
+    datePublished: '2026-11-22',
+    dateModified: '2026-11-22',
+    category: 'How-to',
+    tags: ['RSS', 'How-to', 'Newsletters', 'Substack', 'Beehiiv', '2027'],
+    keywords: [
+      'read newsletters in RSS 2027',
+      'beehiiv rss feed url',
+      'ghost newsletter rss 2027',
+      'substack rss feeds',
+      'read newsletters without email inbox',
+      'inbox zero with RSS reader',
+      'how to follow newsletters in feed reader',
+      'newsletter to rss guide',
+    ],
+  },
+  {
+    slug: 'minimalist-android-setup-2027',
+    title: 'The Minimalist Android Setup for 2027: Digital Decluttering with Card-Based RSS',
+    description:
+      'How to turn your Android smartphone into a calm, distraction-free reading tool in 2027 using digital minimalism, Google Discover removal, and card-based RSS triage.',
+    excerpt:
+      'Turn your Android smartphone from a dopamine slot machine into an intentional reading tool: disable Discover, banish notification badges, and triage with RSS cards.',
+    datePublished: '2026-11-22',
+    dateModified: '2026-11-22',
+    category: 'Productivity',
+    tags: ['RSS', 'Productivity', 'Android', 'Minimalism', '2027'],
+    keywords: [
+      'minimalist android setup 2027',
+      'digital minimalism android phone',
+      'distraction free android apps 2027',
+      'calm phone setup android',
+      'replace google discover with RSS',
+      'mindful smartphone reading 2027',
+      'offline android news reader',
+      'ad free android apps list',
+    ],
+  },
 ];
 
 const contentFor = (slug: string): PostContent => {
