@@ -1,157 +1,99 @@
-# Curated Feeds landing page
+<div align="center">
 
-Marketing site and blog for the Curated Feeds RSS reader app. It is a static-exported Next.js site: ink ground, cream text, one gold accent, Instrument Serif display and Inter Tight body.
+# Curated Feeds
 
-## Tech stack
+**A fast, privacy-first RSS reader for Android built for focused, distraction-free reading.**
 
-- Next.js 16.1.6 with the App Router and `output: 'export'`
-- React 19.2.3
-- TypeScript
-- Tailwind CSS 4 through PostCSS. The design system itself is hand-written CSS in `app/`.
-- Agentation for development tooling
+[![Platform](https://img.shields.io/badge/Platform-Android_8.0+-3DDC84.svg?style=flat&logo=android&logoColor=white)](https://curatedfeeds.web.app/)
+[![Pricing](https://img.shields.io/badge/Price-100%25_Free_Forever-blue.svg)](https://curatedfeeds.web.app/why/)
+[![APK Size](https://img.shields.io/badge/APK_Size-~67_MB-orange.svg)](https://pub-2ff655291e5746ad8841a0e14a198544.r2.dev/CuratedFeeds.apk)
+[![Website](https://img.shields.io/badge/Website-curatedfeeds.web.app-brightgreen.svg)](https://curatedfeeds.web.app/)
+[![OPML Ready](https://img.shields.io/badge/OPML-2.0_Compatible-blueviolet.svg)](https://curatedfeeds.web.app/opml/)
 
-## Features
+[Official Website](https://curatedfeeds.web.app/) • [Download APK](https://pub-2ff655291e5746ad8841a0e14a198544.r2.dev/CuratedFeeds.apk) • [Uptodown Store](https://curated-feeds.en.uptodown.com/android) • [RSS Directory](https://curatedfeeds.web.app/directory/) • [OPML Bundles](https://curatedfeeds.web.app/opml/)
 
-- One token set in `app/tokens.css`, with no dark/light flip
-- One gutter and section-gap scale, from `clamp()` values, across every page
-- GSAP motion in `app/lib/motion`, one scene per page section, with reduced-motion support
-- JSON-LD for the app, FAQ, breadcrumbs and articles, built in `app/lib/seo.ts`
-- A Markdown twin for every page, written by `scripts/build-markdown.mjs`
-- `feed.xml`, `manifest.webmanifest` and `sitemap.xml` generated from `app/lib/site.ts` and `app/lib/posts/data.ts`
+</div>
 
-## Installation
+---
+
+## ⚡ What is Curated Feeds?
+
+Curated Feeds replaces the endless algorithmic scroll with an intentional deck of cards:
+- **Card-Based Triage:** Swipe right to save an article, swipe left to mark it done.
+- **No Account Required:** Feeds, saved articles, and reading history stay 100% on your device.
+- **Zero Ads & Zero Tracking:** No trackers, no ad networks, no paywall popups.
+- **Full Offline Caching:** Articles cache on first read so you can read uninterrupted in flights, subways, and commutes.
+- **Built for Android:** Written in Flutter & Dart for fast, fluid performance on Android 8.0+.
+
+---
+
+## 📥 Downloads & Distribution
+
+- **Direct APK (Recommended):** [Download Curated Feeds APK v1.2.0 (~67 MB)](https://pub-2ff655291e5746ad8841a0e14a198544.r2.dev/CuratedFeeds.apk)
+- **Uptodown App Store:** [Curated Feeds on Uptodown](https://curated-feeds.en.uptodown.com/android)
+- **Minimum Requirements:** Android 8.0 (Oreo) or higher.
+
+---
+
+## 🌐 Web Tools & Curated Resources
+
+Curated Feeds also publishes free tools and verified RSS resources for the open web:
+
+- 🔍 **[RSS Feed Finder Tool](https://curatedfeeds.web.app/tools/find-feed/):** Scan any website address to discover hidden RSS, Atom, and RDF feed URLs instantly.
+- 📁 **[Curated OPML Feed Bundles (2027)](https://curatedfeeds.web.app/opml/):** Pre-packaged OPML 2.0 XML collections for 1-click import into Curated Feeds, Feedly, Inoreader, or NetNewsWire:
+  - [Top 50 Global Publications OPML](https://curatedfeeds.web.app/opml/all-50-publications.opml)
+  - [Tech & Startups OPML Bundle](https://curatedfeeds.web.app/opml/tech-startups.opml)
+  - [AI & Machine Learning OPML Bundle](https://curatedfeeds.web.app/opml/ai-machine-learning.opml)
+  - [Cybersecurity & InfoSec OPML Bundle](https://curatedfeeds.web.app/opml/cybersecurity-2027.opml)
+  - [Developer & Architecture OPML Bundle](https://curatedfeeds.web.app/opml/developer-engineering.opml)
+  - [Crypto & Web3 Protocols OPML](https://curatedfeeds.web.app/opml/crypto-web3.opml)
+- 📰 **[50 Best Publications RSS Directory (2027)](https://curatedfeeds.web.app/directory/):** Verified feed endpoints for The Verge, BBC, Reuters, NYT, Wired, Nature, TechCrunch, Ars Technica, and more.
+- 🛠️ **[Platform RSS Extraction Guides](https://curatedfeeds.web.app/tools/find-feed/):** Step-by-step extraction guides for [Substack](https://curatedfeeds.web.app/tools/find-feed/substack/), [Medium](https://curatedfeeds.web.app/tools/find-feed/medium/), [YouTube](https://curatedfeeds.web.app/tools/find-feed/youtube/), [Reddit](https://curatedfeeds.web.app/tools/find-feed/reddit/), [Ghost](https://curatedfeeds.web.app/tools/find-feed/ghost/), [GitHub](https://curatedfeeds.web.app/tools/find-feed/github/), [Dev.to](https://curatedfeeds.web.app/tools/find-feed/dev-to/), and [Bluesky](https://curatedfeeds.web.app/tools/find-feed/bluesky/).
+- ⚖️ **[Honest Head-to-Head Comparisons](https://curatedfeeds.web.app/why/):**
+  - [Curated Feeds vs Feedly](https://curatedfeeds.web.app/why/feedly/)
+  - [Curated Feeds vs Inoreader](https://curatedfeeds.web.app/why/inoreader/)
+  - [Curated Feeds vs Feeder](https://curatedfeeds.web.app/why/feeder/)
+  - [Curated Feeds vs FeedFlow](https://curatedfeeds.web.app/why/feedflow/)
+  - [Curated Feeds vs Read You](https://curatedfeeds.web.app/why/read-you/)
+  - [Curated Feeds vs NewsBlur](https://curatedfeeds.web.app/why/newsblur/)
+
+---
+
+## 💻 Website Tech Stack
+
+The [curatedfeeds.web.app](https://curatedfeeds.web.app/) website is a statically exported Next.js web application:
+
+- **Framework:** Next.js 16 (Turbopack SSG export)
+- **UI:** React 19, TypeScript, Tailwind CSS 4, Custom Design System
+- **SEO & Indexing:** Complete JSON-LD structured data (`SoftwareApplication`, `TechArticle`, `CollectionPage`, `FAQPage`), XML Sitemap, IndexNow Protocol
+- **AI Readiness:** Markdown sibling mirrors for every route + `llms.txt` and `llms-full.txt`
+
+### Local Development
 
 ```bash
-git clone https://github.com/yourusername/curated-feeds-landing.git
-cd curated-feeds-landing
+git clone https://github.com/STRK-ND/curatedfeeds-website.git
+cd curatedfeeds-website
 npm install
 npm run dev
 ```
 
-`npm run dev:agentation` starts the dev server with Agentation attached.
-
-## Build and deploy
+### Build & Static Export
 
 ```bash
 npm run build
 ```
 
-`build` runs `next build`, then writes the Markdown twins and `out/llms-full.txt`. The static export lands in `out/`.
+Exports all 115 static pages and markdown twins into `out/`.
 
-### Deploy to Agentation.dev
-
-This project is configured for https://curated-feeds.agentation.dev.
+### Submit to Search Engines (IndexNow)
 
 ```bash
-npm install -g agentation
-agentation login
-agentation deploy
+npm run indexnow
 ```
 
-### Deploy to Vercel
+---
 
-```bash
-npm install -g vercel
-vercel
-```
+## 📄 License & Attribution
 
-## Project structure
-
-```
-curated-feeds-landing/
-├── app/
-│   ├── layout.tsx          # Root layout, metadata, fonts: Inter Tight and Instrument Serif
-│   ├── page.tsx            # Landing page (hero, features, how-it-works, preview, FAQ, download)
-│   ├── globals.css         # The design system: tokens, components, pages, responsive
-│   ├── sources/            # Starter-feed directory
-│   ├── why/                # Comparison against Feedly, Inoreader and NetNewsWire
-│   ├── use-cases/          # Reader profiles mapped to features
-│   ├── changelog/          # Release history
-│   ├── press/              # Press kit
-│   ├── about/  privacy/  screenshots/
-│   ├── blog/ + blog/[slug] # Blog index and posts
-│   ├── not-found.tsx       # Branded 404
-│   ├── components/         # PageShell, Nav, Footer, FaqList, analytics
-│   ├── lib/                # site.ts (URL + page metadata), nav.ts, seo.ts (JSON-LD), posts/, motion/
-│   ├── feed.xml/           # RSS feed, generated from POSTS
-│   ├── manifest.webmanifest/  # PWA manifest, generated from site.ts
-│   └── sitemap.ts
-├── public/                 # Static assets (icons, screenshots, llms.txt)
-├── out/                    # Static export (Firebase hosting root)
-├── scripts/build-markdown.mjs   # A Markdown twin for each page, at the page URL plus .md
-├── scripts/build-llms-full.mjs  # out/llms-full.txt, generated from those twins
-└── package.json / tsconfig.json / firebase.json
-```
-
-## Routes
-
-Every route below is prerendered. `sitemap.xml` and `feed.xml` come from the same data.
-
-```
-/
-/sources/
-/why/  /why/feedly/  /why/inoreader/
-/use-cases/
-/changelog/
-/press/
-/about/  /privacy/  /screenshots/
-/tools/find-feed/
-/blog/
-/blog/<slug>/   six posts
-```
-
-## Design system
-
-### Colours
-
-- Ink `#0b0a09`: page ground
-- Cream `#f4ece0`: body text
-- Gold `#d9a566`: the single accent
-- Rose `#ff6b9d`: the product mark
-
-### Type
-
-- Display: Instrument Serif, 400, italic for emphasis
-- Body: Inter Tight
-- Labels and meta: uppercase Inter Tight with letter spacing
-
-`next/font` self-hosts both families and sets `--font-serif-web` and `--font-sans-web` on `<html>`. `app/tokens.css` reads those variables and keeps the plain family names as fallbacks.
-
-### Spacing
-
-From `--space-3xs`, 2px, to `--space-4xl`, 144px. Three section gaps and one container width sit on top.
-
-## Development with Agentation
-
-Agentation adds a live preview at agentation.dev, a browser overlay for annotations, and an MCP server. It is loaded only when `NODE_ENV` is `development`.
-
-```bash
-npm run dev:agentation   # dev server with Agentation
-agentation deploy        # publish a preview
-agentation logs          # deployment logs
-agentation ls            # list deployments
-```
-
-## Performance
-
-What the build does today:
-
-- Static HTML for every route, with no server render at request time
-- Fonts self-hosted through `next/font`, so no request goes to fonts.googleapis.com
-- A responsive WebP hero at four widths, with the JPEG as the fallback
-- GSAP and the Firebase SDK loaded with dynamic `import()`, off the critical path
-- React Compiler enabled in `next.config.ts`
-
-Run Lighthouse against the deployed site for current numbers.
-
-## Browser support
-
-Current Chrome, Firefox, Safari and Edge. The layout uses CSS grid, `clamp()` and `svh` units.
-
-## Licence
-
-The written content on the site is published under CC BY 4.0, as stated on `/about/`. The Curated Feeds name and logo stay trademarks of the project.
-
-## Contributing
-
-Open an issue or a pull request.
+Built with focus by **Rajat Kashyap** ([rajatkashyap.com](https://rajatkashyap.com)).  
+© 2026 Curated Feeds. All rights reserved.
