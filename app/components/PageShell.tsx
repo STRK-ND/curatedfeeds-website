@@ -5,6 +5,7 @@ import Nav from './Nav';
 import Footer from './Footer';
 import Breadcrumbs from './Breadcrumbs';
 import { StructuredData, type LdNode } from './StructuredData';
+import StickyDownloadBar from './StickyDownloadBar';
 
 type Props = {
   /** The visible trail. The matching BreadcrumbList JSON-LD is emitted here too. */
@@ -13,6 +14,7 @@ type Props = {
   data?: LdNode | LdNode[];
   mainClass?: string;
   navOverlay?: boolean;
+  hideStickyBar?: boolean;
   children: ReactNode;
 };
 
@@ -25,6 +27,7 @@ export default function PageShell({
   data = [],
   mainClass,
   navOverlay = false,
+  hideStickyBar = false,
   children,
 }: Props) {
   const nodes = [
@@ -41,6 +44,7 @@ export default function PageShell({
         {children}
       </main>
       <Footer />
+      {!hideStickyBar && <StickyDownloadBar />}
     </>
   );
 }

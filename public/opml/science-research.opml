@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Science &amp; Aerospace Research RSS Feeds (2027)</title>
+    <dateCreated>Sun, 22 Nov 2026 00:00:00 GMT</dateCreated>
+    <docs>http://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+    <outline text="Science &amp; Space" title="Science &amp; Space">
+      <outline type="rss" text="Nature News" title="Nature News" xmlUrl="https://www.nature.com/nature.rss" description="Global scientific breakthroughs and research papers across physics, biology, and chemistry." />
+      <outline type="rss" text="NASA Breaking News" title="NASA Breaking News" xmlUrl="https://www.nasa.gov/rss/dyn/breaking_news.rss" description="Artemis missions, James Webb telescope findings, and Mars rover discoveries." />
+      <outline type="rss" text="New Scientist" title="New Scientist" xmlUrl="https://www.newscientist.com/feed/home/" description="Accessible science journalism explaining how discoveries impact humanity." />
+      <outline type="rss" text="ScienceDaily" title="ScienceDaily" xmlUrl="https://www.sciencedaily.com/rss/top/science.xml" description="Curated university research releases across medicine, environment, and technology." />
+    </outline>
+
+  </body>
+</opml>

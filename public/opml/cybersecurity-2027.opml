@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Cybersecurity &amp; InfoSec RSS Feeds (2027)</title>
+    <dateCreated>Sun, 22 Nov 2026 00:00:00 GMT</dateCreated>
+    <docs>http://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+    <outline text="Cybersecurity" title="Cybersecurity">
+      <outline type="rss" text="Krebs on Security" title="Krebs on Security" xmlUrl="https://krebsonsecurity.com/feed/" description="Brian Krebs delivers breaking investigative reporting on cybercrime syndicates and enterprise breaches." />
+      <outline type="rss" text="Schneier on Security" title="Schneier on Security" xmlUrl="https://www.schneier.com/feed/atom/" description="Bruce Schneier on security philosophy, cryptography developments, and surveillance policy." />
+      <outline type="rss" text="The Hacker News" title="The Hacker News" xmlUrl="https://feeds.feedburner.com/TheHackersNews" description="Breaking vulnerability advisories, zero-day alerts, and cyber attack coverage." />
+      <outline type="rss" text="BleepingComputer" title="BleepingComputer" xmlUrl="https://www.bleepingcomputer.com/feed/" description="Ransomware updates, patch Tuesday analyses, and technical guides." />
+      <outline type="rss" text="Dark Reading" title="Dark Reading" xmlUrl="https://www.darkreading.com/rss.xml" description="Enterprise security strategy, cloud defense architectures, and vulnerability management." />
+      <outline type="rss" text="Troy Hunt (Have I Been Pwned)" title="Troy Hunt (Have I Been Pwned)" xmlUrl="https://www.troyhunt.com/rss/" description="Data breach analyses and security hygiene from the creator of HIBP." />
+    </outline>
+
+  </body>
+</opml>

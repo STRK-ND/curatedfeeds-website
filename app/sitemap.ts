@@ -14,6 +14,7 @@ const STATIC_PATHS = [
   '/',
   '/tools/find-feed/',
   '/directory/',
+  '/opml/',
   '/screenshots/',
   '/blog/',
   '/about/',

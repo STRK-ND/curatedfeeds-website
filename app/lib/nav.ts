@@ -28,6 +28,7 @@ export const FOOTER_NAV: NavLink[] = [
   { name: 'Dev feeds (2027)', url: '/sources/developer/' },
   { name: 'Feed finder', url: '/tools/find-feed/' },
   { name: 'RSS Directory (2027)', url: '/directory/' },
+  { name: 'OPML Bundles (2027)', url: '/opml/' },
   { name: 'FAQ', url: '/#faq' },
   { name: 'Why Curated Feeds', url: '/why/' },
   { name: 'vs Feedly', url: '/why/feedly/' },

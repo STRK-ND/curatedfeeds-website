@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Crypto &amp; Web3 Protocol RSS Feeds (2027)</title>
+    <dateCreated>Sun, 22 Nov 2026 00:00:00 GMT</dateCreated>
+    <docs>http://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+    <outline text="Crypto &amp; Web3" title="Crypto &amp; Web3">
+      <outline type="rss" text="CoinDesk" title="CoinDesk" xmlUrl="https://www.coindesk.com/arc/outboundfeeds/rss/" description="Global regulatory coverage, institutional market dynamics, and blockchain developments." />
+      <outline type="rss" text="Cointelegraph" title="Cointelegraph" xmlUrl="https://cointelegraph.com/rss" description="Cryptocurrency market news, policy reports, and technology deep-dives." />
+      <outline type="rss" text="Vitalik Buterin’s Website" title="Vitalik Buterin’s Website" xmlUrl="https://vitalik.eth.limo/feed.xml" description="Foundational essays on Ethereum roadmap, cryptoeconomics, and decentralized governance." />
+      <outline type="rss" text="Bitcoin Magazine" title="Bitcoin Magazine" xmlUrl="https://bitcoinmagazine.com/.rss/full/" description="Deep technical and economic analysis of Bitcoin core development and Layer 2 adoption." />
+      <outline type="rss" text="Bankless" title="Bankless" xmlUrl="https://www.bankless.com/rss/feed" description="DeFi protocols, on-chain metrics, and crypto wealth management." />
+    </outline>
+
+  </body>
+</opml>

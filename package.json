@@ -6,11 +6,12 @@
     "dev": "next dev",
     "dev:agentation": "npx agentation dev",
     "agentation": "npx agentation",
-    "build": "next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs",
+    "build": "node --experimental-strip-types scripts/generate-opml.mjs && next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs",
     "start": "next start",
     "lint": "eslint",
-    "vercel-build": "next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs",
-    "export": "next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs"
+    "indexnow": "node --experimental-strip-types scripts/ping-indexnow.mjs",
+    "vercel-build": "node --experimental-strip-types scripts/generate-opml.mjs && next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs",
+    "export": "node --experimental-strip-types scripts/generate-opml.mjs && next build && node scripts/build-markdown.mjs && node scripts/build-llms-full.mjs"
   },
   "dependencies": {
     "@firebase/performance": "^0.7.10",

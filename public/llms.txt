@@ -9,6 +9,7 @@
 - [Screenshots](https://curatedfeeds.web.app/screenshots/): UI previews (home feed, swipe gestures)
 - [RSS Feed Finder](https://curatedfeeds.web.app/tools/find-feed/): finds any site's feed URL from its markup or common paths
 - [RSS Publication Directory](https://curatedfeeds.web.app/directory/): 50 verified publication feed endpoints across tech, news, and science
+- [OPML Bundles (2027)](https://curatedfeeds.web.app/opml/): pre-packaged XML bundles for tech, cybersecurity, AI, and global news for 1-click import into any reader
 - [Starter Feeds](https://curatedfeeds.web.app/sources/): curated high-signal feed directory with copy-paste URLs
 - [AI & ML RSS Feeds](https://curatedfeeds.web.app/sources/ai/): verified research labs, papers, and engineering logs
 - [Developer RSS Feeds](https://curatedfeeds.web.app/sources/developer/): software architecture, systems, and engineering blogs

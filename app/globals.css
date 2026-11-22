@@ -951,3 +951,116 @@ html.gsap [data-anim-child] { transition: none; }
 .finder__hints-note { margin: 0; color: var(--color-muted, #a39a8d); font-size: 0.875rem; }
 .tool-page .page-section ol { padding-left: 1.25rem; display: grid; gap: var(--space-sm); }
 .tool-page .page-section code { font-size: 0.875em; background: var(--color-surface, #14120f); padding: 0.1em 0.35em; }
+
+/* ── Mobile Sticky Download Bar ───────────────────────────────────────── */
+.sticky-download-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sticky-download-bar {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(20, 18, 15, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--color-line, #2a2620);
+    padding: var(--space-xs, 0.6rem) var(--space-sm, 1rem);
+    padding-bottom: max(var(--space-xs, 0.6rem), env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+    animation: stickySlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sticky-download-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xs, 0.5rem);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .sticky-download-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .sticky-download-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-ink, #f5f2eb);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sticky-download-sub {
+    font-size: 0.75rem;
+    color: var(--color-muted, #a39a8d);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sticky-download-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .sticky-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent, #e08a3c);
+    color: #14120f !important;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.45rem 0.85rem;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    min-height: 38px;
+    white-space: nowrap;
+  }
+
+  .sticky-download-btn:hover {
+    filter: brightness(1.1);
+  }
+
+  .sticky-download-close {
+    background: transparent;
+    border: none;
+    color: var(--color-muted, #a39a8d);
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sticky-download-close:hover {
+    color: var(--color-ink, #f5f2eb);
+  }
+
+  @keyframes stickySlideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+

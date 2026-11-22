@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Curated Feeds - 50 Best Global Publications (2027)</title>
+    <dateCreated>Sun, 22 Nov 2026 00:00:00 GMT</dateCreated>
+    <docs>http://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+    <outline text="Technology" title="Technology">
+      <outline type="rss" text="The Verge" title="The Verge" xmlUrl="https://www.theverge.com/rss/index.xml" htmlUrl="https://theverge.com" description="The Verge covers consumer technology, science, art, and culture. The official RSS feed delivers all headlines and feature stories without auto-playing video ads." />
+      <outline type="rss" text="The Verge - Tech" title="The Verge - Tech" xmlUrl="https://www.theverge.com/rss/tech/index.xml" htmlUrl="https://theverge.com" />
+      <outline type="rss" text="The Verge - Reviews" title="The Verge - Reviews" xmlUrl="https://www.theverge.com/rss/reviews/index.xml" htmlUrl="https://theverge.com" />
+      <outline type="rss" text="Ars Technica" title="Ars Technica" xmlUrl="https://feeds.arstechnica.com/arstechnica/index" htmlUrl="https://arstechnica.com" description="Ars Technica provides the rigorous technical depth that mainstream tech journalism skips. The feed delivers complete summaries and article links." />
+      <outline type="rss" text="Ars Technica - Information Technology" title="Ars Technica - Information Technology" xmlUrl="https://feeds.arstechnica.com/arstechnica/technology-lab" htmlUrl="https://arstechnica.com" />
+      <outline type="rss" text="Ars Technica - Science" title="Ars Technica - Science" xmlUrl="https://feeds.arstechnica.com/arstechnica/science" htmlUrl="https://arstechnica.com" />
+      <outline type="rss" text="Engadget" title="Engadget" xmlUrl="https://www.engadget.com/rss.xml" htmlUrl="https://engadget.com" description="Engadget covers mobile hardware, audio equipment, home entertainment, and gaming tech." />
+      <outline type="rss" text="CNET" title="CNET" xmlUrl="https://www.cnet.com/rss/news/" htmlUrl="https://cnet.com" description="CNET tests consumer technology products to help people buy smart." />
+    </outline>
+    <outline text="Startups &amp; Tech" title="Startups &amp; Tech">
+      <outline type="rss" text="TechCrunch" title="TechCrunch" xmlUrl="https://techcrunch.com/feed/" htmlUrl="https://techcrunch.com" description="TechCrunch is the premier tech startup intelligence outlet. Follow every Series A announcement and founder move directly in your local feed reader." />
+      <outline type="rss" text="TechCrunch - Startups" title="TechCrunch - Startups" xmlUrl="https://techcrunch.com/category/startups/feed/" htmlUrl="https://techcrunch.com" />
+      <outline type="rss" text="TechCrunch - Venture Capital" title="TechCrunch - Venture Capital" xmlUrl="https://techcrunch.com/category/venture/feed/" htmlUrl="https://techcrunch.com" />
+    </outline>
+    <outline text="Technology &amp; Culture" title="Technology &amp; Culture">
+      <outline type="rss" text="Wired" title="Wired" xmlUrl="https://www.wired.com/feed/rss" htmlUrl="https://wired.com" description="Wired chronicles how technology alters culture, politics, and the global economy. Subscribe cleanly to avoid intrusive subscription paywall modals." />
+      <outline type="rss" text="Wired - Business" title="Wired - Business" xmlUrl="https://www.wired.com/feed/category/business/latest/rss" htmlUrl="https://wired.com" />
+      <outline type="rss" text="Wired - Science" title="Wired - Science" xmlUrl="https://www.wired.com/feed/category/science/latest/rss" htmlUrl="https://wired.com" />
+    </outline>
+    <outline text="Developer" title="Developer">
+      <outline type="rss" text="Hacker News" title="Hacker News" xmlUrl="https://news.ycombinator.com/rss" htmlUrl="https://news.ycombinator.com" description="Hacker News surfaces high-signal links curated by global software practitioners and founders." />
+    </outline>
+    <outline text="World News" title="World News">
+      <outline type="rss" text="BBC News" title="BBC News" xmlUrl="https://feeds.bbci.co.uk/news/rss.xml" htmlUrl="https://bbc.com" description="BBC News delivers impartial international news reporting without advertising bias or sensationalism." />
+      <outline type="rss" text="BBC News - World" title="BBC News - World" xmlUrl="https://feeds.bbci.co.uk/news/world/rss.xml" htmlUrl="https://bbc.com" />
+      <outline type="rss" text="BBC News - Technology" title="BBC News - Technology" xmlUrl="https://feeds.bbci.co.uk/news/technology/rss.xml" htmlUrl="https://bbc.com" />
+      <outline type="rss" text="Associated Press" title="Associated Press" xmlUrl="https://apnews.com/feed" htmlUrl="https://apnews.com" description="The Associated Press produces essential investigative wire news used by thousands of global publications." />
+    </outline>
+    <outline text="World &amp; Markets" title="World &amp; Markets">
+      <outline type="rss" text="Reuters" title="Reuters" xmlUrl="https://www.reutersagency.com/feed/?best-topics=business-finance&amp;post_type=best" htmlUrl="https://reuters.com" description="Reuters is the trusted backbone of global financial journalism and factual wire news." />
+    </outline>
+    <outline text="World &amp; Opinion" title="World &amp; Opinion">
+      <outline type="rss" text="The Guardian" title="The Guardian" xmlUrl="https://www.theguardian.com/world/rss" htmlUrl="https://theguardian.com" description="The Guardian provides open, reader-funded journalism with extensive international and climate coverage." />
+      <outline type="rss" text="The Guardian - Technology" title="The Guardian - Technology" xmlUrl="https://www.theguardian.com/technology/rss" htmlUrl="https://theguardian.com" />
+      <outline type="rss" text="The Guardian - Environment" title="The Guardian - Environment" xmlUrl="https://www.theguardian.com/environment/rss" htmlUrl="https://theguardian.com" />
+    </outline>
+    <outline text="News &amp; Culture" title="News &amp; Culture">
+      <outline type="rss" text="The New York Times" title="The New York Times" xmlUrl="https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml" htmlUrl="https://nytimes.com" description="The New York Times offers comprehensive XML feeds across dozens of editorial sections." />
+      <outline type="rss" text="The New York Times - World" title="The New York Times - World" xmlUrl="https://rss.nytimes.com/services/xml/rss/nyt/World.xml" htmlUrl="https://nytimes.com" />
+      <outline type="rss" text="The New York Times - Technology" title="The New York Times - Technology" xmlUrl="https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml" htmlUrl="https://nytimes.com" />
+      <outline type="rss" text="The New York Times - Business" title="The New York Times - Business" xmlUrl="https://rss.nytimes.com/services/xml/rss/nyt/Business.xml" htmlUrl="https://nytimes.com" />
+    </outline>
+    <outline text="Business &amp; Finance" title="Business &amp; Finance">
+      <outline type="rss" text="The Wall Street Journal" title="The Wall Street Journal" xmlUrl="https://feeds.a.dj.com/rss/RSSWorldNews.xml" htmlUrl="https://wsj.com" description="WSJ delivers market-moving financial analysis, economic indicator data, and corporate reporting." />
+      <outline type="rss" text="The Wall Street Journal - Markets" title="The Wall Street Journal - Markets" xmlUrl="https://feeds.a.dj.com/rss/RSSMarketsMain.xml" htmlUrl="https://wsj.com" />
+      <outline type="rss" text="The Wall Street Journal - Technology" title="The Wall Street Journal - Technology" xmlUrl="https://feeds.a.dj.com/rss/RSSWSJD.xml" htmlUrl="https://wsj.com" />
+    </outline>
+    <outline text="Markets &amp; Finance" title="Markets &amp; Finance">
+      <outline type="rss" text="Bloomberg" title="Bloomberg" xmlUrl="https://www.bloomberg.com/feed/bview.xml" htmlUrl="https://bloomberg.com" description="Bloomberg covers macroeconomic policy, bond yields, stock movements, and global trade." />
+    </outline>
+    <outline text="Global Finance" title="Global Finance">
+      <outline type="rss" text="Financial Times" title="Financial Times" xmlUrl="https://www.ft.com/rss/home/uk" htmlUrl="https://ft.com" description="The Financial Times provides European and transatlantic economic reporting with analytical rigor." />
+    </outline>
+    <outline text="Business &amp; Wealth" title="Business &amp; Wealth">
+      <outline type="rss" text="Forbes" title="Forbes" xmlUrl="https://www.forbes.com/business/feed/" htmlUrl="https://forbes.com" description="Forbes covers entrepreneurship, investment trends, leadership lessons, and emerging tech." />
+    </outline>
+    <outline text="Business" title="Business">
+      <outline type="rss" text="Fortune" title="Fortune" xmlUrl="https://fortune.com/feed" htmlUrl="https://fortune.com" description="Fortune tracks large-cap corporations, CEO transitions, and business innovation." />
+    </outline>
+    <outline text="Global Affairs" title="Global Affairs">
+      <outline type="rss" text="The Economist" title="The Economist" xmlUrl="https://www.economist.com/rss" htmlUrl="https://economist.com" description="The Economist offers deep perspective on international affairs, monetary policy, and world business." />
+    </outline>
+    <outline text="Markets &amp; Business" title="Markets &amp; Business">
+      <outline type="rss" text="CNBC" title="CNBC" xmlUrl="https://www.cnbc.com/id/100003114/device/rss/rss.html" htmlUrl="https://cnbc.com" description="CNBC is the broadcast leader in day-to-day equities and consumer financial news." />
+    </outline>
+    <outline text="Investing &amp; Stocks" title="Investing &amp; Stocks">
+      <outline type="rss" text="MarketWatch" title="MarketWatch" xmlUrl="https://feeds.content.dowjones.io/public/rss/mw_topstories" htmlUrl="https://marketwatch.com" description="MarketWatch delivers accessible financial guidance and real-time market updates." />
+    </outline>
+    <outline text="Science" title="Science">
+      <outline type="rss" text="Nature" title="Nature" xmlUrl="https://www.nature.com/nature.rss" htmlUrl="https://nature.com" description="Nature is the world’s leading multidisciplinary science journal. Stay abreast of verified scientific milestones." />
+      <outline type="rss" text="Science Magazine" title="Science Magazine" xmlUrl="https://www.science.org/rss/news_current.xml" htmlUrl="https://science.org" description="Published by AAAS, Science covers cutting-edge findings in medicine, astronomy, and environmental science." />
+      <outline type="rss" text="Scientific American" title="Scientific American" xmlUrl="http://rss.sciam.com/ScientificAmerican-Global" htmlUrl="https://scientificamerican.com" description="Scientific American explains complex scientific principles with clarity and elegance." />
+    </outline>
+    <outline text="Technology &amp; Science" title="Technology &amp; Science">
+      <outline type="rss" text="MIT Technology Review" title="MIT Technology Review" xmlUrl="https://www.technologyreview.com/feed/" htmlUrl="https://technologyreview.com" description="Rigorous engineering reporting from a newsroom affiliated with MIT." />
+    </outline>
+    <outline text="Nature &amp; Science" title="Nature &amp; Science">
+      <outline type="rss" text="National Geographic" title="National Geographic" xmlUrl="https://www.nationalgeographic.com/pages/topic/latest-stories/rss" htmlUrl="https://nationalgeographic.com" description="National Geographic chronicles natural history, human cultures, and conservation." />
+    </outline>
+    <outline text="Space &amp; Astronomy" title="Space &amp; Astronomy">
+      <outline type="rss" text="NASA" title="NASA" xmlUrl="https://www.nasa.gov/rss/dyn/breaking_news.rss" htmlUrl="https://nasa.gov" description="Official NASA announcements regarding space exploration, solar science, and planetary orbiters." />
+    </outline>
+    <outline text="Web Design &amp; Dev" title="Web Design &amp; Dev">
+      <outline type="rss" text="Smashing Magazine" title="Smashing Magazine" xmlUrl="https://www.smashingmagazine.com/feed/" htmlUrl="https://smashingmagazine.com" description="Practical tutorials and deep explorations into web design, performance, and frontend architecture." />
+    </outline>
+    <outline text="Frontend &amp; CSS" title="Frontend &amp; CSS">
+      <outline type="rss" text="CSS-Tricks" title="CSS-Tricks" xmlUrl="https://css-tricks.com/feed/" htmlUrl="https://css-tricks.com" description="The ultimate knowledge base for CSS layouts, flexbox, CSS grid, and browser styling quirks." />
+    </outline>
+    <outline text="Web Design" title="Web Design">
+      <outline type="rss" text="A List Apart" title="A List Apart" xmlUrl="https://alistapart.com/feed/" htmlUrl="https://alistapart.com" description="A List Apart explores the design, development, and meaning of web content." />
+    </outline>
+    <outline text="Apple &amp; Tech" title="Apple &amp; Tech">
+      <outline type="rss" text="Daring Fireball" title="Daring Fireball" xmlUrl="https://daringfireball.net/feeds/main" htmlUrl="https://daringfireball.net" description="The premier independent voice on Apple, operating continuously since 2002." />
+    </outline>
+    <outline text="Apple" title="Apple">
+      <outline type="rss" text="MacRumors" title="MacRumors" xmlUrl="https://www.macrumors.com/macrumors.xml" htmlUrl="https://macrumors.com" description="Fast-paced reporting on iPhone, iPad, Mac, and Apple Watch hardware cycles." />
+      <outline type="rss" text="9to5Mac" title="9to5Mac" xmlUrl="https://9to5mac.com/feed/" htmlUrl="https://9to5mac.com" description="Comprehensive daily news covering Apple software releases and hardware lines." />
+    </outline>
+    <outline text="Android" title="Android">
+      <outline type="rss" text="Android Police" title="Android Police" xmlUrl="https://www.androidpolice.com/feed/" htmlUrl="https://androidpolice.com" description="The definitive news site for Android ecosystem enthusiasts, phone reviews, and Google software updates." />
+      <outline type="rss" text="Android Authority" title="Android Authority" xmlUrl="https://www.androidauthority.com/feed/" htmlUrl="https://androidauthority.com" description="In-depth camera benchmarks, battery life tests, and smartphone teardowns." />
+    </outline>
+    <outline text="Gaming" title="Gaming">
+      <outline type="rss" text="Polygon" title="Polygon" xmlUrl="https://www.polygon.com/rss/index.xml" htmlUrl="https://polygon.com" description="Polygon covers gaming narrative, studio features, and streaming entertainment." />
+      <outline type="rss" text="IGN" title="IGN" xmlUrl="https://feeds.feedburner.com/ign/all" htmlUrl="https://ign.com" description="The largest global entertainment and video game news network." />
+      <outline type="rss" text="Kotaku" title="Kotaku" xmlUrl="https://kotaku.com/rss" htmlUrl="https://kotaku.com" description="Kotaku covers video games, the people who make them, and gaming culture." />
+    </outline>
+    <outline text="PC Gaming" title="PC Gaming">
+      <outline type="rss" text="Rock Paper Shotgun" title="Rock Paper Shotgun" xmlUrl="https://www.rockpapershotgun.com/feed" htmlUrl="https://rockpapershotgun.com" description="Thoughtful PC gaming criticism, hardware guides, and independent game spotlights." />
+    </outline>
+    <outline text="Culture &amp; Politics" title="Culture &amp; Politics">
+      <outline type="rss" text="The Atlantic" title="The Atlantic" xmlUrl="https://www.theatlantic.com/feed/all/" htmlUrl="https://theatlantic.com" description="The Atlantic publishes consequential essays on democracy, ideas, and modern culture." />
+    </outline>
+    <outline text="Culture &amp; Fiction" title="Culture &amp; Fiction">
+      <outline type="rss" text="The New Yorker" title="The New Yorker" xmlUrl="https://www.newyorker.com/feed/everything" htmlUrl="https://newyorker.com" description="The New Yorker is renowned for deep investigative profiles, literary fiction, and criticism." />
+    </outline>
+    <outline text="Explainer Journalism" title="Explainer Journalism">
+      <outline type="rss" text="Vox" title="Vox" xmlUrl="https://www.vox.com/rss/index.xml" htmlUrl="https://vox.com" description="Vox unpacks complex policy debates and cultural phenomena with lucid explainers." />
+    </outline>
+    <outline text="Investigative Journalism" title="Investigative Journalism">
+      <outline type="rss" text="ProPublica" title="ProPublica" xmlUrl="https://feeds.propublica.org/propublica/main" htmlUrl="https://propublica.com" description="Nonprofit, independent newsroom dedicated to journalism in the public interest." />
+      <outline type="rss" text="The Intercept" title="The Intercept" xmlUrl="https://theintercept.com/feed/?rss" htmlUrl="https://theintercept.com" description="Fearless reporting on intelligence agencies, corporate corruption, and political power." />
+    </outline>
+    <outline text="Opinion &amp; Culture" title="Opinion &amp; Culture">
+      <outline type="rss" text="Slate" title="Slate" xmlUrl="https://slate.com/feeds/all.rss" htmlUrl="https://slate.com" description="Slate provides progressive commentary, Supreme Court analysis, and cultural podcasts." />
+    </outline>
+    <outline text="Politics" title="Politics">
+      <outline type="rss" text="Politico" title="Politico" xmlUrl="https://rss.politico.com/politics-news.xml" htmlUrl="https://politico.com" description="Politico is the insider playbook for national and international political news." />
+    </outline>
+    <outline text="Business &amp; Design" title="Business &amp; Design">
+      <outline type="rss" text="Fast Company" title="Fast Company" xmlUrl="https://www.fastcompany.com/latest/rss" htmlUrl="https://fastcompany.com" description="Fast Company focuses on forward-thinking business leaders, sustainable design, and innovative products." />
+    </outline>
+    <outline text="Entrepreneurship" title="Entrepreneurship">
+      <outline type="rss" text="Inc. Magazine" title="Inc. Magazine" xmlUrl="https://www.inc.com/rss/homepage.xml" htmlUrl="https://inc.com" description="Inc. publishes management tactics, scaling frameworks, and founder profiles." />
+    </outline>
+    <outline text="Enterprise Tech" title="Enterprise Tech">
+      <outline type="rss" text="ZDNet" title="ZDNet" xmlUrl="https://www.zdnet.com/news/rss.xml" htmlUrl="https://zdnet.com" description="ZDNet covers B2B software, enterprise hardware deployments, and CIO priorities." />
+    </outline>
+    <outline text="Tech &amp; Culture" title="Tech &amp; Culture">
+      <outline type="rss" text="Mashable" title="Mashable" xmlUrl="https://mashable.com/feeds/rss/all" htmlUrl="https://mashable.com" description="Mashable chronicles digital entertainment, social media trends, and tech culture." />
+    </outline>
+    <outline text="Productivity &amp; Tips" title="Productivity &amp; Tips">
+      <outline type="rss" text="Lifehacker" title="Lifehacker" xmlUrl="https://lifehacker.com/rss" htmlUrl="https://lifehacker.com" description="Lifehacker shares clever software tweaks, food hacks, and productivity techniques." />
+    </outline>
+
+  </body>
+</opml>

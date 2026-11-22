@@ -110,6 +110,7 @@ export default function Home() {
   return (
     <PageShell
       navOverlay
+      hideStickyBar
       data={[
         softwareApplicationLd(),
         mobileApplicationLd(),

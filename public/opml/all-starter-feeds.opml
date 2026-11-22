@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Curated Feeds - Master Starter Feeds OPML Collection (2027)</title>
+    <dateCreated>Sun, 22 Nov 2026 00:00:00 GMT</dateCreated>
+    <docs>http://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+    <outline text="Cybersecurity" title="Cybersecurity">
+      <outline type="rss" text="Krebs on Security" title="Krebs on Security" xmlUrl="https://krebsonsecurity.com/feed/" description="Brian Krebs delivers breaking investigative reporting on cybercrime syndicates and enterprise breaches." />
+      <outline type="rss" text="Schneier on Security" title="Schneier on Security" xmlUrl="https://www.schneier.com/feed/atom/" description="Bruce Schneier on security philosophy, cryptography developments, and surveillance policy." />
+      <outline type="rss" text="The Hacker News" title="The Hacker News" xmlUrl="https://feeds.feedburner.com/TheHackersNews" description="Breaking vulnerability advisories, zero-day alerts, and cyber attack coverage." />
+      <outline type="rss" text="BleepingComputer" title="BleepingComputer" xmlUrl="https://www.bleepingcomputer.com/feed/" description="Ransomware updates, patch Tuesday analyses, and technical guides." />
+      <outline type="rss" text="Dark Reading" title="Dark Reading" xmlUrl="https://www.darkreading.com/rss.xml" description="Enterprise security strategy, cloud defense architectures, and vulnerability management." />
+      <outline type="rss" text="Troy Hunt (Have I Been Pwned)" title="Troy Hunt (Have I Been Pwned)" xmlUrl="https://www.troyhunt.com/rss/" description="Data breach analyses and security hygiene from the creator of HIBP." />
+    </outline>
+    <outline text="Crypto &amp; Web3" title="Crypto &amp; Web3">
+      <outline type="rss" text="CoinDesk" title="CoinDesk" xmlUrl="https://www.coindesk.com/arc/outboundfeeds/rss/" description="Global regulatory coverage, institutional market dynamics, and blockchain developments." />
+      <outline type="rss" text="Cointelegraph" title="Cointelegraph" xmlUrl="https://cointelegraph.com/rss" description="Cryptocurrency market news, policy reports, and technology deep-dives." />
+      <outline type="rss" text="Vitalik Buterin’s Website" title="Vitalik Buterin’s Website" xmlUrl="https://vitalik.eth.limo/feed.xml" description="Foundational essays on Ethereum roadmap, cryptoeconomics, and decentralized governance." />
+      <outline type="rss" text="Bitcoin Magazine" title="Bitcoin Magazine" xmlUrl="https://bitcoinmagazine.com/.rss/full/" description="Deep technical and economic analysis of Bitcoin core development and Layer 2 adoption." />
+      <outline type="rss" text="Bankless" title="Bankless" xmlUrl="https://www.bankless.com/rss/feed" description="DeFi protocols, on-chain metrics, and crypto wealth management." />
+    </outline>
+    <outline text="Startups &amp; VC" title="Startups &amp; VC">
+      <outline type="rss" text="TechCrunch Startups" title="TechCrunch Startups" xmlUrl="https://techcrunch.com/category/startups/feed/" description="Early-stage seed and Series A funding announcements and accelerator demo days." />
+      <outline type="rss" text="Y Combinator Blog" title="Y Combinator Blog" xmlUrl="https://www.ycombinator.com/blog/feed" description="Advice on founder equity, customer development, and building high-growth tech companies." />
+      <outline type="rss" text="SaaStr" title="SaaStr" xmlUrl="https://www.saastr.com/feed/" description="Jason Lemkin and top SaaS leaders on scaling ARR, churn prevention, and sales leadership." />
+      <outline type="rss" text="Both Sides of the Table (Mark Suster)" title="Both Sides of the Table (Mark Suster)" xmlUrl="https://bothsidesofthetable.com/feed" description="Practical venture capital negotiations, governance, and early-stage scaling lessons." />
+      <outline type="rss" text="Andrew Chen" title="Andrew Chen" xmlUrl="https://andrewchen.com/feed/" description="Marketplaces, viral loops, network effects, and metrics-driven growth strategy." />
+    </outline>
+    <outline text="Indie Hackers" title="Indie Hackers">
+      <outline type="rss" text="Indie Hackers Articles" title="Indie Hackers Articles" xmlUrl="https://www.indiehackers.com/feed" description="Interviews with bootstrapped founders detailing transparent MRR milestones and marketing wins." />
+      <outline type="rss" text="Pieter Levels (levels.io)" title="Pieter Levels (levels.io)" xmlUrl="https://levels.io/rss/" description="Unfiltered building in public, nomadic entrepreneurship, and launching AI products." />
+      <outline type="rss" text="Rob Walling (Startups For the Rest of Us)" title="Rob Walling (Startups For the Rest of Us)" xmlUrl="https://robwalling.com/feed/" description="Pragmatic bootstrapping advice, SaaS pricing models, and TinySeed insights." />
+      <outline type="rss" text="Balsamiq - Life of a Software Company" title="Balsamiq - Life of a Software Company" xmlUrl="https://balsamiq.com/company/feed/" description="Peldi on running a calm, profitable, multi-million dollar software company with no VC." />
+    </outline>
+    <outline text="UX &amp; Product Design" title="UX &amp; Product Design">
+      <outline type="rss" text="Smashing Magazine" title="Smashing Magazine" xmlUrl="https://www.smashingmagazine.com/feed/" description="Web design, CSS architecture, accessibility compliance, and user testing." />
+      <outline type="rss" text="Nielsen Norman Group" title="Nielsen Norman Group" xmlUrl="https://www.nngroup.com/feed/rss/" description="Rigorous empirical usability benchmarks and UX research findings." />
+      <outline type="rss" text="Sidebar.io" title="Sidebar.io" xmlUrl="https://sidebar.io/feed.xml" description="Curated collection of the top 5 design links every single day." />
+      <outline type="rss" text="A List Apart" title="A List Apart" xmlUrl="https://alistapart.com/feed/" description="Thoughtful essays exploring the craft, meaning, and future of web design." />
+      <outline type="rss" text="UX Collective" title="UX Collective" xmlUrl="https://uxdesign.cc/feed" description="Practical case studies, design system tokens, and critique from practicing designers." />
+    </outline>
+    <outline text="Linux &amp; Open Source" title="Linux &amp; Open Source">
+      <outline type="rss" text="Phoronix" title="Phoronix" xmlUrl="https://www.phoronix.com/phoronix-rss.php" description="Authoritative hardware benchmarks, graphics drivers, and Linux kernel release notes." />
+      <outline type="rss" text="LWN.net" title="LWN.net" xmlUrl="https://lwn.net/headlines/rss" description="The premier technical journal covering the Linux kernel and developer community." />
+      <outline type="rss" text="OMG! Ubuntu!" title="OMG! Ubuntu!" xmlUrl="https://www.omgubuntu.co.uk/feed" description="Ubuntu distribution releases, GNOME desktop improvements, and Linux app reviews." />
+      <outline type="rss" text="Ars Technica Open Source" title="Ars Technica Open Source" xmlUrl="https://feeds.arstechnica.com/arstechnica/open-source" description="Open-source licensing controversies, foundation governance, and system software." />
+    </outline>
+    <outline text="Apple &amp; iOS" title="Apple &amp; iOS">
+      <outline type="rss" text="Daring Fireball by John Gruber" title="Daring Fireball by John Gruber" xmlUrl="https://daringfireball.net/feeds/main" description="The gold standard of Apple commentary, hardware nuance, and web culture." />
+      <outline type="rss" text="MacRumors" title="MacRumors" xmlUrl="https://www.macrumors.com/macrumors.xml" description="Breaking rumors, supply chain tracking, and iOS beta release tracking." />
+      <outline type="rss" text="9to5Mac" title="9to5Mac" xmlUrl="https://9to5mac.com/feed/" description="In-depth coverage of iPhone, iPad, Apple Silicon Macs, and visionOS." />
+      <outline type="rss" text="Six Colors by Jason Snell" title="Six Colors by Jason Snell" xmlUrl="https://sixcolors.com/feed/" description="Insightful editorial analysis of Apple business, podcasting tech, and Mac workflows." />
+      <outline type="rss" text="Swift.org Blog" title="Swift.org Blog" xmlUrl="https://www.swift.org/atom.xml" description="Official updates from the Swift language core team on language evolution." />
+    </outline>
+    <outline text="Gaming &amp; Game Dev" title="Gaming &amp; Game Dev">
+      <outline type="rss" text="Polygon" title="Polygon" xmlUrl="https://www.polygon.com/rss/index.xml" description="Video game reviews, entertainment features, and narrative game design analysis." />
+      <outline type="rss" text="Kotaku" title="Kotaku" xmlUrl="https://kotaku.com/rss" description="Gaming news, culture, and investigative reporting on studio conditions." />
+      <outline type="rss" text="Rock Paper Shotgun" title="Rock Paper Shotgun" xmlUrl="https://www.rockpapershotgun.com/feed" description="The premier destination for PC gaming, indie gems, and simulator games." />
+      <outline type="rss" text="Game Developer (Gamasutra)" title="Game Developer (Gamasutra)" xmlUrl="https://www.gamedeveloper.com/rss.xml" description="Technical post-mortems, game design theory, and engine programming insights." />
+    </outline>
+    <outline text="Science &amp; Space" title="Science &amp; Space">
+      <outline type="rss" text="Nature News" title="Nature News" xmlUrl="https://www.nature.com/nature.rss" description="Global scientific breakthroughs and research papers across physics, biology, and chemistry." />
+      <outline type="rss" text="NASA Breaking News" title="NASA Breaking News" xmlUrl="https://www.nasa.gov/rss/dyn/breaking_news.rss" description="Artemis missions, James Webb telescope findings, and Mars rover discoveries." />
+      <outline type="rss" text="New Scientist" title="New Scientist" xmlUrl="https://www.newscientist.com/feed/home/" description="Accessible science journalism explaining how discoveries impact humanity." />
+      <outline type="rss" text="ScienceDaily" title="ScienceDaily" xmlUrl="https://www.sciencedaily.com/rss/top/science.xml" description="Curated university research releases across medicine, environment, and technology." />
+    </outline>
+    <outline text="Climate &amp; Cleantech" title="Climate &amp; Cleantech">
+      <outline type="rss" text="Canary Media" title="Canary Media" xmlUrl="https://www.canarymedia.com/rss" description="Clean energy transition news covering grid decarbonization, solar, and climate policy." />
+      <outline type="rss" text="Electrek" title="Electrek" xmlUrl="https://electrek.co/feed/" description="Electric vehicles, renewable energy infrastructure, and battery manufacturing news." />
+      <outline type="rss" text="CleanTechnica" title="CleanTechnica" xmlUrl="https://cleantechnica.com/feed/" description="Solar energy developments, EV adoption metrics, and clean technology analysis." />
+      <outline type="rss" text="Carbon Brief" title="Carbon Brief" xmlUrl="https://www.carbonbrief.org/feed/" description="Clear, data-driven analysis of climate science and international emissions policy." />
+    </outline>
+    <outline text="Finance &amp; Markets" title="Finance &amp; Markets">
+      <outline type="rss" text="Calculated Risk" title="Calculated Risk" xmlUrl="https://calculatedrisk.substack.com/feed" description="Bill McBride delivers the best empirical housing and macro economic data in the world." />
+      <outline type="rss" text="A Wealth of Common Sense" title="A Wealth of Common Sense" xmlUrl="https://awealthofcommonsense.com/feed/" description="Ben Carlson explains market cycles, asset allocation, and behavioral finance." />
+      <outline type="rss" text="The Big Picture by Barry Ritholtz" title="The Big Picture by Barry Ritholtz" xmlUrl="https://ritholtz.com/feed/" description="Behavioral economics, quantitative markets, and macro commentary." />
+      <outline type="rss" text="Morningstar Insights" title="Morningstar Insights" xmlUrl="https://www.morningstar.com/rss" description="Independent fund ratings, equity valuations, and retirement planning strategies." />
+    </outline>
+    <outline text="Productivity &amp; PKM" title="Productivity &amp; PKM">
+      <outline type="rss" text="Cal Newport’s Study Hacks Blog" title="Cal Newport’s Study Hacks Blog" xmlUrl="https://calnewport.com/feed/" description="Deep work philosophy, digital minimalism, and engineering a distraction-free professional life." />
+      <outline type="rss" text="Farnam Street (Shane Parrish)" title="Farnam Street (Shane Parrish)" xmlUrl="https://fs.blog/feed/" description="Mental models, decision making under uncertainty, and lifelong learning." />
+      <outline type="rss" text="Zen Habits by Leo Babauta" title="Zen Habits by Leo Babauta" xmlUrl="https://zenhabits.net/feed/" description="Simplicity, mindfulness, letting go of clutter, and building sustainable daily routines." />
+      <outline type="rss" text="Asian Efficiency" title="Asian Efficiency" xmlUrl="https://www.asianefficiency.com/feed/" description="Time management tactics, calendar blocking, and personal productivity workflows." />
+    </outline>
+
+  </body>
+</opml>

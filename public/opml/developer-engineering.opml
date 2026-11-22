@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Curated Feeds - Developer &amp; Engineering OPML Bundle (2027)</title>
+    <dateCreated>Sun, 22 Nov 2026 00:00:00 GMT</dateCreated>
+    <docs>http://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+    <outline text="Developer &amp; Engineering" title="Developer &amp; Engineering">
+      <outline type="rss" text="Martin Fowler" title="Martin Fowler" xmlUrl="https://martinfowler.com/feed.atom" description="Software design patterns and refactoring" />
+      <outline type="rss" text="GitHub Engineering" title="GitHub Engineering" xmlUrl="https://github.blog/engineering/feed/" description="Scale, infrastructure, and distributed systems" />
+      <outline type="rss" text="Dan Luu" title="Dan Luu" xmlUrl="https://danluu.com/atom.xml" description="Systems performance, hardware, and engineering economics" />
+      <outline type="rss" text="Julia Evans" title="Julia Evans" xmlUrl="https://jvns.ca/atom.xml" description="Debugging, networking, and developer tools" />
+      <outline type="rss" text="Stripe Increment" title="Stripe Increment" xmlUrl="https://increment.com/feed.xml" description="Software engineering magazine for practitioners" />
+    </outline>
+
+  </body>
+</opml>
