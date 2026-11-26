@@ -91,7 +91,7 @@ export default function ChangelogPage() {
               <li>Category organisation for Tech, Design, News, and AI, for focused browsing.</li>
             </ul>
             <a
-              href={SITE.app.apk}
+              href={SITE.app.uptodown}
               className="btn btn-primary"
               target="_blank"
               rel="noopener noreferrer"
@@ -173,7 +173,7 @@ export default function ChangelogPage() {
 
         <CtaBand
           title="Install the current build"
-          primary={{ label: `Download v${SITE.app.version}`, href: SITE.app.apk }}
+          primary={{ label: `Download v${SITE.app.version}`, href: SITE.app.uptodown }}
           secondary={{ label: 'Screenshots', href: '/screenshots/' }}
         >
           Curated Feeds is free forever, with no ads, no account, and no tracking.

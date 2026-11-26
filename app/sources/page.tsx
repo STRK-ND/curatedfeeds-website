@@ -299,7 +299,7 @@ export default function SourcesPage() {
 
         <CtaBand
           title="Add them all in an evening"
-          primary={{ label: 'Download Curated Feeds', href: SITE.app.apk }}
+          primary={{ label: 'Download Curated Feeds', href: SITE.app.uptodown }}
           secondary={{ label: 'See screenshots', href: '/screenshots/' }}
         >
           Download Curated Feeds for Android, free, no ads, no account. Paste a feed URL and start

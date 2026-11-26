@@ -142,7 +142,7 @@ export default function AiFeedsPage() {
 
       <CtaBand
         title="Triage AI updates without information overload"
-        primary={{ label: 'Download Curated Feeds', href: SITE.app.apk }}
+        primary={{ label: 'Download Curated Feeds', href: SITE.app.uptodown }}
         secondary={{ label: 'All Starter Feeds', href: '/sources/' }}
       >
         Swipe right to save insightful technical papers; swipe left to clear the rest. Version {SITE.app.version},

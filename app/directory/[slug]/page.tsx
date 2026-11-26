@@ -195,7 +195,7 @@ export default async function PublicationFeedPage({
 
       <CtaBand
         title={`Read ${pub.name} without ads or popups`}
-        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.apk }}
+        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.uptodown }}
         secondary={{ label: 'View All Publications', href: '/directory/' }}
       >
         Version {SITE.app.version}, about {APK_MB} MB, Android 8.0+. Enjoy {pub.name} as clean, tactile

@@ -113,7 +113,7 @@ export default async function CategoryHubPage({
 
       <CtaBand
         title={`Read ${category.name} updates with focus and clarity`}
-        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.apk }}
+        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.uptodown }}
         secondary={{ label: 'All Starter Feeds', href: '/sources/' }}
       >
         Version {SITE.app.version}, about {APK_MB} MB. Keep up with {category.name.toLowerCase()} as focused

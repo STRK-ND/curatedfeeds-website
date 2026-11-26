@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { PRIMARY_NAV } from '../lib/nav';
+import { SITE } from '../lib/site';
 import MobileMenu from './MobileMenu';
 
 /**
@@ -22,9 +23,15 @@ export default function Nav({ overlay = false }: { overlay?: boolean }) {
             </Link>
           ))}
         </div>
-        <Link href="/#download" className="nav__cta" aria-label="Download the app">
-          Get the APK
-        </Link>
+        <a
+          href={SITE.app.uptodown}
+          className="nav__cta"
+          aria-label="Download Curated Feeds on Uptodown"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get the App
+        </a>
         <MobileMenu />
       </div>
     </nav>

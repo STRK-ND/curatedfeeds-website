@@ -145,7 +145,7 @@ export default async function PlatformGuidePage({
 
       <CtaBand
         title={`Read ${platform.name} feeds without algorithmic noise`}
-        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.apk }}
+        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.uptodown }}
         secondary={{ label: 'Test Feed in Finder', href: '/tools/find-feed/' }}
       >
         Version {SITE.app.version}, about {APK_MB} MB. Paste your {platform.name} feed and swipe through stories

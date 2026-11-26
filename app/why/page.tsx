@@ -264,7 +264,7 @@ export default function WhyPage() {
 
         <CtaBand
           title="Read on your own terms"
-          primary={{ label: 'Download Curated Feeds', href: SITE.app.apk }}
+          primary={{ label: 'Download Curated Feeds', href: SITE.app.uptodown }}
           secondary={{ label: 'Read the FAQ', href: '/#faq' }}
         >
           Version {SITE.app.version}, about {APK_MB} MB, Android 8.0 and up. No account, no ads, no

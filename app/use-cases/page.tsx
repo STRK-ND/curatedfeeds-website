@@ -194,7 +194,7 @@ export default function UseCasesPage() {
 
         <CtaBand
           title="Find your reading profile?"
-          primary={{ label: 'Download APK', href: SITE.app.apk }}
+          primary={{ label: 'Download on Uptodown', href: SITE.app.uptodown }}
           secondary={{ label: 'Starter feeds', href: '/sources/' }}
         >
           Download Curated Feeds for Android, free forever, no ads, no account required, version{' '}

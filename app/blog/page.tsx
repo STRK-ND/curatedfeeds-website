@@ -86,7 +86,7 @@ export default function BlogPage() {
 
       <CtaBand
         title="Ready to take back your attention?"
-        primary={{ label: 'Get the App', href: SITE.app.apk }}
+        primary={{ label: 'Get the App', href: SITE.app.uptodown }}
         secondary={{ label: 'Get it on Uptodown', href: SITE.app.uptodown }}
       >
         Download Curated Feeds and start reading on your terms.

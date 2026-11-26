@@ -175,9 +175,14 @@ export default function WhyFeederPage() {
           8.0 and up, as a direct APK from this site or from Uptodown.
         </p>
         <div className="blog-cta-actions">
-          <Link href={SITE.app.apk} className="cta-button primary">
-            Download the APK
-          </Link>
+          <a
+            href={SITE.app.uptodown}
+            className="cta-button primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download on Uptodown
+          </a>
           <Link href="/blog/best-rss-readers-android-2026/" className="cta-button secondary">
             All 8 readers compared
           </Link>

@@ -107,7 +107,7 @@ export default function DirectoryPage() {
 
       <CtaBand
         title="Read 50+ publications without popups or tracking"
-        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.apk }}
+        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.uptodown }}
         secondary={{ label: 'Test URL in Finder', href: '/tools/find-feed/' }}
       >
         Version {SITE.app.version}, about {APK_MB} MB. Triage your favorite publications on Android

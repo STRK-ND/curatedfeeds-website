@@ -141,7 +141,7 @@ export default function DevFeedsPage() {
 
       <CtaBand
         title="Build your developer intelligence queue"
-        primary={{ label: 'Download Curated Feeds', href: SITE.app.apk }}
+        primary={{ label: 'Download Curated Feeds', href: SITE.app.uptodown }}
         secondary={{ label: 'All Starter Feeds', href: '/sources/' }}
       >
         Triage engineering releases and architecture posts with one thumb. Free forever on Android with no account.

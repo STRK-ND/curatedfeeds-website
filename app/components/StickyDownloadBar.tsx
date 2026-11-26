@@ -44,9 +44,11 @@ export default function StickyDownloadBar() {
         </div>
         <div className="sticky-download-actions">
           <a
-            href={SITE.app.apk}
+            href={SITE.app.uptodown}
             className="sticky-download-btn"
-            aria-label={`Download Curated Feeds APK version ${SITE.app.version}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Download Curated Feeds on Uptodown, version ${SITE.app.version}`}
           >
             Get Free APK
           </a>

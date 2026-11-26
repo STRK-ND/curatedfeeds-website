@@ -156,12 +156,12 @@ export default function Home() {
               </p>
               <div className="hero__actions">
                 <TrackedDownloadLink
-                  href={SITE.app.apk}
-                  platform="direct"
+                  href={SITE.app.uptodown}
+                  platform="uptodown"
                   className="btn"
-                  ariaLabel={`Download Curated Feeds APK, ${APK_MB} megabytes`}
+                  ariaLabel={`Download Curated Feeds from Uptodown, ${APK_MB} megabytes`}
                 >
-                  Download the APK
+                  Download on Uptodown
                 </TrackedDownloadLink>
                 <Link href="/#preview" className="text-link">
                   See the two screens
@@ -430,22 +430,14 @@ export default function Home() {
                 No account, no ads, no tracking. Permissions beyond storage: none.
               </p>
               <TrackedDownloadLink
-                href={SITE.app.apk}
-                platform="direct"
-                className="btn"
-                ariaLabel={`Download Curated Feeds APK, ${APK_MB} megabytes`}
-              >
-                Download the APK
-              </TrackedDownloadLink>
-              <TrackedDownloadLink
                 href={SITE.app.uptodown}
                 platform="uptodown"
-                className="download__alt"
+                className="btn"
                 target="_blank"
                 rel="noopener noreferrer"
                 ariaLabel="Get Curated Feeds on Uptodown, opens in a new tab"
               >
-                Or get it on Uptodown
+                Download on Uptodown
               </TrackedDownloadLink>
             </div>
           </div>

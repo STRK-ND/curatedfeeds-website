@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { APK_MB, SITE } from '../lib/site';
+import { SITE } from '../lib/site';
 import { FOOTER_NAV } from '../lib/nav';
 
 /** Footer: the wordmark at display size, then the kept links and the credits. */
@@ -9,8 +9,8 @@ export default function Footer() {
       <div className="container footer__inner">
         <div className="footer__top">
           <p className="footer__word">Curated Feeds</p>
-          <a href={SITE.app.apk} className="btn" download>
-            Download APK · {APK_MB} MB
+          <a href={SITE.app.uptodown} className="btn" target="_blank" rel="noopener noreferrer">
+            Download on Uptodown
           </a>
         </div>
 

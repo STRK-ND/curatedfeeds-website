@@ -116,7 +116,7 @@ export const metadata: Metadata = {
   appLinks: {
     android: {
       package: SITE.app.package,
-      url: SITE.app.apk,
+      url: SITE.app.uptodown,
     },
     web: { url: SITE.url },
   },

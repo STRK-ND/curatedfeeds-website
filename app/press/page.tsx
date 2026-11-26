@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     q: 'Where can we download the app to check the claims in this kit?',
-    a: 'The current version is a free direct APK download on this site, and it is also listed on Uptodown. No account, no payment, and no store listing gate. The changelog at curatedfeeds.web.app/changelog/ lists what each public build changed, so claims about features can be checked against the version you install.',
+    a: 'The current version is a free download on Uptodown. No account, no payment, and no store listing gate. The changelog at curatedfeeds.web.app/changelog/ lists what each public build changed, so claims about features can be checked against the version you install.',
   },
   {
     q: 'Is there an embargo or a press release schedule?',
@@ -132,8 +132,8 @@ export default function PressPage() {
             <li>
               <span>Distribution</span>
               <span>
-                <a href={SITE.app.apk} target="_blank" rel="noopener noreferrer">
-                  Direct APK
+                <a href={SITE.app.uptodown} target="_blank" rel="noopener noreferrer">
+                  Uptodown
                 </a>{' '}
                 ·{' '}
                 <a href={SITE.app.uptodown} target="_blank" rel="noopener noreferrer">

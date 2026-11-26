@@ -206,7 +206,7 @@ export default function OpmlDirectoryPage() {
 
       <CtaBand
         title="Read OPML bundles with zero distractions"
-        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.apk }}
+        primary={{ label: 'Download Curated Feeds APK', href: SITE.app.uptodown }}
         secondary={{ label: 'Browse 50 Publications', href: '/directory/' }}
       >
         Version {SITE.app.version}, about {APK_MB} MB. Import any OPML file directly into Curated Feeds
