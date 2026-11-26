@@ -45,7 +45,7 @@
 ## Optional
 
 - [RSS Feed (blog)](https://curatedfeeds.web.app/feed.xml)
-- [Founder site](https://rajatkashyap.com)
+- [Website](https://curatedfeeds.web.app)
 - [Instagram](https://www.instagram.com/curated_feeds)
 - [Full markdown export](https://curatedfeeds.web.app/llms-full.txt)
 - [Agent skill (markdown)](https://curatedfeeds.web.app/.well-known/agent-skill.md)

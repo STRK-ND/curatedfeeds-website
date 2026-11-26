@@ -207,9 +207,9 @@ export default function PressPage() {
               </a>
             </li>
             <li>
-              <span>Personal site</span>
+              <span>Website</span>
               <a href={SITE.authorUrl} target="_blank" rel="noopener noreferrer">
-                rajatkashyap.com
+                curatedfeeds.web.app
               </a>
             </li>
             <li>

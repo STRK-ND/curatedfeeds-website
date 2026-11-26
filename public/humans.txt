@@ -1,6 +1,6 @@
 /* TEAM */
   Built with care by Rajat Kashyap
-  Site: https://rajatkashyap.com
+  Site: https://curatedfeeds.web.app
   Email: raj15400881@gmail.com
 
 /* SITE */

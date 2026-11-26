@@ -165,9 +165,9 @@ export default function AboutPage() {
               </a>
             </div>
             <div className="contact-item">
-              <strong>Founder:</strong>{' '}
-              <a href="https://rajatkashyap.com" target="_blank" rel="noopener noreferrer">
-                rajatkashyap.com
+              <strong>Website:</strong>{' '}
+              <a href="https://curatedfeeds.web.app" target="_blank" rel="noopener noreferrer">
+                curatedfeeds.web.app
               </a>
             </div>
           </div>

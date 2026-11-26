@@ -111,7 +111,7 @@ fetch that twin directly). Nothing here is written separately from the pages,
 so this digest cannot contradict them.
 
 Last built: ${stamp}
-Author: Rajat Kashyap (https://rajatkashyap.com)
+Author: Rajat Kashyap (https://curatedfeeds.web.app)
 Site licence: CC BY 4.0 with attribution (https://creativecommons.org/licenses/by/4.0/)
 Contact: raj15400881@gmail.com
 App download: https://apk-download.raj15400881.workers.dev/curated-feeds-v1.2.0.apk

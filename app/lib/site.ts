@@ -18,7 +18,7 @@ export const SITE = {
   locale: 'en_US',
   lang: 'en',
   author: 'Rajat Kashyap',
-  authorUrl: 'https://rajatkashyap.com',
+  authorUrl: 'https://curatedfeeds.web.app',
   email: 'raj15400881@gmail.com',
   instagram: 'https://www.instagram.com/curated_feeds',
   app: {

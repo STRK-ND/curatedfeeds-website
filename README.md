@@ -95,5 +95,5 @@ npm run indexnow
 
 ## 📄 License & Attribution
 
-Built with focus by **Rajat Kashyap** ([rajatkashyap.com](https://rajatkashyap.com)).  
+Built with focus by **Rajat Kashyap** ([curatedfeeds.web.app](https://curatedfeeds.web.app)).  
 © 2026 Curated Feeds. All rights reserved.

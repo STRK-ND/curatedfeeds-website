@@ -77,4 +77,4 @@ looked like — the comments are open.
 ---
 
 *This article is adapted from content published on curatedfeeds.web.app under CC BY 4.0.
-Author: Rajat Kashyap — https://rajatkashyap.com*
+Author: Rajat Kashyap — https://curatedfeeds.web.app*

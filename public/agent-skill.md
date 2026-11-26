@@ -42,7 +42,7 @@ ads, no tracking, and no account.
   https://curatedfeeds.web.app/about.md
 - Full-text Markdown export: https://curatedfeeds.web.app/llms-full.txt
 - Privacy policy: https://curatedfeeds.web.app/privacy/
-- Founder: https://rajatkashyap.com
+- Website: https://curatedfeeds.web.app
 - Instagram: https://www.instagram.com/curated_feeds
 - Contact: raj15400881@gmail.com
 
